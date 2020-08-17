@@ -1,44 +1,138 @@
-# This is an OpenAPI Specification (https://swagger.io/specification/)
-# for the Hello World API
-# owned by NHS Digital (https://digital.nhs.uk/)
+# Example OpenAPI YAML to get you started quickly.
+# Note: YAML has indentation based coping.
+# Code completion support is available so start typing for
+# available options.
+# This example follows the recommendations of the API 
+# Improvement Proposals for common API patterns. Find more
+# at https://google.aip.dev/
+
+# Find the full OpenAPI reference at:
+# https://github.com/OAI/OpenAPI-Specification
 openapi: "3.0.0"
 
 info:
-  version: "0.0.1"
+  version: "0.3.3-beta"
   title: Reasonable Adjustments API
   description: |
     ## Overview
+    Use this guide to access the [Reasonable Adjustments API](https://digital.nhs.uk/services/reasonable-adjustment-flag). The API aims to better support the delivery of care by opening up nationally stored information and data about Reasonable Adjustments that patients want to share with healthcare professionals.
+    
+    You can:
+    - Create Consent
+    - Create Flag
+    - Create Condition
+    
+    
+    - Read Consent
+    - Read Flag
+    - Read List
+    
+    
+    - Update Consent
+    - Update Flag
+    - Update Condition
+    
+    Currently, this API can only be accessed by healthcare professionals, authenticated with an NHS smartcard or equivalent. Unauthenticated access and citizen access are on the [roadmap](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=pds-fhir-api).
+
+    ## Legal Use
+    This API can only be used where there is a [legal basis](http://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) to do so. You should [make an access request](https://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) before you go too far with your development.
+
+    You must have made this request before you can go live (see 'Onboarding' below).
+    
+    ## Prerequisites
+    
+    ## Related APIs
+    [Personal Demographics Service (FHIR) API](https://portal.developer.nhs.uk/docs/personal-demographics-int/1/overview)
+    
+    [Female Genital Mutilation (FGM) Information Sharing Service](https://developer.nhs.uk/apis/fgm-v2.1/)
+    
+    [Child Protection Information Sharing - HL7 V3 API](https://digital.nhs.uk/services/child-protection-information-sharing-project/cp-is-domain-message-specification)
+    
+    [National Record Locator Service (FHIR) API](https://developer.nhs.uk/apis/nrl/)
+
+    ## API Status and Roadmap
 
     ## Technology
-    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). And is available via the Internet, and over the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). And is available via the Internet, and over the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). It also conforms to the [FHIR (STU3)](https://www.hl7.org/fhir/STU3/) global standard for health care data exchange, which is built on FHIR Release 3.
+    
+    You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
+    - resource names are capitalised and singular, for example `/Patient` not `/patients`
+    - array names are singular, for example `line` not `lines` for address lines
+    - data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an `extension` object
 
+    ## Network Access
+    This API is available on the Internet.
+    
     ## Authorisation
-    TBC
+    This API is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present and authenticated to use it.
+    The end user must be:
+    - a healthcare professional
+    - strongly authenticated, using either an NHS smartcard or a modern alternative
 
+    The API uses an OAuth Access (bearer) token, specifically an encoded JSON web token to authorise the calling system. The general specification of this token, what should be in it, and how it can be generated can be found in the [Spine Core API spec](https://developer.nhs.uk/apis/spine-core/security_jwt.html).
+    
+    
     ## Environments and Testing
     TBC
-      
+    
+    ## Onboarding
 
-    ## Endpoints
-    TBC
   contact:
     name: API Management Support
     email: api.management@nhs.net
 
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/hello-world'
+  - url: 'https://sandbox.api.service.nhs.uk/reasonable-adjustments'
     description: Sandbox environment.
 
 paths:
-
-  /hello/world:
+  /consent:
+    post:
+      summary: Create Consent
+      operationId: postConsent
+      requestBody:
+        description: Create consent
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+              
+      responses:
+        '201':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Last-Modified:
+                    type: string
+                    format: date-time
+                    example: 2018-07-23T11:00:00+00:00
+                  Location:
+                    type: string
+                    example: 
+                  ETag:
+                    type: string
+                    example: resourceVID
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json
+      tags:
+        - Endpoints              
+                    
     get:
-      summary: Say hello world.
-      operationId: getHello
-      description: |
-        Get a "Hello world!" response from an open-access endpoint.
-
-        Use this API alongside our [open-access REST API tutorial](https://digital.nhs.uk/developer/tutorials/open-access-rest-api-tutorial) to learn how to connect to our APIs.
+      summary: Read Consent
+      operationId: readConsent
+      parameters: 
+      - $ref: '#/components/parameters/patient'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/category'
       responses:
         '200':                                                      
           description: Successful response.
@@ -47,115 +141,378 @@ paths:
               schema:
                 type: object
                 properties:
-                  message:
+                  Date:
                     type: string
-                    example: "Hello world!"
-              example:
-                message: "Hello world!"
-      tags:
-        - hello
-
-  /hello/application:
-    get:
-      summary: Say hello application.
-      operationId: getHelloApiKey
-      description: |
-        Get a "Hello application!" response from an application-restricted endpoint.
-
-        Use this API alongside our [application-restricted REST API tutorial](https://digital.nhs.uk/developer/tutorials/application-restricted-rest-api-tutorial) to learn how to connect to our APIs.
-      responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Content-Type:
                     type: string
-                    example: "Hello application!"
-              example:
-                message: "Hello application!"
-        '401':
-          description: Missing or invalid API Key
-          content: 
-            application/json:
-              example:
-                message: "Invalid ApiKey"
-      security:
-        - api_key: []
+                    example: application/fhir+json                
       tags:
-        - hello
-
-  /hello/user:
-    get:
-      summary: Say hello user.
-      operationId: getHelloToken
-      description: |
-        Get a "Hello user!" response from a user-restricted endpoint.
-
-        Use this API alongside our [user-restricted REST API tutorial](https://digital.nhs.uk/developer/tutorials/user-restricted-rest-api-tutorial) to learn how to connect to our APIs.
-
+        - Endpoints
+  
+  /consent/{consentID}:    
+    put:
+      summary: Update Consent
+      operationId: updateConsent
+      requestBody:
+        description: Update record
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+      parameters: 
+      - $ref: '#/components/parameters/consentID'        
       responses:
-        '200':
-          description: Successful response
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Hello user!"
-              example:
-                message: "Hello user!"
-        '401':
-          description: Missing or invalid OAuth 2.0 Access Token
-          content: 
-            application/json:
-              example:
-                message: "Invalid access token"
-      security:
-        - oAuth2AuthCode: []
-      tags:
-        - hello
-
-  /_status:
-    get:
-      summary: Health check endpoint.
-      operationId: getStatus
-      description: |
-        Returns an empty json response. This can be used to perform service healthcheck.
-
-        Use this API alongside our [open-access REST API tutorial](https://digital.nhs.uk/developer/tutorials/open-access-rest-api-tutorial) to learn how to connect to our APIs.
-      responses:
-        '200':
+        '200':                                                      
           description: Successful response.
           content:
             application/json:
               schema:
                 type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Last-Modified:
+                    type: string
+                    format: date-time
+                    example: 2018-07-23T11:00:00+00:00
+                  ETag:
+                    type: string
+                    example: resourceVID
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json                
       tags:
-        - hello
+        - Endpoints    
+        
+  /flag:
+    post:
+      summary: Create Flag
+      operationId: postFlag
+      requestBody:
+        description: Create flag
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+              
+      responses:
+        '201':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Last-Modified:
+                    type: string
+                    format: date-time
+                    example: 2018-07-23T11:00:00+00:00
+                  Location:
+                    type: string
+                    example: 
+                  ETag:
+                    type: string
+                    example: resourceVID
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json
+      tags:
+        - Endpoints              
+                    
+    get:
+      summary: Read Flag
+      operationId: readFlag
+      parameters: 
+      - $ref: '#/components/parameters/patient'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/category'
+      responses:
+        '200':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json                
+      tags:
+        - Endpoints
+  
+  /flag/{flagID}:    
+    put:
+      summary: Update Flag
+      operationId: updateFlag
+      requestBody:
+        description: Update flag
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+      parameters: 
+      - $ref: '#/components/parameters/If-Match'
+      - $ref: '#/components/parameters/flagID'
+      responses:
+        '200':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Last-Modified:
+                    type: string
+                    format: date-time
+                    example: 2018-07-23T11:00:00+00:00
+                  ETag:
+                    type: string
+                    example: resourceVID
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json
+        '409':
+          description: CONFLICT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json           
+      tags:
+        - Endpoints 
+  
+  /list:
+    post:
+      summary: Create List
+      operationId: postList
+      requestBody:
+        description: Create list
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+              
+      responses:
+        '201':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Last-Modified:
+                    type: string
+                    format: date-time
+                    example: 2018-07-23T11:00:00+00:00
+                  Location:
+                    type: string
+                    example: 
+                  ETag:
+                    type: string
+                    example: resourceVID
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json
+      tags:
+        - Endpoints              
+                    
+    get:
+      summary: Read List
+      operationId: readList
+      parameters: 
+      - $ref: '#/components/parameters/patient'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/category'
+      responses:
+        '200':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json                
+      tags:
+        - Endpoints
+  
+  /list/{listID}:    
+    put:
+      summary: Update List
+      operationId: updateList
+      requestBody:
+        description: Update list
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+      parameters: 
+      - $ref: '#/components/parameters/If-Match'
+      - $ref: '#/components/parameters/listID'
+      responses:
+        '200':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Last-Modified:
+                    type: string
+                    format: date-time
+                    example: 2018-07-23T11:00:00+00:00
+                  ETag:
+                    type: string
+                    example: resourceVID
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json
+        '409':
+          description: CONFLICT
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json  
+      tags:
+        - Endpoints
+        
+  /$removearecord:
+    post:
+      summary: Remove RA Record
+      operationId: removeRecord
+      requestBody:
+        description: Remove Record
+        required: true
+        content:
+          application/fhir+json:
+            schema:
+              type: object
+      parameters:
+      - $ref: '#/components/parameters/patient'
+      responses:
+        '200':                                                      
+          description: Successful response.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Date:
+                    type: string
+                    format: date-time
+                    example: Tue, 23 Jul 2018 11:00:00 GMT
+                  Content-Type:
+                    type: string
+                    example: application/fhir+json
+      tags:
+        - Endpoints    
+
 components:
-
-  securitySchemes:
-    api_key:
-      type: apiKey
-      name: apikey
+  parameters:
+    If-Match:
+      name: If-Match
       in: header
-
-    oAuth2AuthCode:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: https://sandbox.api.service.nhs.uk/oauth2/authorize
-          tokenUrl: https://sandbox.api.service.nhs.uk/oauth2/token
-          scopes: {}
-
-  schemas:
-    Greeting:
-      $ref: components/schemas/Greeting.yaml
-
-tags:
-  - name: hello
+      required: true
+      description: Latest known version identifier enclosed in quotes preceded by `W/`.
+      schema:
+        type: string
+        example: "aa755bd6-2be9-4971-972a-6724879c5cb1"
+    consentID:
+      name: consentID
+      in: path
+      required: true
+      description: The id of the record
+      schema:
+        type: string
+        example: "1"
+    flagID:
+      name: flagID
+      in: path
+      required: true
+      description: The id of the flag
+      schema:
+        type: string
+        example: "1"
+    listID:
+      name: listID
+      in: path
+      required: true
+      description: The id of the list
+      schema:
+        type: string
+        example: "1"    
+    patient:
+      name: patient
+      in: query
+      required: true
+      description: The id of the patient
+      schema:
+        type: string
+        example: "9999999998"    
+    status:
+      name: status
+      in: query
+      required: true
+      description: status
+      schema:
+        type: string
+        example: "active" 
+    category:
+      name: category
+      in: query
+      required: true
+      description: category
+      schema:
+        type: string
+        example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&
+ _format=json HTTP/1.1"     
+ 
