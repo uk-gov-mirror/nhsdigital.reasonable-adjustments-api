@@ -513,6 +513,5 @@ components:
       description: category
       schema:
         type: string
-        example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&
- _format=json HTTP/1.1"     
+        example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=json HTTP/1.1"     
  
