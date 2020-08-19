@@ -11,6 +11,14 @@
             "responses": {
                 "get": {"httpStatus": 200, "mockFile": "status.json"}
             }
+      },
+      "consent": {
+          "latency": 20,
+          "verbs": ["get","post"],
+          "responses": {
+                "get": {"httpStatus": 200, "mockFile": "readConsent.json"},
+                "post": {"httpStatus": 201, "mockFile": "createConsent.json"}
+          }
       }
     }
 }
