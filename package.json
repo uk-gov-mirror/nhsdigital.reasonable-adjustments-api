@@ -4,7 +4,7 @@
   "description": "OAS (Swagger v3) API Definition for Reasonable Adjustments API",
   "scripts": {
     "lint": "node_modules/.bin/speccy lint specification/reasonable-adjustments.yaml --skip default-and-example-are-redundant",
-    "test": "node_modules/.bin/newman run tests/e2e/reasonable-adjustments-sandbox.json -e tests/e2e/environments/local.postman.json --reporters html,cli,htmlextra --reporter-htmlextra-logs --reporter-htmlextra-darkTheme",
+    "test": "npm run --prefix tests test:sandbox",
     "publish": "mkdir -p build && node_modules/.bin/speccy resolve specification/reasonable-adjustments.yaml -i | poetry run python scripts/yaml2json.py | poetry run python scripts/set_version.py > build/reasonable-adjustments.json",
     "serve": "node_modules/.bin/speccy serve build/reasonable-adjustments.json",
     "check-licenses": "node_modules/.bin/license-checker --failOn GPL --failOn LGPL"
