@@ -1,11 +1,11 @@
 {
-  "name": "hello-world-tests",
+  "name": "reasonable-adjustments-tests",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node_modules/.bin/node e2e/test-runner.js hello-world $APIGEE_ENVIRONMENT",
-    "test:sandbox": "node_modules/.bin/newman run e2e/reasonable-adjustments.collection.json"
+    "start": "node_modules/.bin/node e2e/test-runner.js reasonable-adjustments $APIGEE_ENVIRONMENT",
+    "test:sandbox": "ACCESS_TOKEN=dummy_token API_KEY=dummy_api_key node_modules/.bin/node e2e/test-runner.js reasonable-adjustments sandbox"
   },
   "author": "",
   "license": "(MIT OR OGL)",
