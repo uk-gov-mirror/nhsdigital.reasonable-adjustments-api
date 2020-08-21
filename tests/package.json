@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/node e2e/test-runner.js hello-world $APIGEE_ENVIRONMENT",
-    "test:sandbox": "node_modules/.bin/newman run tests/e2e/reasonable-adjustments.collection.json"
+    "test:sandbox": "node_modules/.bin/newman run e2e/reasonable-adjustments.collection.json"
   },
   "author": "",
   "license": "(MIT OR OGL)",
