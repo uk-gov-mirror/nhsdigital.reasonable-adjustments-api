@@ -41,7 +41,7 @@ function collectionRunner(serviceName, environmentName, basePath, credentials) {
 }
 
 function main(args) {
-  const credentials = getCredentialsFromEnv()
+  // const credentials = getCredentialsFromEnv()
   const serviceName = args['<service_name>']
 
   collectionRunner(serviceName, args['<environment>'], args['<base_path>'], credentials)
