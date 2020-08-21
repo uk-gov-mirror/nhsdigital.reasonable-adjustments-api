@@ -19,7 +19,6 @@ function collectionRunner(serviceName, environmentName, basePath) {
 
   const collection = JSON.parse(fs.readFileSync(collectionPath).toString())
   const environment = JSON.parse(fs.readFileSync(environmentPath).toString())
-  const globals = overrideGlobals(basePath)
 
   const callback = err => {
     if (err) { throw err; }
@@ -34,8 +33,7 @@ function collectionRunner(serviceName, environmentName, basePath) {
         export: './test-report.xml'
       }
     },
-    environment,
-    globals
+    environment
 
   }, callback)
 }
