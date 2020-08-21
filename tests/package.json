@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node_modules/.bin/node e2e/test-runner.js hello-world $APIGEE_ENVIRONMENT",
-    "test:sandbox": "ACCESS_TOKEN=dummy_token API_KEY=dummy_api_key node_modules/.bin/node reasonable-adjustments sandbox"
+    "test:sandbox": "node_modules/.bin/newman run tests/e2e/reasonable-adjustments.collection.json"
   },
   "author": "",
   "license": "(MIT OR OGL)",
