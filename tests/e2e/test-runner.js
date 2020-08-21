@@ -13,13 +13,13 @@ const fs = require('fs')
 const path = require('path')
 const newman = require('newman')
 
-function collectionRunner(serviceName, environmentName, basePath, credentials) {
+function collectionRunner(serviceName, environmentName, basePath) {
   const collectionPath = path.resolve(`e2e/${serviceName}.collection.json`)
   const environmentPath = path.resolve(`e2e/environments/${environmentName}.postman.json`)
 
   const collection = JSON.parse(fs.readFileSync(collectionPath).toString())
   const environment = JSON.parse(fs.readFileSync(environmentPath).toString())
-  const globals = overrideGlobals(basePath, credentials)
+  const globals = overrideGlobals(basePath)
 
   const callback = err => {
     if (err) { throw err; }
@@ -44,7 +44,7 @@ function main(args) {
   // const credentials = getCredentialsFromEnv()
   const serviceName = args['<service_name>']
 
-  collectionRunner(serviceName, args['<environment>'], args['<base_path>'], credentials)
+  collectionRunner(serviceName, args['<environment>'], args['<base_path>'])
 }
 
 // function getCredentialsFromEnv() {
