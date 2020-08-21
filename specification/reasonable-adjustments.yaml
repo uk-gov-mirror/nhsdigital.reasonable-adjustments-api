@@ -430,7 +430,7 @@ paths:
       tags:
         - Endpoints
         
-  /$removearecord:
+  /removearecord:
     post:
       summary: Remove RA Record
       operationId: removeRecord
