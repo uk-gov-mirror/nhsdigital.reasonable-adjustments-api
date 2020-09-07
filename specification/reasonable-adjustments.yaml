@@ -430,7 +430,7 @@ paths:
       tags:
         - Endpoints
         
-  /removearecord:
+  /removerarecord:
     post:
       summary: Remove RA Record
       operationId: removeRecord
@@ -443,6 +443,8 @@ paths:
               type: object
       parameters:
       - $ref: '#/components/parameters/patient'
+      - $ref: '#/components/parameters/removalReason'
+      - $ref: '#/components/parameters/supportingComment'
       responses:
         '200':                                                      
           description: Successful response.
@@ -463,6 +465,22 @@ paths:
 
 components:
   parameters:
+    removalReason:
+      name: removalReason
+      in: query
+      required: true
+      description: Code recording Removal Reason
+      schema:
+        type: string
+        example: "The Reasonable Adjustment Flag no longer applies to the patient"
+    supportingComment:
+      name: supportingComment
+      in: query
+      required: true
+      description: Comment supporting Removal Reason
+      schema:
+        type: string
+        example: "No longer applies"
     If-Match:
       name: If-Match
       in: header
