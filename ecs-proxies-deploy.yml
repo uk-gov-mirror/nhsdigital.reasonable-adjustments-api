@@ -12,3 +12,6 @@ docker_service:
           value: "{{ 'debug' if APIGEE_ENVIRONMENT == 'internal-dev' else 'info' }}"
         - name: UPSTREAM
           value: "{{ apigee_uri }}"
+      health_check:
+        matcher: "200"
+        path: "/_ping"    
