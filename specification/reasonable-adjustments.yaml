@@ -269,7 +269,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/UpdateFlagBundle.yaml'
+              $ref: 'components/schemas/UpdateFlagBundle.json'
       parameters: 
       - $ref: '#/components/parameters/If-Match'
       - $ref: '#/components/parameters/flagID'
