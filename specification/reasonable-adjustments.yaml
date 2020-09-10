@@ -102,6 +102,101 @@ paths:
           application/fhir+json:
             schema:
               type: object
+              properties:
+                resourceType: 
+                  type: string
+                  example: Consent
+                fhir_comments:
+                  type: array
+                  items:
+                    type: string
+                    example: ' CreateExample-CreateConsentRequest.xml '
+                meta:
+                  type: object
+                  properties:
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        example: "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
+                extension:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      url:
+                        type: string
+                        example: "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1"
+                      valueCodeableConcept:
+                        type: object
+                        properties:
+                          coding:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                system:
+                                  type: string
+                                  example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1"
+                                code:
+                                  type: string
+                                  example: "lpa"
+                                display:
+                                  type: string
+                                  example: "Lasting power of attorney personal welfare"
+                status:
+                  type: string
+                  example: "active"
+                category:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      coding:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            system:
+                              type: string
+                              example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1"
+                            code:
+                              type: string
+                              example: "reasonable adjustments flag"
+                            display:
+                              type: string
+                              example: "Reasonable Adjustments Flag"
+                patient:
+                  type: object
+                  properties:
+                    reference:
+                      type: string
+                      example: "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+                policy:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      authority:
+                        type: string
+                        example: "https://www.gov.uk/"
+                      uri:
+                        type: string
+                        example: "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+                purpose:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      system:
+                        type: string
+                        example: "https://snomed.info/sct"
+                      code:
+                        type: string
+                        example: "370856009"
+                      display:
+                        type: string
+                        example: "Limiting access to confidential patient information"
               
       responses:
         '201':                                                      
@@ -269,7 +364,108 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: 'components/schemas/UpdateFlagBundle.json'
+              type: object
+              properties:
+                resourceType:
+                  type: string
+                  example: "Flag"
+                id:
+                  type: string
+                  example: "2acb0536-0a8f-48c9-8a2f-6ee82860f186"
+                fhir_comments:
+                  type: array
+                  items:
+                    type: string
+                    example: " xml example fileUpdateExample-UpdateFlagRequest.xml "
+                meta:
+                  type: object
+                  properties:
+                    versionId:
+                      type: string
+                      example: "aa755bd6-2be9-4971-972a-6724879c5cb1"
+                    lastUpdated:
+                      type: string
+                      example: "2018-07-24T10:01:00+00:00"
+                    profile:
+                      type: array
+                      items:
+                        type: string
+                        example: "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
+                contained:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      resourceType:
+                        type: string
+                        example: "Provenance"
+                      id:
+                        type: string
+                        example: "43124f67-b09d-453d-b889-a5e2e8780b9e"
+                      meta:
+                        type: object
+                        properties:
+                          profile:
+                            type: array
+                            items:
+                              type: string
+                              example: "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+                      target:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            reference:
+                              type: string
+                              example: "Flag/2acb0536-0a8f-48c9-8a2f-6ee82860f186"
+                      recorded:
+                        type: string
+                        example: "2018-07-24T10:05:33+00:00"
+                      agent:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            role:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  coding:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        system:
+                                          type: string
+                                          example: "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+                                        code:
+                                          type: string
+                                          example: "R1974"
+                                        display:
+                                          type: string
+                                          example: "Community Learning Disabilities Nurse"
+                            whoReference:
+                              type: object
+                              properties:
+                                reference:
+                                  type: string
+                                  example: "https://sds.spineservices.nhs.uk/STU3/Practitioner/4tr6ee6a9"
+                                display: 
+                                  type: string
+                                  example: "Nurse N"
+                            onBehalfOfResource:
+                              type: object
+                              properties:
+                                reference:
+                                  type: string
+                                  example: "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7"
+                                display:
+                                  type: string
+                                  example: "Some Hospital Learning Disability Support Department"
+              
+              
+              
       parameters: 
       - $ref: '#/components/parameters/If-Match'
       - $ref: '#/components/parameters/flagID'
@@ -323,6 +519,15 @@ paths:
           application/fhir+json:
             schema:
               type: object
+              properties:
+                resourceType:
+                  type: string
+                  example: "Condition"
+                fhir_comments:
+                  type: array
+                  items:
+                    type: string
+                    example: " json example AAJSONPlaceholder.json "
               
       responses:
         '201':                                                      
@@ -358,7 +563,7 @@ paths:
       parameters: 
       - $ref: '#/components/parameters/patient'
       - $ref: '#/components/parameters/status'
-      - $ref: '#/components/parameters/category'
+      - $ref: '#/components/parameters/code'
       responses:
         '200':                                                      
           description: Successful response.
@@ -480,7 +685,7 @@ components:
       description: Comment supporting Removal Reason
       schema:
         type: string
-        example: "No longer applies"
+        example: "No longer applies"    
     If-Match:
       name: If-Match
       in: header
@@ -515,7 +720,7 @@ components:
         example: "1"    
     patient:
       name: patient
-      in: query
+      in: header
       required: true
       description: The id of the patient
       schema:
@@ -523,7 +728,7 @@ components:
         example: "9999999998"    
     status:
       name: status
-      in: query
+      in: header
       required: true
       description: status
       schema:
@@ -531,11 +736,20 @@ components:
         example: "active" 
     category:
       name: category
-      in: query
+      in: header
       required: true
       description: category
       schema:
         type: string
         example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=json HTTP/1.1"
+    code:
+      name: code
+      in: header
+      required: true
+      description: code
+      schema:
+        type: string
+        example: "http://snomed.info/sct|1094391000000102&
+ _format=json HTTP/1.1"
 tags:
 - name: Reasonable Adjustments 
