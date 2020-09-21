@@ -704,6 +704,7 @@ components:
       name: nhsNumber
       in: query
       required: true
+      description: ID number of a patient
       schema:
         type: object
         properties:
