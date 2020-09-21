@@ -57,7 +57,7 @@
           "put": {"httpStatus": 200, "mockFile": "updateList.json"}
         }
     },
-   "removearecord": {
+   "removerarecord": {
     "latency": 20,
     "verbs": ["post"],
     "responses": {

@@ -649,12 +649,33 @@ paths:
       summary: Remove RA Record
       operationId: removeRecord
       requestBody:
-        description: Remove Record
+        description: Remove RA record
         required: true
         content:
           application/fhir+json:
             schema:
               type: object
+              properties:
+                resourceType:
+                  type: string
+                  example: "Parameters"
+                parameter:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        example: "removerarecord"
+                      part:
+                        type: array
+                        items:
+                          anyOf:
+                            - $ref: '#/components/parameters/nhsNumber'
+                            - $ref: '#/components/parameters/removalReason'
+                            - $ref: '#/components/parameters/supportingComment'    
+                    
+                    
       parameters:
       - $ref: '#/components/parameters/patient'
       - $ref: '#/components/parameters/removalReason'
@@ -679,22 +700,61 @@ paths:
 
 components:
   parameters:
+    nhsNumber:
+      name: nhsNumber
+      in: query
+      required: true
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            example: "nhsNumber"
+          valueString:
+            type: string
+            example: "999999998"
     removalReason:
       name: removalReason
       in: query
       required: true
       description: Code recording Removal Reason
       schema:
-        type: string
-        example: "The Reasonable Adjustment Flag no longer applies to the patient"
+        type: object
+        properties:
+          name:
+            type: string
+            example: "removalReason"
+          valueCodeableConcept:
+            type: object
+            properties:
+              coding:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    system:
+                      type: string
+                      example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1"
+                    code:
+                      type: string
+                      example: "DoesntApply"
+                    display:
+                      type: string
+                      example: "The Reasonable Adjustment Flag no longer applies to the patient"
     supportingComment:
       name: supportingComment
       in: query
       required: true
       description: Comment supporting Removal Reason
       schema:
-        type: string
-        example: "No longer applies"    
+        type: object
+        properties:
+          name:
+            type: string
+            example: "supportingComment"
+          valueString:
+            type: string
+            example: "No longer applies"    
     If-Match:
       name: If-Match
       in: header
@@ -758,6 +818,7 @@ components:
       description: code
       schema:
         type: string
-        example: "http://snomed.info/sct|1094391000000102&_format=json HTTP/1.1"
+        example: "http://snomed.info/sct|1094391000000102&
+ _format=json HTTP/1.1"
 tags:
 - name: Reasonable Adjustments 
