@@ -1,0 +1,8 @@
+type: object
+properties:
+    name:
+        type: string
+        example: "supportingComment"
+    valueString:
+        type: string
+        example: "No longer applies"

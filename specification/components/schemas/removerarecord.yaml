@@ -27,25 +27,7 @@ properties:
             type: array
             description: A list of parameters parts.
             items:
-                type: object
-                required:
-                    - name
-                properties:
-                    name:
-                        type: string
-                    valueString:
-                        type: string
-                    valueCodeableConcept:
-                        type: object
-                        properties:
-                            coding:
-                                type: array
-                                items:
-                                    type: object
-                                    properties:
-                                        system:
-                                            type: string
-                                        code:
-                                            type: string
-                                        display:
-                                            type: string
+                anyOf:
+                    - $ref: "nhsNumber.yaml"
+                    - $ref: "removalReason.yaml"
+                    - $ref: "supportingComment.yaml"        
