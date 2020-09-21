@@ -654,7 +654,11 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: components/schemas/removerarecord.json                        
+              $ref: components/schemas/removerarecord.yaml    
+            examples:
+              example:
+                value:
+                  $ref: components/examples/removerarecord.json                    
       parameters:
       - $ref: '#/components/parameters/patient'
       - $ref: '#/components/parameters/removalReason'
