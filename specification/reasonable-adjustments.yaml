@@ -818,7 +818,6 @@ components:
       description: code
       schema:
         type: string
-        example: "http://snomed.info/sct|1094391000000102&
- _format=json HTTP/1.1"
+        example: "http://snomed.info/sct|1094391000000102&_format=json HTTP/1.1"
 tags:
 - name: Reasonable Adjustments 
