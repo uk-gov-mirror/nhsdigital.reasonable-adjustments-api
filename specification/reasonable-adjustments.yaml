@@ -39,8 +39,6 @@ info:
 
     You must have made this request before you can go live (see 'Onboarding' below).
     
-    ## Prerequisites
-    
     ## Related APIs
     [Personal Demographics Service (FHIR) API](https://portal.developer.nhs.uk/docs/personal-demographics-int/1/overview)
     
@@ -51,6 +49,16 @@ info:
     [National Record Locator Service (FHIR) API](https://developer.nhs.uk/apis/nrl/)
 
     ## API Status and Roadmap
+    All endpoints are in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) - expect further breaking changes.
+    
+    The following items are on our roadmap:
+      - Basic analytics
+      - Smartcard access
+      - Implement _status endpoints
+      - Implement proxy
+      - Implement rate limiting
+      
+    We are extremely keen to receive feedback on the API during alpha and beta, for example if there are data fields missing that you think you need. [Get in touch](https://digital.nhs.uk/developer/help-and-support) with any comments or suggestions.
 
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). And is available via the Internet, and over the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). It also conforms to the [FHIR (STU3)](https://www.hl7.org/fhir/STU3/) global standard for health care data exchange, which is built on FHIR Release 3.
@@ -61,7 +69,9 @@ info:
     - data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an `extension` object
 
     ## Network Access
-    This API is available on the Internet.
+    This API is available on the Internet, although access using NHS smartcards (see below) currently requires a connection to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+
+    For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
     
     ## Authorisation
     This API is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present and authenticated to use it.
@@ -73,7 +83,11 @@ info:
     
     
     ## Environments and Testing
-    TBC
+    You can test this API in:
+      - our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing) for initial developer testing.
+      - our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing) for formal integration testing.
+    
+      Our sandbox environment is a very basic simulation of the live service. It only covers a limited set of scenarios and is stateless, so does not actually persist any updates.
     
     ## Resources
     For information on the resources used within the FHIR® Reasonable Adjustments API go to:
@@ -81,6 +95,7 @@ info:
     [https://dev-reasonable-adjust-beta.netlify.app/explore.html](https://dev-reasonable-adjust-beta.netlify.app/explore.html)
     
     ## Onboarding
+    More details and documentation to come.
 
   contact:
     name: API Management Support
