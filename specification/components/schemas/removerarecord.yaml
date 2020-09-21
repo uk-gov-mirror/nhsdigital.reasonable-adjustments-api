@@ -34,7 +34,7 @@ properties:
                     name:
                         type: string
                     valueString:
-                        type: valueString
+                        type: string
                     valueCodeableConcept:
                         type: object
                         properties:
