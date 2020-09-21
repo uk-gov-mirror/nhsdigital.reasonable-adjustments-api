@@ -654,28 +654,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              type: object
-              properties:
-                resourceType:
-                  type: string
-                  example: "Parameters"
-                parameter:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        example: "removerarecord"
-                      part:
-                        type: array
-                        items:
-                          anyOf:
-                            - $ref: '#/components/parameters/nhsNumber'
-                            - $ref: '#/components/parameters/removalReason'
-                            - $ref: '#/components/parameters/supportingComment'    
-                    
-                    
+              $ref: components/schemas/removerarecord.json                        
       parameters:
       - $ref: '#/components/parameters/patient'
       - $ref: '#/components/parameters/removalReason'
