@@ -11,7 +11,7 @@
 openapi: "3.0.0"
 
 info:
-  version: "0.3.3-beta"
+  version: "0.3.4-beta"
   title: Reasonable Adjustments API
   description: |
     ## Overview
@@ -654,9 +654,9 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: components/schemas/removerarecord.yaml    
+              $ref: components/schemas/removerarecord.yaml
             examples:
-              example:
+              success:
                 value:
                   $ref: components/examples/removerarecord.json                    
       parameters:
