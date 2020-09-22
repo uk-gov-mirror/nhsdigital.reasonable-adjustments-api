@@ -1,0 +1,19 @@
+type: object
+properties:
+    url:
+        type: string
+        example: "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1"
+    extension:
+        type: array
+        items:
+            type: object
+            properties:
+                url:
+                    type: string
+                    example: "created"
+                valueReference:
+                    type: object
+                    properties:
+                        reference:
+                            type: string
+                            example: "#43124f67-b09d-453d-b889-a5e2e8780b9e"
