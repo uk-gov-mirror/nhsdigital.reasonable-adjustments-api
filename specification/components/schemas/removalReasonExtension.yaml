@@ -8,4 +8,4 @@ properties:
         items:
             anyOf:
                 - $ref: "flagRemovalReason.yaml"
-                - $ref: "flagSuppoertingComment.yaml"
+                - $ref: "flagSupportingComment.yaml"
