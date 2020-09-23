@@ -118,103 +118,11 @@ paths:
         content:
           application/fhir+json:
             schema:
-              type: object
-              properties:
-                resourceType: 
-                  type: string
-                  example: Consent
-                fhir_comments:
-                  type: array
-                  items:
-                    type: string
-                    example: ' CreateExample-CreateConsentRequest.xml '
-                meta:
-                  type: object
-                  properties:
-                    profile:
-                      type: array
-                      items:
-                        type: string
-                        example: "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
-                extension:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      url:
-                        type: string
-                        example: "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1"
-                      valueCodeableConcept:
-                        type: object
-                        properties:
-                          coding:
-                            type: array
-                            items:
-                              type: object
-                              properties:
-                                system:
-                                  type: string
-                                  example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1"
-                                code:
-                                  type: string
-                                  example: "lpa"
-                                display:
-                                  type: string
-                                  example: "Lasting power of attorney personal welfare"
-                status:
-                  type: string
-                  example: "active"
-                category:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      coding:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            system:
-                              type: string
-                              example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1"
-                            code:
-                              type: string
-                              example: "reasonable adjustments flag"
-                            display:
-                              type: string
-                              example: "Reasonable Adjustments Flag"
-                patient:
-                  type: object
-                  properties:
-                    reference:
-                      type: string
-                      example: "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
-                policy:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      authority:
-                        type: string
-                        example: "https://www.gov.uk/"
-                      uri:
-                        type: string
-                        example: "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
-                purpose:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      system:
-                        type: string
-                        example: "https://snomed.info/sct"
-                      code:
-                        type: string
-                        example: "370856009"
-                      display:
-                        type: string
-                        example: "Limiting access to confidential patient information"
-              
+              $ref: components/schemas/createConsent.yaml
+            examples:
+              success:
+                value:
+                  $ref: components/examples/createConsent.json           
       responses:
         '201':                                                      
           description: Successful response.
