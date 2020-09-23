@@ -224,7 +224,11 @@ paths:
         content:
           application/fhir+json:
             schema:
-              type: object
+              $ref: components/schemas/createFlag.yaml
+            examples:
+              success:
+                value:
+                  $ref: components/examples/createFlag.json 
               
       responses:
         '201':                                                      
