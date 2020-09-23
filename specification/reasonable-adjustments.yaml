@@ -186,7 +186,7 @@ paths:
         content:
           application/fhir+json:
             schema:
-              type: object
+              $ref: components/schemas/updateFlag.yaml
       parameters: 
       - $ref: '#/components/parameters/consentID'        
       responses:
