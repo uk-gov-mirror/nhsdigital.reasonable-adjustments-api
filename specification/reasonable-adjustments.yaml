@@ -599,7 +599,7 @@ components:
         example: "1"    
     patient:
       name: patient
-      in: header
+      in: query
       required: true
       description: The id of the patient
       schema:
@@ -607,7 +607,7 @@ components:
         example: "9999999998"    
     status:
       name: status
-      in: header
+      in: query
       required: true
       description: status
       schema:
@@ -615,7 +615,7 @@ components:
         example: "active" 
     category:
       name: category
-      in: header
+      in: query
       required: true
       description: category
       schema:
@@ -623,7 +623,7 @@ components:
         example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=json"
     code:
       name: code
-      in: header
+      in: query
       required: true
       description: code
       schema:
