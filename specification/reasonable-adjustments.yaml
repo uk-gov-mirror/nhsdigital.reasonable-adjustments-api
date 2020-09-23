@@ -419,16 +419,11 @@ paths:
         content:
           application/fhir+json:
             schema:
-              type: object
-              properties:
-                resourceType:
-                  type: string
-                  example: "Condition"
-                fhir_comments:
-                  type: array
-                  items:
-                    type: string
-                    example: " json example AAJSONPlaceholder.json "
+              $ref: components/schemas/updateList.yaml
+            examples:
+              success:
+                value:
+                  $ref: components/examples/updateList.json 
       parameters: 
       - $ref: '#/components/parameters/If-Match'
       - $ref: '#/components/parameters/listID'
