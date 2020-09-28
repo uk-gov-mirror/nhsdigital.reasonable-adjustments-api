@@ -1,0 +1,47 @@
+{
+    "resourceType": "Flag",
+    "fhir_comments": [
+      " xml example fileAddExample-CreateFlagRequest.xml "
+    ],
+    "meta": {
+      "profile": [
+        "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
+      ]
+    },
+    "extension": [
+      {
+        "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AdjustmentCategories-1",
+              "code": "comms",
+              "display": "Communication"
+            }
+          ]
+        }
+      }
+    ],
+    "status": "active",
+    "category": {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
+          "code": "reasonable adjustments flag",
+          "display": "Reasonable Adjustments Flag"
+        }
+      ]
+    },
+    "code": {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1",
+          "code": "requiresinformationineasyread",
+          "display": "Requires information in Easyread"
+        }
+      ]
+    },
+    "subject": {
+      "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+    }
+  }
