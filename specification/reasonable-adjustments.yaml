@@ -194,6 +194,7 @@ paths:
       - $ref: '#/components/parameters/RoleId'
       - $ref: '#/components/parameters/CorrelationID'
       - $ref: '#/components/parameters/RequestID'
+      - $ref: '#/components/parameters/consentID' 
       requestBody:
         description: Update record
         required: true
@@ -204,9 +205,7 @@ paths:
             examples:
               success:
                 value:
-                  $ref: components/examples/updateFlag.json
-      parameters: 
-      - $ref: '#/components/parameters/consentID'        
+                  $ref: components/examples/updateFlag.json     
       responses:
         '200':                                                      
           description: Successful response.
