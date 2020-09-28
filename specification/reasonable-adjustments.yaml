@@ -673,32 +673,32 @@ components:
         type: string
         example: "http://snomed.info/sct|1094391000000102&_format=json"
     RoleId:
-      in: header
       name: NHSD-Session-URID
+      in: header
+      required: false
       description: |
         A User Role ID (URID), also known as a User Role Profile ID (URPID), specifies the role the user is acting in.
         A URID belongs to a user (they are not generic) and a user may have more than one.
         Find out more about [User role ID](https://digital.nhs.uk/developer/user-restricted-restful-apis#user-completes-authentication-and-authorisation)
         **Note: This parameter is required unless interacting with the Sandbox.**
-      required: false
-        schema:
-          type: string
-          pattern: '^[0-9]+$'
-          example: '555021935107'
+      schema:
+        type: string
+        pattern: '^[0-9]+$'
+        example: '555021935107'
     BearerAuthorization:
-      in: header
       name: Authorization
+      in: header
+      required: false
       description: |
         An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
         **Note: This parameter is required unless interacting with the Sandbox.**
-      required: false
-        schema:
-          type: string
-          format: '^Bearer\ [[:ascii:]]+$'
-          example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
+      schema:
+        type: string
+        format: '^Bearer\ [[:ascii:]]+$'
+        example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
-      in: header
       name: X-Correlation-ID
+      in: header
       required: false
       description: |
         An identifer should be created when making a request, this will assist with any problems that may occur and should be included when an issue is raised with the helpdesk.
@@ -708,8 +708,8 @@ components:
         type: string
         example: 11C46F5F-CDEF-4865-94B2-0EE0EDCC26DA
     RequestID:
-      in: header
       name: X-Request-ID
+      in: header
       required: false
       description: |
         A **globally unique identifer (GUID)** should be created when making a request, this will be used in message de-duplication, meaning if you need to replay any messages an identical response will be returned as the first time.
