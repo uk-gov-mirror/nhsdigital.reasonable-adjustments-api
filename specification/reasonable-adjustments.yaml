@@ -111,7 +111,8 @@ paths:
   /consent:
     post:
       summary: Create Consent
-      operationId: postConsent]
+      description: Create a Consent resource, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), for a patient to record Reasonable Adjustment [Impairment](https://www.gov.uk/definition-of-disability-under-equality-act-2010) and [Adjustment](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty) information.
+      operationId: postConsent
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
       - $ref: '#/components/parameters/RoleId'
@@ -158,6 +159,7 @@ paths:
                     
     get:
       summary: Read Consent
+      description: Read a Consent resource, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), of a patient.
       operationId: readConsent
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -188,6 +190,7 @@ paths:
   /consent/{consentID}:    
     put:
       summary: Update Consent
+      description: Update a Consent resource, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), of a patient  to record Reasonable Adjustment [Impairment](https://www.gov.uk/definition-of-disability-under-equality-act-2010) and [Adjustment](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty) information.
       operationId: updateConsent
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -234,6 +237,7 @@ paths:
   /flag:
     post:
       summary: Create Flag
+      description: Create a Flag resource, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), for a patient to record specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), that are identified by the patient, or supporting healthcare professional.
       operationId: postFlag
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -282,6 +286,7 @@ paths:
                     
     get:
       summary: Read Flag
+      description: Read a Flag resource, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), of a patient.
       operationId: readFlag
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -312,6 +317,7 @@ paths:
   /flag/{flagID}:    
     put:
       summary: Update Flag
+      description: Update a Flag resource, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), of a patient to record specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), that are identified by the patient, or supporting healthcare professional.
       operationId: updateFlag
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -373,6 +379,7 @@ paths:
   /list:
     post:
       summary: Create List
+      description: Create a List resource, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), for a patient to contain new Impairment resource.
       operationId: postList
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -421,6 +428,7 @@ paths:
                     
     get:
       summary: Read List
+      description: Read a List resource, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient that contains Impairment resource within the List resource.
       operationId: readList
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -451,6 +459,7 @@ paths:
   /list/{listID}:    
     put:
       summary: Update List
+      description: Update a List resource, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient.
       operationId: updateList
       requestBody:
         description: Update list
@@ -512,6 +521,7 @@ paths:
   /removerarecord:
     post:
       summary: Remove RA Record
+      description: Remove an RA Record by providing a Removal Reason to trigger the system to inactivate all Reasonable Adjustment resources for a Patient.
       operationId: removeRecord
       requestBody:
         description: Remove RA record
