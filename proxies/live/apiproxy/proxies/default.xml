@@ -1,16 +1,5 @@
 <ProxyEndpoint name="default">
   <Flows>
-    <PreFow>
-      <Request>
-        <Step>
-          <Name>OAuthV2.VerifyAccessToken</Name>
-        </Step>
-        <Step>
-          <Name>RaiseFault.400BadRequest</Name>
-          <Condition>request.header.X-Request-ID = null or request.header.NHSD-Session-URID = null</Condition>
-        </Step>
-      </Request>
-    </PreFow>
     <Flow name="OptionsPreFlight">
       <Request/>
       <Response>
@@ -55,6 +44,33 @@
         </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/consent/*") and (request.verb = "PUT"))</Condition>
+    </Flow>
+    <Flow name="flag-GET">
+      <Request>
+        <Step>
+          <Name>RaiseFault.404NotFound</Name>
+          <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
+        </Step>
+      </Request>
+      <Condition>((proxy.pathsuffix MatchesPath "/flag") and (request.verb = "GET"))</Condition>
+    </Flow>
+    <Flow name="flag-POST">
+      <Request>
+        <Step>
+          <Name>RaiseFault.400BadRequest</Name>
+          <Condition>request.content = null</Condition>
+        </Step>
+      </Request>
+      <Condition>((proxy.pathsuffix MatchesPath "/flag") and (request.verb = "POST"))</Condition>
+    </Flow>
+    <Flow name="flag-PUT">
+      <Request>
+        <Step>
+          <Name>RaiseFault.400BadRequest</Name>
+          <Condition>((request.content = null) and (request.header.If-Match = null))</Condition>
+        </Step>
+      </Request>
+      <Condition>((proxy.pathsuffix MatchesPath "/flag/*") and (request.verb = "PUT"))</Condition>
     </Flow>
   </Flows>
   <PostClientFlow name="PostClientFlow">
