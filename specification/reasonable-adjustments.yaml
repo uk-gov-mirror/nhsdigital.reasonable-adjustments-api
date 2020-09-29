@@ -65,11 +65,11 @@ info:
       - we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
       - we can't guarantee availability or performance
   
-      The following items are on our roadmap:
-        - basic analytics
-        - implement status endpoints
-        - implement proxy
-        - implement rate limiting
+    The following items are on our roadmap:
+      - basic analytics
+      - implement status endpoints
+      - implement proxy
+      - implement rate limiting
         
       To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/suggestions/107521/reasonable-adjustments-ra-fhir-api).
   
@@ -92,7 +92,7 @@ info:
 
     ## Security and authorisation
 
-    ###Authentication
+    ### Authentication
     This API is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present and authenticated to use it.
 
     The end user must be:
@@ -203,7 +203,7 @@ paths:
                     
     get:
       summary: Read Consent
-      description: Use this endpoint to read a consent, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), of a patient.
+      description: Use this endpoint to read a consent, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), contained in a patient resource.
       operationId: readConsent
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -330,7 +330,7 @@ paths:
                     
     get:
       summary: Read Flag
-      description: Use this endpoint to read a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), of a patient.
+      description: Use this endpoint to read a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), contained in a patient resource.
       operationId: readFlag
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -423,7 +423,7 @@ paths:
   /list:
     post:
       summary: Create List
-      description: Use this endpoint to create a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), for a patient to contain new Impairment resource.
+      description: Use this endpoint to create a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), for a patient to contain a new Impairment resource.
       operationId: postList
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -472,7 +472,7 @@ paths:
                     
     get:
       summary: Read List
-      description: Use this endpoint to read a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient that contains Impairment resources within the List resource.
+      description: Use this endpoint to read a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient that contains Impairment resources within the list resource.
       operationId: readList
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -565,7 +565,7 @@ paths:
   /removerarecord:
     post:
       summary: Remove RA Record
-      description: Use this endpoint to remove a RA record by providing a removal reason that triggers the system to inactivate all Reasonable Adjustment resources for a Patient.
+      description: Use this endpoint to remove a RA record by providing a removal reason, profiled as [CodeSystem-RARecord-RemovalReason-1](https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1), that triggers the system to inactivate all Reasonable Adjustment resources contained in a patient resource.
       operationId: removeRecord
       requestBody:
         description: Remove RA record
@@ -734,6 +734,7 @@ components:
         A User Role ID (URID), also known as a User Role Profile ID (URPID), specifies the role the user is acting in.
         A URID belongs to a user (they are not generic) and a user may have more than one.
         Find out more about [User role ID](https://digital.nhs.uk/developer/user-restricted-restful-apis#user-completes-authentication-and-authorisation)
+        
         **Note: This parameter is required unless interacting with the Sandbox.**
       schema:
         type: string
@@ -745,10 +746,11 @@ components:
       required: false
       description: |
         An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+        
         **Note: This parameter is required unless interacting with the Sandbox.**
       schema:
         type: string
-        format: '^Bearer\ [[:ascii:]]+$'
+        pattern: '^Bearer\ [[:ascii:]]+$'
         example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
       name: X-Correlation-ID
@@ -756,7 +758,7 @@ components:
       required: false
       description: |
         An identifer should be created when making a request, this will assist with any problems that may occur and should be included when an issue is raised with the helpdesk.
-        It should ideally be a unique value to make message tracing easier and we would advise that there are no `.` characters, but these are not enforced.
+        It should ideally be a unique value to make message tracing easier and we would advise that there are no `"."` characters, but these are not enforced.
         This will be mirrored back in the response headers.
       schema:
         type: string
@@ -769,6 +771,7 @@ components:
         A **globally unique identifer (GUID)** should be created when making a request, this will be used in message de-duplication, meaning if you need to replay any messages an identical response will be returned as the first time.
         The identifer must be a universally unique identifier (UUID) (ideally version 4).
         This will be mirrored back in the response headers.
+        
         **Note: This parameter is required for `update`, `get` and `search` unless interacting with the Sandbox.**
       schema:
         type: string
