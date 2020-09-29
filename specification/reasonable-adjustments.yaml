@@ -503,7 +503,7 @@ paths:
   /list/{listID}:    
     put:
       summary: Update List
-      description: Use this endpoint to update a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient.
+      description: Use this endpoint to remove entries in a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient, by changing the delete value of an entry to true.
       operationId: updateList
       requestBody:
         description: Update list
