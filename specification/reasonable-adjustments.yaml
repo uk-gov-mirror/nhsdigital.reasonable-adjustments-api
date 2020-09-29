@@ -281,7 +281,7 @@ paths:
   /flag:
     post:
       summary: Create Flag
-      description: Use this endpoint to create a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), for a patient to record specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), that are identified by the patient, or supporting healthcare professional.
+      description: Use this endpoint to create a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), for a patient.  This can then be used to record specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), which have been identified by the patient or supporting healthcare professional.
       operationId: postFlag
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -361,7 +361,7 @@ paths:
   /flag/{flagID}:    
     put:
       summary: Update Flag
-      description: Use this endpoint to update a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), of a patient to update specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), that are identified by the patient, or supporting healthcare professional.
+      description: Use this endpoint to update a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), for a patient to update specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), which have been identified by the patient or supporting healthcare professional.
       operationId: updateFlag
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -423,7 +423,7 @@ paths:
   /list:
     post:
       summary: Create List
-      description: Use this endpoint to create a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), for a patient to contain a new Impairment resource.
+      description: Use this endpoint to create a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), for storing a new Impairment resource.
       operationId: postList
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -472,7 +472,7 @@ paths:
                     
     get:
       summary: Read List
-      description: Use this endpoint to read a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient that contains Impairment resources within the list resource.
+      description: Use this endpoint to read a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient’s impairment resources.
       operationId: readList
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -565,7 +565,7 @@ paths:
   /removerarecord:
     post:
       summary: Remove RA Record
-      description: Use this endpoint to remove a RA record by providing a removal reason, profiled as [CodeSystem-RARecord-RemovalReason-1](https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1), that triggers the system to inactivate all Reasonable Adjustment resources contained in a patient resource.
+      description: Use this endpoint to remove an RA record by providing a removal reason, profiled as [CodeSystem-RARecord-RemovalReason-1](https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1). This triggers the system to inactivate all RA resources contained in a patient resource.
       operationId: removeRecord
       requestBody:
         description: Remove RA record
@@ -733,7 +733,7 @@ components:
       description: |
         A User Role ID (URID), also known as a User Role Profile ID (URPID), specifies the role the user is acting in.
         A URID belongs to a user (they are not generic) and a user may have more than one.
-        Find out more about [User role ID](https://digital.nhs.uk/developer/user-restricted-restful-apis#user-completes-authentication-and-authorisation)
+        Find out more about [User role ID](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-identity-combined-authentication-and-authorisation#step-6-determine-the-user-s-role)
         
         **Note: This parameter is required unless interacting with the Sandbox.**
       schema:
