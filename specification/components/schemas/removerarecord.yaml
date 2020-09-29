@@ -1,0 +1,33 @@
+type: object
+description: A container for a removerarecord resquest.
+required:
+  - resourceType
+  - parameter
+properties:
+  resourceType:
+    type: string
+    description: FHIR Resource type.
+    enum:
+      - "Parameters"
+    example: "Parameters"
+  parameter:
+    type: array
+    description: A parameter in a bundle resource - will either contain a resource or information about a resource (transactions and history only).
+    items:
+      type: object
+      required:
+        - name
+        - part
+      properties:
+        name:
+          type: string
+          description: Name of parameter
+          example: "removerarecord"
+        part:
+            type: array
+            description: A list of parameters parts.
+            items:
+                anyOf:
+                    - $ref: "nhsNumber.yaml"
+                    - $ref: "removalReason.yaml"
+                    - $ref: "supportingComment.yaml"        

@@ -1,11 +1,28 @@
 <TargetEndpoint name="apim">
-  <Flows/>
   <PostFlow name="PostFlow">
     <Request/>
     <Response/>
   </PostFlow>
   <PreFlow name="PreFlow">
-    <Request/>
+    <Request>
+      <Step>
+        <Name>OAuthV2.VerifyAccessToken</Name>
+      </Step>
+
+      <!--Need full requirements to implement-->
+      <!-- <Step>
+        <Name>AssignMessage.PopulateAsidFromApp</Name>
+          <Condition>(app.asid IsNot null)</Condition>
+      </Step>
+      <Step>
+        <Name>RaiseFault.400BadRequest</Name>
+          <Condition>(app.asid is null)</Condition>
+      </Step>
+      <Step>
+        <Name>AssignMessage.AddAsidHeader</Name>
+      </Step> -->
+      
+    </Request>
     <Response>
       <Step>
         <Name>AssignMessage.AddCors</Name>

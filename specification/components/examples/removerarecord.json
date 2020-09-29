@@ -1,0 +1,30 @@
+{
+    "resourceType": "Parameters",
+    "parameter": [
+      {
+        "name": "removerarecord",
+        "part": [
+          {
+            "name": "nhsNumber",
+            "valueString": "999999998"
+          },
+          {
+            "name": "removalReason",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1",
+                  "code": "DoesntApply",
+                  "display": "The Reasonable Adjustment Flag no longer applies to the patient"
+                }
+              ]
+            }
+          },
+          {
+            "name": "supportingComment",
+            "valueString": "No longer applies"
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,22 @@
+type: object
+properties:
+    name:
+        type: string
+        example: "removalReason"
+    valueCodeableConcept:
+        type: object
+        properties:
+            coding:
+                type: array
+                items:
+                    type: object
+                    properties:
+                        system:
+                            type: string
+                            example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1"
+                        code:
+                            type: string
+                            example: "DoesntApply"
+                        display:
+                            type: string
+                            example: "The Reasonable Adjustment Flag no longer applies to the patient"

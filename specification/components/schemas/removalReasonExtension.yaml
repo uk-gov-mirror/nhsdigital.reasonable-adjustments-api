@@ -1,0 +1,11 @@
+type: object
+properties:
+    url:
+        type: string
+        example: "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-RemovalReason-1"
+    extension:
+        type: array
+        items:
+            anyOf:
+                - $ref: "flagRemovalReason.yaml"
+                - $ref: "flagSupportingComment.yaml"
