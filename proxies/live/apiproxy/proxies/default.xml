@@ -1,5 +1,16 @@
 <ProxyEndpoint name="default">
   <Flows>
+    <PreFow>
+      <Request>
+        <Step>
+          <Name>OAuthV2.VerifyAccessToken</Name>
+        </Step>
+        <Step>
+          <Name>RaiseFault.400BadRequest</Name>
+          <Condition>request.header.X-Request-ID = null or request.header.NHSD-Session-URID = null</Condition>
+        </Step>
+      </Request>
+    </PreFow>
     <Flow name="OptionsPreFlight">
       <Request/>
       <Response>
@@ -10,7 +21,6 @@
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
     <Flow name="AddPayloadToPing">
-      <Description/>
       <Request/>
       <Response>
         <Step>
@@ -18,6 +28,33 @@
         </Step>
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </Flow>
+    <Flow name="consent-GET">
+      <Request>
+      <Step>
+        <Name>RaiseFault.404NotFound</Name>
+        <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
+      </Step>  
+      </Request>
+      <Condition>((proxy.pathsuffix MatchesPath "/consent") and (request.verb = "GET"))</Condition>
+    </Flow>
+    <Flow name="consent-POST">
+      <Request>
+        <Step>
+          <Name>RaiseFault.400BadRequest</Name>
+          <Condition>request.content = null</Condition>
+        </Step>
+      </Request>      
+      <Condition>((proxy.pathsuffix MatchesPath "/consent") and (request.verb = "POST"))</Condition>
+    </Flow>
+    <Flow name="consent-PUT">
+      <Request>
+        <Step>
+          <Name>RaiseFault.400BadRequest</Name>
+          <Condition>request.content = null</Condition>
+        </Step>
+      </Request>
+      <Condition>((proxy.pathsuffix MatchesPath "/consent/*") and (request.verb = "PUT"))</Condition>
     </Flow>
   </Flows>
   <PostClientFlow name="PostClientFlow">

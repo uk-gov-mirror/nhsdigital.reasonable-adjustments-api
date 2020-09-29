@@ -5,10 +5,6 @@
   </PostFlow>
   <PreFlow name="PreFlow">
     <Request>
-      <Step>
-        <Name>OAuthV2.VerifyAccessToken</Name>
-      </Step>
-
       <!--Need full requirements to implement-->
       <!-- <Step>
         <Name>AssignMessage.PopulateAsidFromApp</Name>
@@ -21,7 +17,6 @@
       <Step>
         <Name>AssignMessage.AddAsidHeader</Name>
       </Step> -->
-      
     </Request>
     <Response>
       <Step>
