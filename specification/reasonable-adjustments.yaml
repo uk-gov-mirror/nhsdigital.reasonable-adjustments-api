@@ -15,90 +15,132 @@ info:
   title: Reasonable Adjustments API
   description: |
     ## Overview
-    Use this guide to access the [Reasonable Adjustments API](https://digital.nhs.uk/services/reasonable-adjustment-flag). The API aims to better support the delivery of care by opening up nationally stored information and data about Reasonable Adjustments that patients want to share with healthcare professionals.
-    
-    You can:
-    - Create Consent
-    - Create Flag
-    - Create Condition
-    
-    
-    - Read Consent
-    - Read Flag
-    - Read List
-    
-    
-    - Update Consent
-    - Update Flag
-    - Update Condition
+    Use this API to access and update [Reasonable Adjustments (RA)](https://digital.nhs.uk/services/reasonable-adjustment-flag) - a new service which has been created to provide the means to access and update [Spine](https://digital.nhs.uk/services/spine) data relating to adjustments and impairments for patients with a learning disability or autism.  This API is a key enabler to NHS Digital’s requirement to adhere to one of the 9 digital milestones within the [NHS Long Term Plan](https://www.longtermplan.nhs.uk/online-version/chapter-3-further-progress-on-care-quality-and-outcomes/a-strong-start-in-life-for-children-and-young-people/learning-disability-and-autism/), which states: 
 
-    - Remove RA Record
-    
-    Currently, this API can only be accessed by healthcare professionals, authenticated with an NHS smartcard or equivalent. Unauthenticated access and citizen access are on the [roadmap](https://nhs-digital-api-management.featureupvote.com/?order=popular&filter=allexceptdone&tag=pds-fhir-api).
-
+      **"By 2023/24, a ‘digital flag’ in the patient record will ensure staff know a patient has a learning disability or autism”.** 
+  
+      You can:
+      - create a consent
+      - create a flag
+      - create a list
+  
+  
+      - read a consent
+      - read a flag
+      - read a list
+  
+  
+      - update a consent
+      - update a flag
+      - update a list
+  
+      - remove a RA record
+  
+      Currently, this API can only be accessed by healthcare professionals, authenticated with an NHS smartcard or equivalent.
     ## Legal Use
-    This API can only be used where there is a [legal basis](http://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) to do so. You should [make an access request](https://digital.nhs.uk/services/demographics/access-data-on-the-personal-demographics-service) before you go too far with your development.
+    This API can only be used where there is a legal basis to do so. Make sure you have a valid use case before you go too far with your development. 
 
-    You must have made this request before you can go live (see 'Onboarding' below).
+    You must do this before you can go live (see ‘Onboarding’ below).
     
     ## Related APIs
-    [Personal Demographics Service (FHIR) API](https://portal.developer.nhs.uk/docs/personal-demographics-int/1/overview)
-    
-    [Female Genital Mutilation (FGM) Information Sharing Service](https://developer.nhs.uk/apis/fgm-v2.1/)
-    
-    [Child Protection Information Sharing - HL7 V3 API](https://digital.nhs.uk/services/child-protection-information-sharing-project/cp-is-domain-message-specification)
-    
-    [National Record Locator Service (FHIR) API](https://developer.nhs.uk/apis/nrl/)
+    To use this API, you must also use one of the following APIs to retrieve a patient's demographic details before you can access their RA record:
 
-    ## API Status and Roadmap
-    All endpoints are in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status) - expect further breaking changes.
-    
-    The following items are on our roadmap:
-      - Basic analytics
-      - Smartcard access
-      - Implement _status endpoints
-      - Implement proxy
-      - Implement rate limiting
+      - [Personal Demographics Service (FHIR) API](https://portal.developer.nhs.uk/docs/personal-demographics-int/1/overview) - use this API to search for patients and retrieve their details.  This API can also be used to update their details in some cases. This is the latest version of the PDS API and is recommended for all new integrators.
       
-    We are extremely keen to receive feedback on the API during alpha and beta, for example if there are data fields missing that you think you need. [Get in touch](https://digital.nhs.uk/developer/help-and-support) with any comments or suggestions.
+     - [Personal Demographics Service (HL7 V3) API](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-hl7-v3) - use this API to search for patients and retrieve their details.  This API can also be used to update their details in some cases. Once our roadmap is complete, this API will become redundant, however you can continue to use this API as part of your RA development if you have an existing integration.
+ 
+     When using this API, we also recommend that you consider using these related APIs:
+ 
+      - [Female Genital Mutilation Information Sharing System (FGM-IS)](https://developer.nhs.uk/apis/fgm-v2.1/) - use this API to store and share FGM information of children under 18 with relevant NHS healthcare professionals across departments, organisations and geographical boundaries within England.
+ 
+      - [Child Protection Information Sharing (CP-IS) - HL7 V3 API](https://digital.nhs.uk/services/child-protection-information-sharing-project/cp-is-domain-message-specification) - use this messaging and interactions guide to provide access to CP-IS, a sharing system which provides healthcare workers with access to recent unscheduled care attendance information for children under a local authority social care plan. 
+ 
+      - [National Record Locator (NRL) (FHIR) API](https://developer.nhs.uk/apis/nrl/) - use this API to locate and share patient records held within local health and social care systems.
+ 
+    ## API Status and Roadmap
+    This API is in [beta](https://digital.nhs.uk/developer/guides-and-documentation/reference-guide#api-status), meaning:
 
+      - we might make breaking changes, but only if we can't avoid it, and we'll give advance notice
+      - we can't guarantee availability or performance
+  
+    The following items are on our roadmap:
+      - basic analytics
+      - implement status endpoints
+      - implement proxy
+      - implement rate limiting
+        
+      To see our roadmap, or to suggest, comment or vote on features for this API, see our [interactive product backlog](https://nhs-digital-api-management.featureupvote.com/suggestions/107521/reasonable-adjustments-ra-fhir-api).
+  
+      If you have any other queries, please [contact us](https://digital.nhs.uk/developer/help-and-support).
+  
     ## Technology
-    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). And is available via the Internet, and over the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network). It also conforms to the [FHIR (STU3)](https://www.hl7.org/fhir/STU3/) global standard for health care data exchange, which is built on FHIR Release 3.
-    
+    This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). 
+
+    It also conforms to the [FHIR (STU3)](https://www.hl7.org/fhir/STU3/) global standard for health care data exchange, specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 3.
+
     You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
-    - resource names are capitalised and singular, for example `/Patient` not `/patients`
     - array names are singular, for example `line` not `lines` for address lines
     - data items that are country-specific and thus not included in the FHIR global base resources are usually wrapped in an `extension` object
 
+
     ## Network Access
-    This API is available on the Internet, although access using NHS smartcards (see below) currently requires a connection to the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network).
+    This API is available on the Internet, but can be accessed with NHS smartcards through the [Health and Social Care Network (HSCN)](https://digital.nhs.uk/services/health-and-social-care-network) if necessary.  If you have a use case which requires access via HSCN please [contact us](https://digital.nhs.uk/developer/help-and-support).
 
     For more details see [Network access for APIs](https://digital.nhs.uk/developer/guides-and-documentation/network-access-for-apis).
-    
-    ## Authorisation
+
+    ## Security and authorisation
+
+    ### Authentication
     This API is [user-restricted](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis), meaning an end user must be present and authenticated to use it.
+
     The end user must be:
     - a healthcare professional
     - strongly authenticated, using either an NHS smartcard or a modern alternative
 
-    The API uses an OAuth Access (bearer) token, specifically an encoded JSON web token to authorise the calling system. The general specification of this token, what should be in it, and how it can be generated can be found in the [Spine Core API spec](https://developer.nhs.uk/apis/spine-core/security_jwt.html).
-    
-    
-    ## Environments and Testing
-    You can test this API in:
-      - our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing) for initial developer testing.
-      - our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing) for formal integration testing.
-    
-      Our sandbox environment is a very basic simulation of the live service. It only covers a limited set of scenarios and is stateless, so does not actually persist any updates.
-    
+    ### Authorisation
+    The API uses OAuth 2.0 to authorise the calling system. It supports the following security patterns:
+
+      - user-restricted RESTful API - using NHS Identity - combined authentication and authorisation
+      - user-restricted RESTful API - using NHS Identity - separate authentication and authorisation
+ 
+     For more details, see [user-restricted APIs](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+ 
+
+    ## Environments and testing
+    | Purpose           | URL                                                            |
+    | -------------     | -----------------------------------------                      |
+    | Sandbox           | `https://sandbox.service.nhs.uk/reasonable-adjustments`       |
+    | Integration test (Available Nov 2020)  | `https://int.service.nhs.uk/reasonable-adjustments`           |
+    | Production (Available Dec 2020/Jan 2021)         | `https://api.service.nhs.uk/reasonable-adjustments`  |
+
+
+    ### Sandbox testing
+    Our [sandbox environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#sandbox-testing):
+      - is for early developer testing
+      - only covers a limited set of scenarios
+      - is stateless, so it does not actually persist any updates
+      - is open access, so does not allow you to test authorisation
+  
+      For more details on sandbox testing, or to try out the sandbox using our \"Try this API\" feature, see the documentation for each endpoint.
+  
+    ### Integration testing
+    Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
+      - is for formal integration testing
+      - is stateful, so persists updates
+      - includes authorisation with either a username/password or smartcard/PIN
+  
+      For more details see [integration testing with our RESTful APIs](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing-with-our-restful-apis).
+  
     ## Resources
     For information on the resources used within the FHIR® Reasonable Adjustments API go to:
-    
-    [https://dev-reasonable-adjust-beta.netlify.app/explore.html](https://dev-reasonable-adjust-beta.netlify.app/explore.html)
-    
-    ## Onboarding
-    More details and documentation to come.
 
+      [https://dev-reasonable-adjust-beta.netlify.app/explore.html](https://dev-reasonable-adjust-beta.netlify.app/explore.html)
+  
+    ## Onboarding
+    You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
+
+    To onboard for this API, follow the [Supplier Conformance Assessment List (SCAL) process.](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process)
+  
   contact:
     name: API Management Support
     email: api.management@nhs.net
@@ -111,7 +153,8 @@ paths:
   /consent:
     post:
       summary: Create Consent
-      operationId: postConsent]
+      description: Use this endpoint to create a consent, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), for a patient to record Reasonable Adjustment [Impairment](https://www.gov.uk/definition-of-disability-under-equality-act-2010) and [Adjustment](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty) information.
+      operationId: postConsent
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
       - $ref: '#/components/parameters/RoleId'
@@ -158,6 +201,7 @@ paths:
                     
     get:
       summary: Read Consent
+      description: Use this endpoint to read a consent, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), contained in a patient resource.
       operationId: readConsent
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -188,6 +232,7 @@ paths:
   /consent/{consentID}:    
     put:
       summary: Update Consent
+      description: Use this endpoint to update a consent, profiled as [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1), of a patient to update Reasonable Adjustment [Impairment](https://www.gov.uk/definition-of-disability-under-equality-act-2010) and [Adjustment](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty) information.
       operationId: updateConsent
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -234,6 +279,7 @@ paths:
   /flag:
     post:
       summary: Create Flag
+      description: Use this endpoint to create a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), for a patient.  This can then be used to record specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), which have been identified by the patient or supporting healthcare professional.
       operationId: postFlag
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -282,6 +328,7 @@ paths:
                     
     get:
       summary: Read Flag
+      description: Use this endpoint to read a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), contained in a patient resource.
       operationId: readFlag
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -312,6 +359,7 @@ paths:
   /flag/{flagID}:    
     put:
       summary: Update Flag
+      description: Use this endpoint to update a flag, profiled as [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5), for a patient to update specific [Adjustments - as defined under the Equality Act (2010)](https://www.gov.uk/government/publications/reasonable-adjustments-a-legal-duty/reasonable-adjustments-a-legal-duty), which have been identified by the patient or supporting healthcare professional.
       operationId: updateFlag
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -373,6 +421,7 @@ paths:
   /list:
     post:
       summary: Create List
+      description: Use this endpoint to create a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), for storing a new Impairment resource.
       operationId: postList
       parameters:
       - $ref: '#/components/parameters/BearerAuthorization'
@@ -421,6 +470,7 @@ paths:
                     
     get:
       summary: Read List
+      description: Use this endpoint to read a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient’s impairment resources.
       operationId: readList
       parameters: 
       - $ref: '#/components/parameters/patient'
@@ -451,6 +501,7 @@ paths:
   /list/{listID}:    
     put:
       summary: Update List
+      description: Use this endpoint to remove entries in a list, profiled as [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1), of a patient, by changing the delete value of an entry to true.
       operationId: updateList
       requestBody:
         description: Update list
@@ -512,6 +563,7 @@ paths:
   /removerarecord:
     post:
       summary: Remove RA Record
+      description: Use this endpoint to remove an RA record by providing a removal reason, profiled as [CodeSystem-RARecord-RemovalReason-1](https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-RemovalReason-1). This triggers the system to inactivate all RA resources contained in a patient resource.
       operationId: removeRecord
       requestBody:
         description: Remove RA record
@@ -679,7 +731,8 @@ components:
       description: |
         A User Role ID (URID), also known as a User Role Profile ID (URPID), specifies the role the user is acting in.
         A URID belongs to a user (they are not generic) and a user may have more than one.
-        Find out more about [User role ID](https://digital.nhs.uk/developer/user-restricted-restful-apis#user-completes-authentication-and-authorisation)
+        Find out more about [User role ID](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation/user-restricted-restful-apis-nhs-identity-combined-authentication-and-authorisation#step-6-determine-the-user-s-role)
+        
         **Note: This parameter is required unless interacting with the Sandbox.**
       schema:
         type: string
@@ -691,10 +744,11 @@ components:
       required: false
       description: |
         An [OAuth 2.0 bearer token](https://digital.nhs.uk/developer/guides-and-documentation/security-and-authorisation#user-restricted-apis).
+        
         **Note: This parameter is required unless interacting with the Sandbox.**
       schema:
         type: string
-        format: '^Bearer\ [[:ascii:]]+$'
+        pattern: '^Bearer\ [[:ascii:]]+$'
         example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
       name: X-Correlation-ID
@@ -702,7 +756,7 @@ components:
       required: false
       description: |
         An identifer should be created when making a request, this will assist with any problems that may occur and should be included when an issue is raised with the helpdesk.
-        It should ideally be a unique value to make message tracing easier and we would advise that there are no `.` characters, but these are not enforced.
+        It should ideally be a unique value to make message tracing easier and we would advise that there are no `"."` characters, but these are not enforced.
         This will be mirrored back in the response headers.
       schema:
         type: string
@@ -715,6 +769,7 @@ components:
         A **globally unique identifer (GUID)** should be created when making a request, this will be used in message de-duplication, meaning if you need to replay any messages an identical response will be returned as the first time.
         The identifer must be a universally unique identifier (UUID) (ideally version 4).
         This will be mirrored back in the response headers.
+        
         **Note: This parameter is required for `update`, `get` and `search` unless interacting with the Sandbox.**
       schema:
         type: string
