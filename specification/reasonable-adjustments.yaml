@@ -76,7 +76,7 @@ info:
     ## Technology
     This API is [RESTful](https://digital.nhs.uk/developer/guides-and-documentation/api-technologies-at-nhs-digital#basic-rest-apis). 
 
-    It also conforms to the [FHIR (STU3)](https://www.hl7.org/fhir/STU3/) global standard for health care data exchange, specifically, it is aligned with [FHIR UK Core](https://digital.nhs.uk/services/fhir-uk-core), which is built on FHIR Release 3.
+    It also conforms to the [FHIR (STU3)](https://www.hl7.org/fhir/STU3/) global standard for health care data exchange.
 
     You don’t need to know much about FHIR to use this API - FHIR APIs are just RESTful APIs that follow specific rules. In particular:
     - array names are singular, for example `line` not `lines` for address lines
