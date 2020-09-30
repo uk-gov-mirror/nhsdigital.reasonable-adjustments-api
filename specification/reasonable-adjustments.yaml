@@ -49,8 +49,6 @@ info:
       
      - [Personal Demographics Service (HL7 V3) API](https://digital.nhs.uk/developer/api-catalogue/personal-demographics-service-hl7-v3) - use this API to search for patients and retrieve their details.  This API can also be used to update their details in some cases. Once our roadmap is complete, this API will become redundant, however you can continue to use this API as part of your RA development if you have an existing integration.
  
-     - [Personal Demographics Service (SMSP) API](https://digital.nhs.uk/services/spine/spine-mini-service-provider-for-personal-demographics-service) - use this API if you want to get PDS data without an authenticated end user (no smartcard required). It is, however, read-only and searches are limited to a single result. Once our roadmap is complete, this API will become redundant, however you can continue to use this API as part of your RA development if you have an existing integration.
- 
      When using this API, we also recommend that you consider using these related APIs:
  
       - [Female Genital Mutilation Information Sharing System (FGM-IS)](https://developer.nhs.uk/apis/fgm-v2.1/) - use this API to store and share FGM information of children under 18 with relevant NHS healthcare professionals across departments, organisations and geographical boundaries within England.
