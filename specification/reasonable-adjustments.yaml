@@ -22,7 +22,7 @@ info:
       You can:
       - create a consent
       - create a flag
-      - create a condition
+      - create a list
   
   
       - read a consent
@@ -32,7 +32,7 @@ info:
   
       - update a consent
       - update a flag
-      - update a condition
+      - update a list
   
       - remove a RA record
   
