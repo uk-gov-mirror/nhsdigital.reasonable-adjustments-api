@@ -3,7 +3,7 @@
 
 docker_service:
 
-    - name: reasonable-adjustments
+    - name: reasonable-adjustments-sandbox
       expose: true
       environment:
         - name: NODE_ENV
