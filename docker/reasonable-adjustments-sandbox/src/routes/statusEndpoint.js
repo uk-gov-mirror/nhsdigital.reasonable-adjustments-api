@@ -6,3 +6,5 @@ const statusGet =  {
         return h.file(path);
     }
   };
+
+module.exports = [statusGet]
