@@ -1,5 +1,5 @@
 type: object
-description: A container for a removerarecord resquest.
+description: A container for a remove RA record request.
 required:
   - resourceType
   - parameter
