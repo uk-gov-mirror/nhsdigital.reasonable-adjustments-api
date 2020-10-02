@@ -225,7 +225,26 @@ paths:
                     example: Tue, 23 Jul 2018 11:00:00 GMT
                   Content-Type:
                     type: string
-                    example: application/fhir+json                
+                    example: application/fhir+json
+        '400':
+          description: Invalid search paramaters supplied.
+          content:
+            application/fhir+json:
+              schema:
+                $ref: components/schemas/operationOutcome.yaml
+              examples:
+                invalid-nhsNumber:
+                  summary: Invalid NHS Number for patient supplied.
+                  value:
+                    resourceType: OperationOutcome   
+                    issue:
+                      - severity: error
+                        code: value
+                        details:
+                          coding:
+                            - system: "https://fhir.nhs.uk/STU3/ValueSet/Spine-ErrorOrWarningCode-1"
+                              code: "INVALID_NHS_NUMBER"
+                              display: "Invalid NHS number"                                
       tags:
         - Endpoints
   
