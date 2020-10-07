@@ -14,7 +14,7 @@
       </Step>
       <Step>
         <Name>RaiseFault.400BadRequest</Name>
-        <Condition>request.verb != "GET" and requst.header.content-type != "application/fhir+json"</Condition>
+        <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
       </Step>
       <!--Need full requirements to implement-->
       <!-- <Step>
