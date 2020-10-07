@@ -16,17 +16,17 @@
         <Name>RaiseFault.400BadRequest</Name>
         <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
       </Step>
-      <Step>
-        <Name>AssignMessage.PopulateAsidFromApp</Name>
-          <Condition>(app.asid IsNot null)</Condition>
-      </Step>
-      <Step>
-        <Name>RaiseFault.400BadRequest</Name>
-          <Condition>(app.asid is null)</Condition>
-      </Step>
-      <Step>
-        <Name>AssignMessage.AddAsidHeader</Name>
-      </Step>
+<!--      <Step>-->
+<!--        <Name>AssignMessage.PopulateAsidFromApp</Name>-->
+<!--          <Condition>(app.asid IsNot null)</Condition>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--        <Name>RaiseFault.400BadRequest</Name>-->
+<!--          <Condition>(app.asid is null)</Condition>-->
+<!--      </Step>-->
+<!--      <Step>-->
+<!--        <Name>AssignMessage.AddAsidHeader</Name>-->
+<!--      </Step>-->
     </Request>
     <Response>
       <Step>
