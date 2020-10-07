@@ -16,8 +16,7 @@
         <Name>RaiseFault.400BadRequest</Name>
         <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
       </Step>
-      <!--Need full requirements to implement-->
-      <!-- <Step>
+      <Step>
         <Name>AssignMessage.PopulateAsidFromApp</Name>
           <Condition>(app.asid IsNot null)</Condition>
       </Step>
@@ -27,7 +26,7 @@
       </Step>
       <Step>
         <Name>AssignMessage.AddAsidHeader</Name>
-      </Step> -->
+      </Step>
     </Request>
     <Response>
       <Step>
