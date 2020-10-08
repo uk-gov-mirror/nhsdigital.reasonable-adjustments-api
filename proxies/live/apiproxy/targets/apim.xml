@@ -21,7 +21,7 @@
       </Step>
       <Step>
         <Name>RaiseFault.400BadRequest</Name>
-          <Condition>(verifyapikey.VerifyAPIKey.ClientId.asid is null)</Condition>
+          <Condition>(verifyapikey.VerifyAPIKey.CustomAttributes.asid is null)</Condition>
       </Step>
       <Step>
         <Name>AssignMessage.AddAsidHeader</Name>

@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddAsidHeader">
     <Add>
         <Headers>
-            <Header name="NHSD-ASID">{verifyapikey.VerifyAPIKey.ClientId.asid}</Header>
+            <Header name="NHSD-ASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
