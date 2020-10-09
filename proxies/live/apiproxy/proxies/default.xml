@@ -1,4 +1,12 @@
 <ProxyEndpoint name="default">
+  <FaultRules>
+    <FaultRule name="InvalidHeaders">
+      <Condition>fault.name = "RaiseFault.400BadRequest</Condition>
+      <Step>
+        <Name>AssignMessage.InvalidOrMissingHeader</Name>
+      </Step>
+    </FaultRule>
+  </FaultRules>
   <Flows>
     <Flow name="OptionsPreFlight">
       <Request/>
