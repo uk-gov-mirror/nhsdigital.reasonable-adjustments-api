@@ -1,3 +1,4 @@
+from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.scripts.generic_request import GenericRequest
 
 class CheckReasonableAdjustments(GenericRequest):
@@ -15,8 +16,11 @@ class CheckReasonableAdjustments(GenericRequest):
             return self.verify_response_keys(response, expected_status_code, expected_keys=expected_response)
 
         if expected_response is None:
-            return self.verify_response_content_type(response, expected_status_code)            
+            return self.verify_response_content_type(response, expected_status_code)
 
         # Check response
         return self.verify_response(response, expected_status_code, expected_response=expected_response)
-        
+
+    def check_asid_parameter(self, proxy: str):
+        debug_session = ApigeeDebugApi(proxy)
+        actual_asid = debug_session.get_asid()
