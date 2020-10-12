@@ -20,7 +20,7 @@
         <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
       </Step>
       <Step>
-        <Name>RaiseFault.400BadRequest</Name>
+        <Name>RaiseFault.500ServerError</Name>
           <Condition>(verifyapikey.VerifyAPIKey.CustomAttributes.asid is null) or (verifyapikey.VerifyAPIKey.CustomAttributes.ods is null)</Condition>
       </Step>
     </Request>
