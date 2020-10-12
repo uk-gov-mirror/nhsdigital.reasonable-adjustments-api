@@ -39,6 +39,12 @@
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
         </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
+        </Step>
       </Request>      
       <Condition>((proxy.pathsuffix MatchesPath "/consent") and (request.verb = "POST"))</Condition>
     </Flow>
@@ -47,6 +53,12 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
+        </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
         </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/consent/*") and (request.verb = "PUT"))</Condition>
@@ -57,6 +69,12 @@
           <Name>RaiseFault.404NotFound</Name>
           <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
         </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
+        </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/flag") and (request.verb = "GET"))</Condition>
     </Flow>
@@ -65,6 +83,12 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
+        </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
         </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/flag") and (request.verb = "POST"))</Condition>
@@ -75,6 +99,12 @@
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>((request.content = "") and (request.header.If-Match = null))</Condition>
         </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
+        </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/flag/*") and (request.verb = "PUT"))</Condition>
     </Flow>
@@ -83,6 +113,12 @@
         <Step>
           <Name>RaiseFault.404NotFound</Name>
           <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.code = null</Condition>
+        </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
         </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/list") and (request.verb = "GET"))</Condition>
@@ -93,6 +129,12 @@
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
         </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
+        </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/list") and (request.verb = "POST"))</Condition>
     </Flow>
@@ -101,6 +143,12 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>((request.content = "") and (request.header.If-Match = null))</Condition>
+        </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
         </Step>
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/list/*") and (request.verb = "PUT"))</Condition>
@@ -114,6 +162,12 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>(request.content = "")</Condition>
+        </Step>
+        <Step>
+          <Name>KeyValueMapOperations.GetInteractionID</Name>
+        </Step> 
+        <Step>
+          <Name>AssignMessage.AddInteractionID</Name>
         </Step>
         <Condition>((proxy.pathsuffix MatchesPath "/removerarecord") and (request.verb = "POST"))</Condition>
       </Request>
