@@ -55,7 +55,7 @@
           <Condition>request.content = ""</Condition>
         </Step>
         <Step>
-          <Name>KeyValueMapOperations.GetInteractionID</Name>
+          <Name>KeyValueMapOperations.GetInteractionIDPutConsent</Name>
         </Step> 
         <Step>
           <Name>AssignMessage.AddInteractionID</Name>
@@ -100,7 +100,7 @@
           <Condition>((request.content = "") and (request.header.If-Match = null))</Condition>
         </Step>
         <Step>
-          <Name>KeyValueMapOperations.GetInteractionID</Name>
+          <Name>KeyValueMapOperations.GetInteractionIDPutFlag</Name>
         </Step> 
         <Step>
           <Name>AssignMessage.AddInteractionID</Name>
@@ -145,7 +145,7 @@
           <Condition>((request.content = "") and (request.header.If-Match = null))</Condition>
         </Step>
         <Step>
-          <Name>KeyValueMapOperations.GetInteractionID</Name>
+          <Name>KeyValueMapOperations.GetInteractionIDPutList</Name>
         </Step> 
         <Step>
           <Name>AssignMessage.AddInteractionID</Name>
