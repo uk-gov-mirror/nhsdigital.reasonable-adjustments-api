@@ -24,6 +24,12 @@
         <Name>RaiseFault.404NotFound</Name>
         <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
       </Step>  
+      <Step>
+        <Name>KeyValueMapOperations.GetInteractionID</Name>
+      </Step> 
+      <Step>
+        <Name>AssignMessage.AddInteractionID</Name>
+      </Step> 
       </Request>
       <Condition>((proxy.pathsuffix MatchesPath "/consent") and (request.verb = "GET"))</Condition>
     </Flow>
