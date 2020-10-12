@@ -40,7 +40,7 @@ extends:
         make_spec_visible: true
         post_deploy:
             - bash: |
-                ls $(Pipeline.Workspace)/s/${{ parameters.service_name }}/$(SERVICE_ARTIFACT_NAME)
+                ls $(Pipeline.Workspace)/s/${{ variables.service_name }}/$(SERVICE_ARTIFACT_NAME)
       - environment: internal-dev-sandbox
         make_spec_visible: true
         proxy_path: sandbox
