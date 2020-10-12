@@ -23,12 +23,6 @@
         <Name>RaiseFault.400BadRequest</Name>
           <Condition>(verifyapikey.VerifyAPIKey.CustomAttributes.asid is null) or (verifyapikey.VerifyAPIKey.CustomAttributes.ods is null)</Condition>
       </Step>
-      <Step>
-        <Name>AssignMessage.AddAsidHeader</Name>
-      </Step>
-      <Step>
-        <Name>AssignMessage.AddOdsCodeHeader</Name>
-      </Step>
     </Request>
     <Response>
       <Step>
