@@ -1,4 +1,4 @@
-<KeyValueMapOperations mapIdentifier="ra-interactionID" async="false" continueOnError="false" enabled="true" name="GetInteractionID">
+<KeyValueMapOperations mapIdentifier="ra-interactionID" async="false" continueOnError="false" enabled="true" name="KeyValueMapOperations.GetInteractionID">
   <DisplayName>GetInteractionID</DisplayName>
   <Get assignTo="interactionID">
     <Key>
