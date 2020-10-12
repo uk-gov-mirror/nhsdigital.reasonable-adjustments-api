@@ -3,7 +3,7 @@
   <Get assignTo="interactionID">
     <Key>
       <Parameter ref="request.verb"/>
-      <Parameter ref="/list"/>
+      <Parameter>/list</Parameter>
     </Key>
   </Get>
 </KeyValueMapOperations>

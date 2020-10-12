@@ -3,7 +3,7 @@
   <Get assignTo="interactionID">
     <Key>
       <Parameter ref="request.verb"/>
-      <Parameter ref="/flag"/>
+      <Parameter>/flag</Parameter>
     </Key>
   </Get>
 </KeyValueMapOperations>
