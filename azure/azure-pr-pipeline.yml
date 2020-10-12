@@ -39,9 +39,8 @@ extends:
       - environment: internal-dev
         make_spec_visible: true
         post_deploy:
-            - template: templates/tests.yml
-              parameters:
-                  service_name: ${{ variables.service_name }}
+            - bash: |
+                ls $(Pipeline.Workspace)/s/${{ parameters.service_name }}/$(SERVICE_ARTIFACT_NAME)
       - environment: internal-dev-sandbox
         make_spec_visible: true
         proxy_path: sandbox
