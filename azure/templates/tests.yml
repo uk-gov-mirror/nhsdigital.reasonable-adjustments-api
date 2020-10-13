@@ -13,7 +13,7 @@ steps:
         test_dir="$(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/api_tests"
         source ./test_env/bin/activate
 
-        docker run --entrypoint "pytest" -v $(pwd):/var/api_tests/test_report.xml \
+        echo docker run --entrypoint "pytest" -v $(pwd):/var/api_tests/test_report.xml \
           -e BASE_URL="https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk/oauth2" \
           -e CLIENT_ID="$(CLIENT_ID)" \
           -e CLIENT_SECRET="$(CLIENT_SECRET)" \
