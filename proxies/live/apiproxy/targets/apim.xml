@@ -27,8 +27,8 @@
           <Condition>(app.asid IsNot null)</Condition>
       </Step>
       <Step>
-        <Name>RaiseFault.400BadRequest</Name>
-          <Condition>(app.asid is null)</Condition>
+        <Name>RaiseFault.InvalidAsidOrOds</Name>
+          <Condition>(verifyapikey.VerifyAPIKey.CustomAttributes.asid is null) or (verifyapikey.VerifyAPIKey.CustomAttributes.ods is null)</Condition>
       </Step>
       <Step>
         <Name>AssignMessage.AddAsidHeader</Name>
@@ -50,7 +50,7 @@
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://reasonable-adjustments-28.internal-dev.apis.ptl.api.platform.nhs.uk</URL>
+        <URL>https://{{ APIM_PROXY_HOSTNAME }}</URL>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">
