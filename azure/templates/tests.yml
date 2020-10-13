@@ -25,6 +25,11 @@ steps:
         export APIGEE_API_AUTHENTICATION="$(secret.AccessToken)"
         export APIGEE_API_URL="https://api.enterprise.apigee.com/v1/organizations/nhsd-nonprod"
 
+        export PROXY_NAME=$(SERVICE_BASE_PATH)
+        export REASONABLE_ADJUSTMENTS_BASE_URL=https://internal-dev.api.service.nhs.uk
+        export REASONABLE_ADJUSTMENTS_PROXY=${PROXY_NAME}
+        echo $PROXY_NAME
+
         pytest -v --junitxml=test-report.xml
 
       workingDirectory: $(Pipeline.Workspace)/s/${{ parameters.service_name }}/$(SERVICE_ARTIFACT_NAME)/api_tests
