@@ -144,6 +144,14 @@ class GenericRequest:
             return False
         
         return True
+
+    def error_assertion_has_message_id(self, response) -> bool:
+        """Responses with 4xx & 5xx codes should have a message_id property."""
+        try:
+            response['message_id']
+            return True
+        except KeyError:
+            return False
         
     def verify_response_content_type(self, response: 'response type', expected_status_code: int) -> bool:
         """Check a given response has returned the expected key value pairs"""
@@ -172,7 +180,12 @@ class GenericRequest:
                  v.strip().lower() if isinstance(v, str) else v
                  ) for k, v in data.items()
             )
+        
+            if response.status_code >= 400:
+                assert self.error_assertion_has_message_id(actual_response), "Error response missing message_id property" 
+
             actual_response.pop('message_id', None)
+          
             assert actual_response == expected_response, "Actual response is different from the expected response"
         except json.JSONDecodeError:
             # Might be HTML
