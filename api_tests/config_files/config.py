@@ -12,9 +12,9 @@ APIGEE_API_URL = ENV['apigee']['base_url']
 APIGEE_AUTHENTICATION = ENV['apigee']['api_authentication']
 APIGEE_ENVIRONMENT = "internal-dev"
 
-# Reasonable Adjustments 
+# Reasonable Adjustments
 REASONABLE_ADJUSTMENTS_BASE_URL = ENV['reasonable_adjustments']['base_url']
-REASONABLE_ADJUSTMENTS_PROXY = ENV['reasonable_adjustments']['proxy_name'] 
+REASONABLE_ADJUSTMENTS_PROXY = ENV['reasonable_adjustments']['proxy_name']
 REASONABLE_ADJUSTMENTS_CONSENT = f"{REASONABLE_ADJUSTMENTS_BASE_URL}/{REASONABLE_ADJUSTMENTS_PROXY}/consent"
 REASONABLE_ADJUSTMENTS_FLAG = f"{REASONABLE_ADJUSTMENTS_BASE_URL}/{REASONABLE_ADJUSTMENTS_PROXY}/flag"
 REASONABLE_ADJUSTMENTS_LIST = f"{REASONABLE_ADJUSTMENTS_BASE_URL}/{REASONABLE_ADJUSTMENTS_PROXY}/list"
@@ -43,4 +43,4 @@ ENDPOINTS = {
 # Toggles token type set:
 #        True: 'Bearer'
 #        False: 'Basic'
-IS_REMOTE = True
+IS_REMOTE = False
