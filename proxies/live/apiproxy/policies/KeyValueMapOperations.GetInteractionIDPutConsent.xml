@@ -3,7 +3,7 @@
   <Get assignTo="interactionID">
     <Key>
       <Parameter ref="request.verb"/>
-      <Parameter>/consent</Parameter>
+      <Parameter>consent</Parameter>
     </Key>
   </Get>
 </KeyValueMapOperations>
