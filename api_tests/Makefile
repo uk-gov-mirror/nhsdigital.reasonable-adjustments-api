@@ -52,10 +52,6 @@ test-error-conditions :
 	@echo "Executing tests with the mark: errors..."
 	docker-compose $(BASE) run -T test_env pytest -m errors -sq --tb=line $(TEST_REPORT) $(DOCKER_TEST_DIR)/tests/
 
-test-error-conditions-consent :
-	@echo "Executing tests with the mark: errors..."
-	docker-compose $(BASE) run -T test_env pytest -m consent_errors -sq --tb=line $(TEST_REPORT) $(DOCKER_TEST_DIR)/tests/
-
 test-happy-path :
 	@echo "Executing tests with the mark: happy_path..."
 	docker-compose $(BASE) run -T test_env pytest -m happy_path -sq --tb=line $(TEST_REPORT) $(DOCKER_TEST_DIR)/tests/
