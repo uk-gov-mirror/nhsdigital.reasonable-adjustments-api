@@ -1,23 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <TargetEndpoint name="apim">
-  <PostFlow name="PostFlow">
-    <Request/>
-    <Response/>
-  </PostFlow>
-  <PreFlow name="PreFlow">
-    <Request>
-      <Step>
-        <Name>OAuthV2.VerifyAccessToken</Name>
-      </Step>
-      <Step>
-        <Name>RaiseFault.400BadRequest</Name>
-        <Condition>request.header.X-Request-ID = null or request.header.NHSD-Session-URID = null</Condition>
-      </Step>
-      <Step>
-        <Name>RaiseFault.400BadRequest</Name>
-        <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
-      </Step>
-      <!--Need full requirements to implement-->
-      <!-- <Step>
+    <PreFlow name="PreFlow">
+        <Request>
+            <Step>
+                <Name>OAuthV2.VerifyAccessToken</Name>
+            </Step>
+            <Step>
+                <Name>RaiseFault.Invalid-X-Request-Id</Name>
+                <Condition>request.header.X-Request-ID = null or request.header.X-Request-ID = ""</Condition>
+            </Step>
+            <Step>
+                <Name>RaiseFault.Invalid-NHSD-Session-URID</Name>
+                <Condition>request.header.NHSD-Session-URID = null or request.header.NHSD-Session-URID = ""</Condition>
+            </Step>
+            <Step>
+                <Name>RaiseFault.Invalid-Content-Type</Name>
+                <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
+            </Step>
+            <Step>
+                <Name>RaiseFault.InvalidPayload</Name>
+                <Condition>request.verb != "GET" and request.content = ""</Condition>
+            </Step>
+            <!--Need full requirements to implement-->
+            <!-- <Step>
         <Name>AssignMessage.PopulateAsidFromApp</Name>
           <Condition>(app.asid IsNot null)</Condition>
       </Step>
@@ -28,17 +33,39 @@
       <Step>
         <Name>AssignMessage.AddAsidHeader</Name>
       </Step> -->
-    </Request>
-    <Response>
-      <Step>
-        <Name>AssignMessage.AddCors</Name>
-      </Step>
-    </Response>
-  </PreFlow>
-  <HTTPTargetConnection>
-    <SSLInfo>
-      <Enabled>true</Enabled>
-    </SSLInfo>
-    <URL>https://{{ APIM_PROXY_HOSTNAME }}</URL>
-  </HTTPTargetConnection>
+        </Request>
+        <Response>
+            <Step>
+                <Name>AssignMessage.AddCors</Name>
+            </Step>
+        </Response>
+    </PreFlow>
+    <HTTPTargetConnection>
+        <Properties>
+            <!-- Whitelist the 'expected' error code responses so the responses pass unhindered to caller
+                 Anything unexpected will be sanitsed by the DefaultFaultRule -
+                 https://docs.apigee.com/api-platform/fundamentals/fault-handling#customhandlingofhttperrorcodesfromthetargetserver -->
+            <Property name="success.codes">1xx,2xx,3xx,4xx</Property>
+        </Properties>
+        <SSLInfo>
+            <Enabled>true</Enabled>
+        </SSLInfo>
+        <URL>https://reasonable-adjustments-28.internal-dev.apis.ptl.api.platform.nhs.uk</URL>
+    </HTTPTargetConnection>
+    <FaultRules>
+        <FaultRule name="InvalidAccessToken">
+            <Condition>oauthV2.OAuthV2.VerifyAccessToken.failed</Condition>
+            <Step>
+                <Name>ExtractVariables.InvalidAccessToken</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.InvalidAccessToken</Name>
+            </Step>
+        </FaultRule>
+        <DefaultFaultRule name="UnkownError">
+            <Step>
+                <Name>AssignMessage.CatchAllErrorMessage</Name>
+            </Step>
+        </DefaultFaultRule>
+    </FaultRules>
 </TargetEndpoint>
