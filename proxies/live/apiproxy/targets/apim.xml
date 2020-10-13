@@ -6,6 +6,9 @@
                 <Name>OAuthV2.VerifyAccessToken</Name>
             </Step>
             <Step>
+              <Name>VerifyAPIKey.CustomAttributes</Name>
+            </Step>
+            <Step>
                 <Name>RaiseFault.Invalid-X-Request-Id</Name>
                 <Condition>request.header.X-Request-ID = null or request.header.X-Request-ID = ""</Condition>
             </Step>
