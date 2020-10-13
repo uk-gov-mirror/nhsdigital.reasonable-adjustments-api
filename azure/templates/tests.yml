@@ -28,7 +28,7 @@ steps:
           -e REASONABLE_ADJUSTMENTS_PROXY=$(SERVICE_BASE_PATH) \
           reasonable-adjustments-api/test-env:latest -v  --junitxml=reports/test_report.xml tests
 
-        docker run --entrypoint "pytest" -v $(pwd):/var/api_tests/test_report.xml \
+        docker run --entrypoint "pytest" -v $(pwd)/reports:/var/api_tests/reports \
           -e BASE_URL="https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk/oauth2" \
           -e CLIENT_ID="$(CLIENT_ID)" \
           -e CLIENT_SECRET="$(CLIENT_SECRET)" \
@@ -41,7 +41,7 @@ steps:
           -e PROXY_NAME=$(SERVICE_BASE_PATH) \
           -e REASONABLE_ADJUSTMENTS_BASE_URL=https://internal-dev.api.service.nhs.uk \
           -e REASONABLE_ADJUSTMENTS_PROXY=$(SERVICE_BASE_PATH) \
-          reasonable-adjustments-api/test-env:latest -v  --junitxml=reports/test_report.xml tests
+          reasonable-adjustments-api/test-env:latest -v  --junitxml=/var/api_tests/reports/test_report.xml tests
 
 #        pytest -v --junitxml=test-report.xml
 
@@ -52,5 +52,5 @@ steps:
       displayName: 'Publish Test Results'
       inputs:
           testResultsFiles: |
-              $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/api_tests/test-report.xml
+              $(Pipeline.Workspace)/s/$(SERVICE_NAME)/$(SERVICE_ARTIFACT_NAME)/api_tests/reports/test_report.xml
           failTaskOnFailedTests: true
