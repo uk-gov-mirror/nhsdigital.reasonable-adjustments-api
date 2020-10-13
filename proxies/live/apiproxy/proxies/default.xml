@@ -18,19 +18,14 @@
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </Flow>
-    <Flow name="JavaScript.AmmendPath">
-      <Request/>
-      <Response>
-        <Step>
-          <Name>JavaScript.AmmendPath</Name>
-        </Step>
-      </Response>
-    </Flow>
     <Flow name="consent-GET">
       <Request>
       <Step>
         <Name>RaiseFault.404NotFound</Name>
         <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
+      </Step>
+      <Step>
+          <Name>JS.AmmendPath</Name>
       </Step>  
       <Step>
         <Name>KeyValueMapOperations.GetInteractionID</Name>
@@ -46,6 +41,9 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
+        </Step>
+        <Step>
+          <Name>JS.AmmendPath</Name>
         </Step>
         <Step>
           <Name>KeyValueMapOperations.GetInteractionID</Name>
@@ -78,6 +76,9 @@
           <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
         </Step>
         <Step>
+          <Name>JS.AmmendPath</Name>
+        </Step>
+        <Step>
           <Name>KeyValueMapOperations.GetInteractionID</Name>
         </Step> 
         <Step>
@@ -91,6 +92,9 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
+        </Step>
+        <Step>
+          <Name>JS.AmmendPath</Name>
         </Step>
         <Step>
           <Name>KeyValueMapOperations.GetInteractionID</Name>
@@ -123,6 +127,9 @@
           <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.code = null</Condition>
         </Step>
         <Step>
+          <Name>JS.AmmendPath</Name>
+        </Step>
+        <Step>
           <Name>KeyValueMapOperations.GetInteractionID</Name>
         </Step> 
         <Step>
@@ -136,6 +143,9 @@
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>request.content = ""</Condition>
+        </Step>
+        <Step>
+          <Name>JS.AmmendPath</Name>
         </Step>
         <Step>
           <Name>KeyValueMapOperations.GetInteractionID</Name>
@@ -166,6 +176,9 @@
         <Step>
           <Name>RaiseFault.404NotFound</Name>
           <Condition>request.queryparam.patient = null or request.queryparam.removalReason = null or request.queryparam.supportingComment  = null</Condition>
+        </Step>
+        <Step>
+          <Name>JS.AmmendPath</Name>
         </Step>
         <Step>
           <Name>RaiseFault.400BadRequest</Name>
