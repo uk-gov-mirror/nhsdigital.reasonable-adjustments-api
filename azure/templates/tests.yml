@@ -40,7 +40,7 @@ steps:
           -e APIGEE_API_URL="https://api.enterprise.apigee.com/v1/organizations/nhsd-nonprod" \
           -e PROXY_NAME=$(SERVICE_BASE_PATH) \
           -e REASONABLE_ADJUSTMENTS_BASE_URL=https://internal-dev.api.service.nhs.uk \
-          -e REASONABLE_ADJUSTMENTS_PROXY=${PROXY_NAME} \
+          -e REASONABLE_ADJUSTMENTS_PROXY=$(SERVICE_BASE_PATH) \
           reasonable-adjustments-api/test-env:latest -v  --junitxml=reports/test_report.xml tests
 
 #        pytest -v --junitxml=test-report.xml
