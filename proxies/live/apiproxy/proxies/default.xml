@@ -9,14 +9,6 @@
       </Response>
       <Condition>request.verb == "OPTIONS" AND request.header.origin != null AND request.header.Access-Control-Request-Method != null</Condition>
     </Flow>
-    <Flow name="JavaScript.AmmendPath">
-      <Request/>
-      <Response>
-        <Step>
-          <Name>JavaScript.AmmendPath</Name>
-        </Step>
-      </Response>
-    </Flow>
     <Flow name="AddPayloadToPing">
       <Request/>
       <Response>
@@ -25,6 +17,14 @@
         </Step>
       </Response>
       <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </Flow>
+    <Flow name="JavaScript.AmmendPath">
+      <Request/>
+      <Response>
+        <Step>
+          <Name>JavaScript.AmmendPath</Name>
+        </Step>
+      </Response>
     </Flow>
     <Flow name="consent-GET">
       <Request>
