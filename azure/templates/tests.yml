@@ -20,7 +20,6 @@ steps:
           -e APIGEE_CLIENT_ID="969567331415.apps.national" \
           -e APIGEE_API_AUTHENTICATION="$(secret.AccessToken)" \
           -e APIGEE_API_URL="https://api.enterprise.apigee.com/v1/organizations/nhsd-nonprod" \
-          -e PROXY_NAME=$(SERVICE_BASE_PATH) \
           -e REASONABLE_ADJUSTMENTS_BASE_URL=https://internal-dev.api.service.nhs.uk \
           -e REASONABLE_ADJUSTMENTS_PROXY=$(SERVICE_BASE_PATH) \
           reasonable-adjustments-api/test-env:latest -v  --junitxml=/var/api_tests/reports/test_report.xml tests
