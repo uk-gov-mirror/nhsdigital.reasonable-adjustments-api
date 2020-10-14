@@ -105,7 +105,7 @@
         </Response>
     </PostClientFlow>
     <HTTPProxyConnection>
-        <BasePath>reasonable-adjustments-pr-28</BasePath>
+        <BasePath>{{ SERVICE_BASE_PATH }}</BasePath>
         <VirtualHost>secure</VirtualHost>
     </HTTPProxyConnection>
     <RouteRule name="NoRoute">
