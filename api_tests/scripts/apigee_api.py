@@ -12,9 +12,6 @@ class ApigeeDebugApi(GenericRequest):
         self.session_name = self._generate_uuid()
         self.proxy = proxy
 
-        # Temporary fix until we create a way to get apigee tokens
-        # https://docs.apigee.com/api-platform/system-administration/using-gettoken
-
         if APIGEE_USERNAME != '' and APIGEE_PASSWORD != '':
             token = base64.b64encode(f'{APIGEE_USERNAME}:{APIGEE_PASSWORD}'.encode('ascii'))
             self.headers = {'Authorization': f'Basic {token.decode("ascii")}'}
