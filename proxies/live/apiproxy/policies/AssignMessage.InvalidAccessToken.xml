@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.InvalidAccessToken">
+    <DisplayName>AssignMessage.InvalidAccessToken</DisplayName>
+    <Set>
+        <Payload contentType="application/json">
+            {
+                "error": "access token is invalid or expired",
+                "error_description": "access token is invalid or expired",
+                "message_id": "{messageid}"
+            }    
+            </Payload>
+        <StatusCode>401</StatusCode>
+        <ReasonPhrase>Unauthorized</ReasonPhrase>
+    </Set>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
