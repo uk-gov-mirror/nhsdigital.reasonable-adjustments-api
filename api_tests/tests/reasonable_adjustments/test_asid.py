@@ -5,6 +5,7 @@ import json
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.scripts.generic_request import GenericRequest
+from api_tests.scripts.switch_app import switch_app
 
 
 @pytest.mark.usefixtures("setup")
@@ -13,8 +14,9 @@ class TestAsidSuite:
 
     @pytest.mark.asid
     @pytest.mark.usefixtures('get_token')
-    def test_asid(self):
+    def test_asid(self ):
         # Given
+        switch_app('foo', 'bar')()
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY)
         expected_asid = '200000001115'
 
