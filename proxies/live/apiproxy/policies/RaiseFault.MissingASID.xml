@@ -4,7 +4,7 @@
     <Set>
       <Payload contentType="application/json">{
         "error": "missing ASID",
-        "error_description": "An internal server error occurred. Missing ODS. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support quoting Message ID",
+        "error_description": "An internal server error occurred. Missing ASID. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support quoting Message ID",
         "message_id": "{messageid}"
       }</Payload>
       <StatusCode>500</StatusCode>
