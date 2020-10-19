@@ -70,6 +70,13 @@ def switch_to_missing_asid():
     config.REDIRECT_URI = ENV['apps']['missing_asid']['redirect_url']
 
 
+@pytest.fixture()
+def switch_to_missing_ods():
+    config.CLIENT_ID = ENV['apps']['missing_ods']['client_id']
+    config.CLIENT_SECRET = ENV['apps']['missing_ods']['client_secret']
+    config.REDIRECT_URI = ENV['apps']['missing_ods']['redirect_url']
+
+
 @pytest.fixture(scope='function')
 def setup(request, switch_to_app):
     """This function is called before each test is executed"""

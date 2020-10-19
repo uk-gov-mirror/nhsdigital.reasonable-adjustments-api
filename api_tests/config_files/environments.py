@@ -31,6 +31,11 @@ ENV = {
             'client_id': get_env('MISSING_ASID_CLIENT_ID'),
             'client_secret': get_env('MISSING_ASID_CLIENT_SECRET'),
             'redirect_url': 'https://example.com/callback'
+        },
+        'missing_ods': {
+            'client_id': get_env('MISSING_ODS_CLIENT_ID'),
+            'client_secret': get_env('MISSING_ODS_CLIENT_SECRET'),
+            'redirect_url': 'https://example.com/callback'
         }
     },
     'oauth': {
