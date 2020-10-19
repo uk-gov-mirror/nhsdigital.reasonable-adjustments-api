@@ -38,10 +38,10 @@ extends:
     config_ids:
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_ID
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_SECRET
-        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/WITHOUT_ASID_KEY
-        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/WITHOUT_ASID_SECRET
-        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/WITHOUT_ODS_KEY
-        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/WITHOUT_ODS_SECRET
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ODS_KEY
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ODS_SECRET
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
