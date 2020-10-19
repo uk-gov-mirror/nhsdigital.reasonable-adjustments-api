@@ -40,10 +40,8 @@ extends:
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_SECRET
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ODS_KEY
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ODS_SECRET
-    secret_ids:
-        # these keys should be under config_ids however changing this now will break identity service
-        - /ptl/app-credentials/env-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
-        - /ptl/app-credentials/env-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
