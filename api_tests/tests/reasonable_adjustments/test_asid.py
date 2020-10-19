@@ -3,9 +3,9 @@ import pytest
 import json
 
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY
+from api_tests.config_files.environments import ENV
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.scripts.generic_request import GenericRequest
-from api_tests.scripts.switch_app import switch_app
 
 
 @pytest.mark.usefixtures("setup")
@@ -13,10 +13,12 @@ class TestAsidSuite:
     """ A test suit to verify ASID is fetched from Custom Attributes associated with the App """
 
     @pytest.mark.asid
-    @pytest.mark.usefixtures('get_token')
-    def test_asid(self ):
+    def test_asid(self, get_token):
         # Given
-        switch_app('foo', 'bar')()
+        # valid_asid_id = ENV['oauth']['invalid_asic_client_id']
+        # valid_asid_secret = ENV['oauth']['invalid_asic_client_secret']
+        # switch_app(valid_asid_id, valid_asid_secret)
+
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY)
         expected_asid = '200000001115'
 
