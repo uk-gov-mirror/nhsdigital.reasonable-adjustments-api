@@ -46,6 +46,17 @@ def update_token_in_parametrized_headers(request):
 
 
 @pytest.fixture()
+def switch_to_app():
+    def _switch_to_app(app_name: str = 'default'):
+        config.CLIENT_ID = ENV['apps'][app_name]['client_id']
+        config.CLIENT_SECRET = ENV['apps'][app_name]['client_secret']
+        config.REDIRECT_URI = ENV['apps'][app_name]['redirect_url']
+        print(config.CLIENT_ID)
+
+    return _switch_to_app
+
+
+@pytest.fixture()
 def switch_to_invalid_asid():
     config.CLIENT_ID = ENV['apps']['with_invalid_asid']['client_id']
     config.CLIENT_SECRET = ENV['apps']['with_invalid_asid']['client_secret']

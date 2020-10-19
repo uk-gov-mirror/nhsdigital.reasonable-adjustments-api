@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.InvalidOrMissingODS">
+<RaiseFault async="false" continueOnError="false" enabled="true" name="RaiseFault.MissingODS">
   <FaultResponse>
     <Set>
       <Payload contentType="application/json">{
-        "error": "invalid or missing ODS",
-        "error_description": "An internal server error occurred. Invalid or missing ODS. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support quoting Message ID",
+        "error": "missing ODS",
+        "error_description": "An internal server error occurred. Missing ODS. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support quoting Message ID",
         "message_id": "{messageid}"
       }</Payload>
       <StatusCode>500</StatusCode>
