@@ -1,4 +1,7 @@
 import pytest
+
+from api_tests.config_files import config
+from api_tests.config_files.environments import ENV
 from api_tests.steps.check_oauth import CheckOauth
 from api_tests.steps.check_reasonable_adjustments import CheckReasonableAdjustments
 
@@ -42,9 +45,24 @@ def update_token_in_parametrized_headers(request):
         setattr(request.cls, 'setup_done', True)
 
 
+@pytest.fixture()
+def switch_to_invalid_asid():
+    config.CLIENT_ID = ENV['apps']['with_invalid_asid']['client_id']
+    config.CLIENT_SECRET = ENV['apps']['with_invalid_asid']['client_secret']
+    config.REDIRECT_URI = ENV['apps']['with_invalid_asid']['redirect_url']
+
+
+@pytest.fixture()
+def switch_to_missing_asid():
+    config.CLIENT_ID = ENV['apps']['missing_asid']['client_id']
+    config.CLIENT_SECRET = ENV['apps']['missing_asid']['client_secret']
+    config.REDIRECT_URI = ENV['apps']['missing_asid']['redirect_url']
+
+
 @pytest.fixture(scope='function')
-def setup(request):
+def setup(request, switch_to_app):
     """This function is called before each test is executed"""
+
     # Get the name of the current test and attach it the the test instance
     name = (request.node.name, request.node.originalname)[request.node.originalname is not None]
     setattr(request.cls, "name", name)
@@ -59,6 +77,7 @@ def setup(request):
 
     # Teardown
     try:
+        switch_to_app('default')
         # Close any lingering sessions
         request.cls.test.session.close()
     except AttributeError:
