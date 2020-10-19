@@ -37,8 +37,8 @@ extends:
     spec_file: ${{ variables.spec_file }}
     secret_ids:
         # these keys should be under config_ids however changing this now will break identity service
-        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
-        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
+        - ptl/app-credentials/env-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
+        - ptl/app-credentials/env-internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
     config_ids:
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_ID
         - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_SECRET
