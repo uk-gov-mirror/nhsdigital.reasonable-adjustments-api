@@ -21,7 +21,7 @@ test:
 lint:
 	npm run lint
 	cd docker/reasonable-adjustments-sandbox && npm run lint && cd ..
-	poetry run flake8
+	poetry run flake8 **/*.py
 
 publish:
 	npm run publish 2> /dev/null
@@ -61,9 +61,14 @@ release: clean publish build-proxy
 	mkdir -p dist
 	tar -zcvf dist/package.tar.gz build
 	for env in internal-dev-sandbox internal-qa-sandbox sandbox; do \
-		cp ecs-proxies-deploy.yml dist/ecs-deploy-$$env.yml; \
+		cp ecs-proxies-deploy-sandbox.yml dist/ecs-deploy-$$env.yml; \
 	done
+	for env in internal-dev internal-qa; do \
+			cp ecs-proxies-deploy.yml dist/ecs-deploy-$$env.yml; \
+	done
+
 	cp -r build/. dist
+	cp -r api_tests dist
 	cp -r tests dist
 
 sandbox: update-examples
