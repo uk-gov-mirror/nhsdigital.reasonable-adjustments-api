@@ -23,30 +23,6 @@ class TestAsidSuite:
 
     @pytest.mark.asid
     @pytest.mark.errors
-    @pytest.mark.skip(reason="Backend validates ASID. Skip for now until we hit real backend")
-    def test_invalid_asid(self, switch_to_invalid_asid, get_token):
-        self.reasonable_adjustments.check_endpoint(
-            verb='GET',
-            endpoint='consent',
-            expected_status_code=500,
-            expected_response={
-                'error': 'missing ASID',
-                'error_description': 'An internal server error occurred. Missing ASID. Contact us for assistance diagnosing this issue: https://digital.nhs.uk/developer/help-and-support quoting Message ID',
-            },
-            params={
-                'patient':  'test',
-                'category': 'test',
-                'status':   'test',
-            },
-            headers={
-                'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
-            }
-        )
-
-    @pytest.mark.asid
-    @pytest.mark.errors
     def test_missing_asid(self, switch_to_missing_asid, get_token):
         self.reasonable_adjustments.check_endpoint(
             verb='GET',
