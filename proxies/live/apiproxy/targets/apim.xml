@@ -31,6 +31,9 @@
               <Name>RaiseFault.InvalidAsidOrOds</Name>
                 <Condition>(verifyapikey.VerifyAPIKey.CustomAttributes.asid is null) or (verifyapikey.VerifyAPIKey.CustomAttributes.ods is null)</Condition>
             </Step>
+            <Step>
+              <Name>AssignMessage.AddHeaders</Name>
+            </Step>
         </Request>
         <Response>
             <Step>
