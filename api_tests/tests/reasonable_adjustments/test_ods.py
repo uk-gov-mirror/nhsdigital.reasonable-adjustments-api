@@ -10,7 +10,7 @@ class TestOdsSuite:
 
     @pytest.mark.ods
     @pytest.mark.usefixtures('get_token')
-    def test_ods(self):
+    def test_valid_ods(self):
         # Given
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY)
         expected_ods = 'D82106'
