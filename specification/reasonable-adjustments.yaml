@@ -140,6 +140,9 @@ info:
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
     To onboard for this API, follow the [Supplier Conformance Assessment List (SCAL) process.](https://digital.nhs.uk/developer/guides-and-documentation/onboarding-process#onboard-using-the-supplier-conformance-assessment-list-scal-process)
+
+    ## Additional guidance
+    For further details on common HTTP status codes, see [5xx status codes].(https://digital.nhs.uk/developer/guides-and-documentation/reference-guide)
   
   contact:
     name: API Management Support
