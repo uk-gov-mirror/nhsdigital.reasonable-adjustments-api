@@ -1,0 +1,5 @@
+gitpython
+pyaml
+semver
+docopt
+jsonpath-rw
