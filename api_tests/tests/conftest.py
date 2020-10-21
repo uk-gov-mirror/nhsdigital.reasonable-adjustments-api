@@ -46,39 +46,28 @@ def update_token_in_parametrized_headers(request):
 
 
 @pytest.fixture()
-def switch_to_app():
-    def _switch_to_app(app_name: str = 'default'):
-        config.CLIENT_ID = ENV['apps'][app_name]['client_id']
-        config.CLIENT_SECRET = ENV['apps'][app_name]['client_secret']
-        config.REDIRECT_URI = ENV['apps'][app_name]['redirect_url']
-        print(config.CLIENT_ID)
-
-    return _switch_to_app
+def use_internal_testing_internal_dev_app():
+    config.CLIENT_ID = ENV['apps']['internal_testing_internal_dev']['client_id']
+    config.CLIENT_SECRET = ENV['apps']['internal_testing_internal_dev']['client_secret']
+    config.REDIRECT_URI = ENV['apps']['internal_testing_internal_dev']['redirect_url']
 
 
 @pytest.fixture()
-def switch_to_invalid_asid():
-    config.CLIENT_ID = ENV['apps']['with_invalid_asid']['client_id']
-    config.CLIENT_SECRET = ENV['apps']['with_invalid_asid']['client_secret']
-    config.REDIRECT_URI = ENV['apps']['with_invalid_asid']['redirect_url']
-
-
-@pytest.fixture()
-def switch_to_missing_asid():
+def use_internal_testing_internal_dev_without_asid_app():
     config.CLIENT_ID = ENV['apps']['missing_asid']['client_id']
     config.CLIENT_SECRET = ENV['apps']['missing_asid']['client_secret']
     config.REDIRECT_URI = ENV['apps']['missing_asid']['redirect_url']
 
 
 @pytest.fixture()
-def switch_to_missing_ods():
+def internal_testing_internal_dev_without_ods_app():
     config.CLIENT_ID = ENV['apps']['missing_ods']['client_id']
     config.CLIENT_SECRET = ENV['apps']['missing_ods']['client_secret']
     config.REDIRECT_URI = ENV['apps']['missing_ods']['redirect_url']
 
 
 @pytest.fixture(scope='function')
-def setup(request, switch_to_app):
+def setup(request, use_internal_testing_internal_dev_app):
     """This function is called before each test is executed"""
 
     # Get the name of the current test and attach it the the test instance
@@ -95,7 +84,6 @@ def setup(request, switch_to_app):
 
     # Teardown
     try:
-        switch_to_app('default')
         # Close any lingering sessions
         request.cls.test.session.close()
     except AttributeError:

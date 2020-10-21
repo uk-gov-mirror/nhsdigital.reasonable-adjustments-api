@@ -23,7 +23,7 @@ class TestAsidSuite:
 
     @pytest.mark.asid
     @pytest.mark.errors
-    def test_missing_asid(self, switch_to_missing_asid, get_token):
+    def test_missing_asid(self, use_internal_testing_internal_dev_without_asid_app, get_token):
         self.reasonable_adjustments.check_endpoint(
             verb='GET',
             endpoint='consent',
