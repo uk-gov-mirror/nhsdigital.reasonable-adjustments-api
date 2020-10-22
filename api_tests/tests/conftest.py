@@ -60,7 +60,7 @@ def use_internal_testing_internal_dev_without_asid_app():
 
 
 @pytest.fixture()
-def internal_testing_internal_dev_without_ods_app():
+def use_internal_testing_internal_dev_without_ods_app():
     config.CLIENT_ID = ENV['apps']['missing_ods']['client_id']
     config.CLIENT_SECRET = ENV['apps']['missing_ods']['client_secret']
     config.REDIRECT_URI = ENV['apps']['missing_ods']['redirect_url']

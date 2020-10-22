@@ -24,7 +24,7 @@ class TestOdsSuite:
 
     @pytest.mark.ods
     @pytest.mark.errors
-    def test_missing_ods(self, internal_testing_internal_dev_without_ods_app, get_token):
+    def test_missing_ods(self, use_internal_testing_internal_dev_without_ods_app, get_token):
         self.reasonable_adjustments.check_endpoint(
             verb='GET',
             endpoint='consent',

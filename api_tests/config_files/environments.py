@@ -17,11 +17,6 @@ ENV = {
             'client_secret': get_env('CLIENT_SECRET'),
             'redirect_url': get_env('REDIRECT_URI')
         },
-        'with_valid_asid': {
-            'client_id': get_env('VALID_ASID_CLIENT_ID'),
-            'client_secret': get_env('VALID_ASID_CLIENT_SECRET'),
-            'redirect_url': 'https://example.com/callback'
-        },
         'missing_asid': {
             'client_id': get_env('MISSING_ASID_CLIENT_ID'),
             'client_secret': get_env('MISSING_ASID_CLIENT_SECRET'),
