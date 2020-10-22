@@ -93,7 +93,8 @@ class TestInteractionIDSuite:
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': 'test',
-                'content-type': 'application/fhir+json'
+                'content-type': 'application/fhir+json',
+                'If-Match': 'abc123'
             },
             data=json.dumps({'message': 'test'})
         )
@@ -122,7 +123,8 @@ class TestInteractionIDSuite:
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': 'test',
-                'content-type': 'application/fhir+json'
+                'content-type': 'application/fhir+json',
+                'If-Match': 'abc123'
             },
             data=json.dumps({'message': 'test'})
         )
