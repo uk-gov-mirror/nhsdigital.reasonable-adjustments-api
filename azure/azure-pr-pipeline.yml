@@ -43,8 +43,6 @@ extends:
       - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_SECRET
       - /ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ODS_KEY
       - /ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ODS_SECRET
-      - /ptl/app-credentials/internal-dev/INTERNAL_TESTING_INVALID_ODS_KEY
-      - /ptl/app-credentials/internal-dev/INTERNAL_TESTING_INVALID_ODS_SECRET
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
