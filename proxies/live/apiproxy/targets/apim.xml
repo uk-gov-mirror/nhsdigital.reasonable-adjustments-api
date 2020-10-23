@@ -38,9 +38,6 @@
             <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
-            <Step>
-              <Name>AssignMessage.AddHeaders</Name>
-            </Step>
         </Request>
         <Response>
             <Step>
