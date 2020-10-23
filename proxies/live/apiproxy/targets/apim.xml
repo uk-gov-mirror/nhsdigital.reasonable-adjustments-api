@@ -35,6 +35,9 @@
               <Name>RaiseFault.MissingODS</Name>
               <Condition>verifyapikey.VerifyAPIKey.CustomAttributes.ods is null</Condition>
             </Step>
+            <Step>
+              <Name>AssignMessage.AddHeaders</Name>
+            </Step>
         </Request>
         <Response>
             <Step>
