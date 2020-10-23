@@ -64,7 +64,6 @@ class ApigeeDebugApi(GenericRequest):
 
     def get_apigee_variable(self, name: str) -> str:
         data = self._get_transaction_data()
-        print(json.dumps(data))
         executions = [x.get('results', None) for x in data['point'] if x.get('id', "") == "Execution"]
         executions = list(filter(lambda x: x != [], executions))
 
