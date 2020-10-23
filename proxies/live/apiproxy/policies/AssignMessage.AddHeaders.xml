@@ -2,7 +2,7 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddHeaders">
   <Set>
     <Headers>
-      <Header name="FromASID">FromClient</Header>
+      <Header name="FromASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
       <Header name="ToASID">SpineGoesHere</Header>
     </Headers>
   </Set>

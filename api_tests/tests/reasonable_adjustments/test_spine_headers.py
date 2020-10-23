@@ -12,7 +12,7 @@ class TestSpineHeadersSuite:
     def test_from_asid_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
-        expected_header_value = 'FromClient'
+        expected_header_value = '200000001115'
 
         # When
         self.send_a_get_consent_request()
