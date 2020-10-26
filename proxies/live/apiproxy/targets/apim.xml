@@ -6,6 +6,12 @@
                 <Name>OAuthV2.VerifyAccessToken</Name>
             </Step>
             <Step>
+                <Name>Quota</Name>
+            </Step>
+            <Step> 
+                <Name>SpikeArrest</Name>   
+            </Step>
+            <Step>
               <Name>VerifyAPIKey.CustomAttributes</Name>
             </Step>
             <Step>
