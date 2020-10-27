@@ -5,9 +5,9 @@
             <Step>
                 <Name>OAuthV2.VerifyAccessToken</Name>
             </Step>
-            <Step>
+            <!-- <Step>
                 <Name>AssignMessage.RenameQuotaVars</Name>
-            </Step>
+            </Step> -->
             <Step>
                 <Name>Quota</Name>
             </Step>
