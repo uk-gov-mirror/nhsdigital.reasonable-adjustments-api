@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage name="AssignMessage.RenameQuotaVarsFromVerifyAPIKeyPolicyClientId">
+<AssignMessage name="AssignMessage.RenameQuotaVars">
   <AssignVariable>
     <Name>apiproduct.developer.quota.limit</Name>
     <Ref>verifyapikey.VerifyApiKey.XApiKey.apiproduct.developer.quota.limit</Ref>
