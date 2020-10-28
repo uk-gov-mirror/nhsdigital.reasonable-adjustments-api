@@ -8,8 +8,7 @@ class TestSpineHeadersSuite:
     """ A test suite to verify the spine headers are sent as part of the target backend request """
 
     @pytest.mark.spine_headers
-    @pytest.mark.usefixtures('get_token')
-    def test_fromASID_header_is_set(self):
+    def test_fromASID_header_is_set(self, use_internal_testing_internal_dev_app, get_token):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
         expected_header_value = '200000001115'
