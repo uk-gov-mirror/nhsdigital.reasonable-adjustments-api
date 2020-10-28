@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<TargetEndpoint name="apim">
+<TargetEndpoint name="ig3">
     <PreFlow name="PreFlow">
         <Request>
             <Step>
@@ -52,7 +52,9 @@
         <SSLInfo>
             <Enabled>true</Enabled>
         </SSLInfo>
-        <URL>https://{{ APIM_PROXY_HOSTNAME }}</URL>
+        <LoadBalancer>
+          <Server name="ig3"/>
+        </LoadBalancer>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">
