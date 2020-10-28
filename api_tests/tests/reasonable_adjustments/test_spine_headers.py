@@ -9,7 +9,7 @@ class TestSpineHeadersSuite:
 
     @pytest.mark.spine_headers
     @pytest.mark.usefixtures('get_token')
-    def test_from_asid_header_is_set(self):
+    def test_fromASID_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
         expected_header_value = '200000001115'
@@ -19,6 +19,20 @@ class TestSpineHeadersSuite:
 
         # Then
         actual_header_value = debug_session.get_apigee_header('FromASID')
+        assert actual_header_value == expected_header_value
+
+    @pytest.mark.spine_headers
+    @pytest.mark.usefixtures('get_token')
+    def test_ToASID_header_is_set(self):
+        # Given
+        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
+        expected_header_value = '200000006422'
+
+        # When
+        self.send_a_get_consent_request()
+
+        # Then
+        actual_header_value = debug_session.get_apigee_header('ToASID')
         assert actual_header_value == expected_header_value
 
     def send_a_get_consent_request(self):
