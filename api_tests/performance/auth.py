@@ -76,3 +76,4 @@ class Auth:
         response = self.session.post(url, data=payload, headers=headers)
         credentials = json.loads(response.text)
         return credentials
+        

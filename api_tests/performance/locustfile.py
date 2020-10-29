@@ -27,3 +27,4 @@ class ReasonableAdjustmentsUser(HttpUser):
     @task(1)
     def reasonable_adjustments_api(self):
         self.client.get(f"{self.base_path}/flag?patient=9999999998&status=active&category=test", headers=self.headers)
+        
