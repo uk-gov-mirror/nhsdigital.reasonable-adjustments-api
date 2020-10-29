@@ -38,10 +38,6 @@
             <Step>
               <Name>KeyValueMapOperations.GetSecureVariables</Name>
             </Step>
-<!--          delete below it's for testing-->
-          <Step>
-            <Name>KeyValueMapOperations.PDSGetSecureVariables</Name>
-          </Step>
           <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
