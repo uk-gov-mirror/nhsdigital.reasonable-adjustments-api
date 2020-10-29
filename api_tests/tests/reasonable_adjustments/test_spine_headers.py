@@ -22,6 +22,7 @@ class TestSpineHeadersSuite:
 
     @pytest.mark.spine_headers
     @pytest.mark.usefixtures('get_token')
+    @pytest.mark.debug
     def test_ToASID_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
