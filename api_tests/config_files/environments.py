@@ -11,6 +11,23 @@ def get_env(variable_name: str, default: str = "") -> str:
 
 
 ENV = {
+    'apps': {
+        'internal_testing_internal_dev': {
+            'client_id': get_env('CLIENT_ID'),
+            'client_secret': get_env('CLIENT_SECRET'),
+            'redirect_url': get_env('REDIRECT_URI')
+        },
+        'missing_asid': {
+            'client_id': get_env('MISSING_ASID_CLIENT_ID'),
+            'client_secret': get_env('MISSING_ASID_CLIENT_SECRET'),
+            'redirect_url': 'https://example.com/callback'
+        },
+        'missing_ods': {
+            'client_id': get_env('MISSING_ODS_CLIENT_ID'),
+            'client_secret': get_env('MISSING_ODS_CLIENT_SECRET'),
+            'redirect_url': 'https://example.com/callback'
+        }
+    },
     'oauth': {
         'apigee_client_id': get_env('APIGEE_CLIENT_ID'),
         'base_url': get_env('BASE_URL'),
