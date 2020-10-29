@@ -22,7 +22,6 @@ class TestSpineHeadersSuite:
 
     @pytest.mark.spine_headers
     @pytest.mark.usefixtures('get_token')
-    @pytest.mark.debug
     def test_ToASID_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
@@ -47,6 +46,7 @@ class TestSpineHeadersSuite:
         # Then
         trace_id = debug_session.get_apigee_header('TraceID')
         x_request_id = debug_session.get_apigee_header('x-request-id')
+        print(trace_id)
 
         assert trace_id == x_request_id
 

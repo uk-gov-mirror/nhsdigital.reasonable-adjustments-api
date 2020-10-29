@@ -3,7 +3,6 @@
     <Add>
         <Headers>
             <Header name="Interaction-ID">{interactionID}</Header>
-            <Header name="TraceID">{interactionID}</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
