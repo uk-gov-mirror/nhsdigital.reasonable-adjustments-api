@@ -104,6 +104,10 @@
         <Flow name="flag-PUT">
             <Request>
                 <Step>
+                  <Name>RaiseFault.Invalid-If-Match</Name>
+                  <Condition>(request.header.If-Match = null or request.header.If-Match = "")</Condition>
+                </Step>
+                <Step>
                   <Name>KeyValueMapOperations.GetInteractionIDPutFlag</Name>
                 </Step>
                 <Step>
@@ -146,6 +150,10 @@
         </Flow>
         <Flow name="list-PUT">
             <Request>
+                <Step>
+                  <Name>RaiseFault.Invalid-If-Match</Name>
+                  <Condition>request.header.If-Match = null or request.header.If-Match = ""</Condition>
+                </Step>
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionIDPutList</Name>
                 </Step>

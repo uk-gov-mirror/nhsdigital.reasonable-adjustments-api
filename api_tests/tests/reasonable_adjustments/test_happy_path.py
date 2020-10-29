@@ -115,6 +115,7 @@ class TestHappyPathSuite:
                 'nhsd-session-urid': 'test',
                 'x-request-id': 'test',
                 'content-type': 'application/fhir+json',
+                'if-match': 'test'
             },
             data=json.dumps({'message': 'test'})
         )
@@ -171,6 +172,7 @@ class TestHappyPathSuite:
                 'nhsd-session-urid': 'test',
                 'x-request-id': 'test',
                 'content-type': 'application/fhir+json',
+                'if-match': 'test'
             },
             data=json.dumps({'message': 'test'})
         )

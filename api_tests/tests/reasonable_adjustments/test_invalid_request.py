@@ -182,6 +182,27 @@ class TestInvalidRequestSuite:
 
     @pytest.mark.errors
     @pytest.mark.usefixtures('get_token')
+    def test_flag_invalid_header_put(self):
+        assert self.reasonable_adjustments.check_endpoint(
+            verb='PUT',
+            endpoint=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
+            expected_status_code=400,
+            expected_response={
+                "error": "invalid header",
+                "error_description": "if-match is missing or invalid",
+            },
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': 'test',
+                'x-request-id': 'test'
+            },
+            data={
+                'message': 'test'
+            }
+        )
+
+    @pytest.mark.errors
+    @pytest.mark.usefixtures('get_token')
     def test_list_invalid_query_params(self):
         # Test list endpoint returns a 200 and returns a json response
         assert self.reasonable_adjustments.check_endpoint(
@@ -201,6 +222,28 @@ class TestInvalidRequestSuite:
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': 'test'
+            }
+        )
+
+    @pytest.mark.errors
+    @pytest.mark.usefixtures('get_token')
+    def test_list_invalid_header_put(self):
+        assert self.reasonable_adjustments.check_endpoint(
+            verb='PUT',
+            endpoint=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
+            expected_status_code=400,
+            expected_response={
+                "error": "invalid header",
+                "error_description": "if-match is missing or invalid",
+            },
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': 'test',
+                'x-request-id': 'test',
+                'if-match': ''
+            },
+            data={
+                'message': 'test'
             }
         )
 
