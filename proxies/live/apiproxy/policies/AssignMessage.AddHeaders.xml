@@ -3,7 +3,7 @@
   <Set>
     <Headers>
       <Header name="FromASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
-      <Header name="ToASID">200000006422</Header>
+      <Header name="ToASID">{private.apigee.ToASID}</Header>
     </Headers>
   </Set>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
