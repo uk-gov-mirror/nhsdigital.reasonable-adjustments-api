@@ -4,6 +4,7 @@
     <Headers>
       <Header name="FromASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
       <Header name="ToASID">{private.apigee.ToASID}</Header>
+      <Header name="TraceID">{request.header.X-Request-ID}</Header>
     </Headers>
   </Set>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

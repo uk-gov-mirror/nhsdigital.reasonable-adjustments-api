@@ -26,14 +26,29 @@ class TestSpineHeadersSuite:
     def test_ToASID_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
-        expected_header_value = '200000006422'
 
         # When
         self.send_a_get_consent_request()
 
         # Then
         actual_header_value = debug_session.get_apigee_header('ToASID')
-        assert actual_header_value == expected_header_value
+        assert actual_header_value is not None and actual_header_value != ''
+
+    @pytest.mark.spine_headers
+    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.debug
+    def test_x_request_id_equals_TraceID(self):
+        # Given
+        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY)
+
+        # When
+        self.send_a_get_consent_request()
+
+        # Then
+        trace_id = debug_session.get_apigee_header('TraceID')
+        x_request_id = debug_session.get_apigee_header('x-request-id')
+
+        assert trace_id == x_request_id
 
     def send_a_get_consent_request(self):
         self.reasonable_adjustments.check_endpoint(
