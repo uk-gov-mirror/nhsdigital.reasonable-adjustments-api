@@ -1,5 +1,4 @@
-from .environments import ENV
-
+from api_tests.config_files.environments import ENV
 
 # Api details
 APIGEE_CLIENT_ID = ENV['oauth']['apigee_client_id']
@@ -41,4 +40,3 @@ ENDPOINTS = {
     'list': REASONABLE_ADJUSTMENTS_LIST,
     'remove_ra_record': REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD
 }
-
