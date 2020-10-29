@@ -6,6 +6,7 @@ import json
 class TestHappyPathSuite:
     """ A test suite to verify all the happy path oauth endpoints """
 
+    @pytest.mark.debug
     @pytest.mark.happy_path
     def test_consent_get(self, use_internal_testing_internal_dev_app, get_token):
         # Test consent endpoint returns a 200 and returns a json response
