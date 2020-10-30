@@ -46,7 +46,6 @@ class TestSpineHeadersSuite:
         # Then
         trace_id = debug_session.get_apigee_header('TraceID')
         x_request_id = debug_session.get_apigee_header('x-request-id')
-        print(trace_id)
 
         assert trace_id == x_request_id
 
