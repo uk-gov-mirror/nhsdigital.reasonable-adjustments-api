@@ -2,7 +2,7 @@ import pytest
 import jwt
 import requests
 
-from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY, REASONABLE_ADJUSTMENTS_CONSENT
+from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY_NAME, REASONABLE_ADJUSTMENTS_PROXY_PATH, REASONABLE_ADJUSTMENTS_CONSENT
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 
 @pytest.mark.usefixtures("setup")
@@ -14,7 +14,7 @@ class TestJwtSuite:
     @pytest.mark.usefixtures('get_token')
     def test_jwt(self):
         # Given
-        debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY)
+        debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
         expected_jwt_claims = {
             'reason_for_request': 'directcare',
             'scope': 'patient=test&category=test&status=test',
@@ -23,12 +23,12 @@ class TestJwtSuite:
             'requesting_user': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
             'sub': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
             'iss': 'http://api.service.nhs.uk',
-            'aud': f'/{REASONABLE_ADJUSTMENTS_PROXY}/consent'
+            'aud': f'/{REASONABLE_ADJUSTMENTS_PROXY_PATH}/consent'
         }
-        
+
         # When
         requests.get(
-            url=REASONABLE_ADJUSTMENTS_CONSENT, 
+            url=REASONABLE_ADJUSTMENTS_CONSENT,
             params={'patient': 'test', 'category': 'test', 'status': 'test'},
             headers={
                 'Authorization': f'Bearer {self.token}',
