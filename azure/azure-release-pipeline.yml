@@ -59,6 +59,10 @@ extends:
         depends_on:
             - internal_qa
             - internal_qa_sandbox
+        post_deploy:
+            - template: templates/tests.yml
+              parameters:
+                  service_name: ${{ variables.service_name }}
       - environment: sandbox
         make_spec_visible: true
         proxy_path: sandbox
