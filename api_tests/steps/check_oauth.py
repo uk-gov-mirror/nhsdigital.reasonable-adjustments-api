@@ -1,15 +1,18 @@
-from api_tests.scripts.generic_request import GenericRequest
 from api_tests.config_files import config
 from api_tests.scripts.authenticator import Authenticator
+import requests
+import json
 
 
-class CheckOauth(GenericRequest):
+class CheckOauth:
     def __init__(self):
         super(CheckOauth, self).__init__()
+        self.session = requests.Session()
+        self.endpoints = config.ENDPOINTS
 
     def get_authenticated(self) -> str:
         """Get the code parameter value required to post to the oauth /token endpoint"""
-        authenticator = Authenticator(self)
+        authenticator = Authenticator(self.session)
         response = authenticator.authenticate()
         code = authenticator.get_code_from_provider(response)
         return code
@@ -28,5 +31,5 @@ class CheckOauth(GenericRequest):
             data['code'] = self.get_authenticated()
             data['_access_token_expiry_ms'] = timeout
 
-        response = self.post(self.endpoints['token'], data=data)
-        return self.get_all_values_from_json_response(response)
+        response = self.session.post(self.endpoints['token'], data=data)
+        return json.loads(response.text)
