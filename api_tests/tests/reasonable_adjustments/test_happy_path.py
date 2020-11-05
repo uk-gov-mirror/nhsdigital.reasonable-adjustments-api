@@ -36,7 +36,7 @@ class TestHappyPathSuite:
     def test_consent_post(self):
         # Given
         expected_status_code = 201
-        
+
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
@@ -113,7 +113,7 @@ class TestHappyPathSuite:
                 'x-request-id': 'test',
                 'content-type': 'application/fhir+json'
             },
-            json=json.dumps({'message': 'test'})            
+            json=json.dumps({'message': 'test'})
         )
 
         # Then

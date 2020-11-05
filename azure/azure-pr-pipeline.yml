@@ -53,10 +53,3 @@ extends:
       - environment: internal-dev-sandbox
         make_spec_visible: true
         proxy_path: sandbox
-
-      - environment: int
-        make_spec_visible: true
-        post_deploy:
-            - template: templates/tests-int.yml
-              parameters:
-                  service_name: ${{ variables.service_name }}
