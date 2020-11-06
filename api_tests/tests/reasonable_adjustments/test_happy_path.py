@@ -8,6 +8,7 @@ class TestHappyPathSuite:
     """ A test suite to verify all the happy path oauth endpoints """
 
     @pytest.mark.happy_path
+    @pytest.mark.debug
     def test_consent_get(self, use_internal_testing_internal_dev_app, get_token):
         # Given
         expected_status_code = 200
@@ -16,9 +17,9 @@ class TestHappyPathSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': 'test',
-                'category': 'test',
-                'status': 'test'
+                'patient': '5900008142',
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1%7CNRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -35,7 +36,7 @@ class TestHappyPathSuite:
     def test_consent_post(self):
         # Given
         expected_status_code = 201
-        
+
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
@@ -49,7 +50,7 @@ class TestHappyPathSuite:
         )
 
         # Then
-        assert expected_status_code == response.status_code, f"Expected status code: {expected_status_code} Actual: {response.status_code}" 
+        assert expected_status_code == response.status_code, f"Expected status code: {expected_status_code} Actual: {response.status_code}"
 
     @pytest.mark.happy_path
     @pytest.mark.usefixtures('get_token')
@@ -70,7 +71,7 @@ class TestHappyPathSuite:
         )
 
         # Then
-        assert expected_status_code == response.status_code, f"Expected status code: {expected_status_code} Actual: {response.status_code}" 
+        assert expected_status_code == response.status_code, f"Expected status code: {expected_status_code} Actual: {response.status_code}"
 
     @pytest.mark.happy_path
     @pytest.mark.usefixtures('get_token')
@@ -112,7 +113,7 @@ class TestHappyPathSuite:
                 'x-request-id': 'test',
                 'content-type': 'application/fhir+json'
             },
-            json=json.dumps({'message': 'test'})            
+            json=json.dumps({'message': 'test'})
         )
 
         # Then

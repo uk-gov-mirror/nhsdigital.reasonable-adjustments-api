@@ -35,7 +35,6 @@ class TestSpineHeadersSuite:
 
     @pytest.mark.spine_headers
     @pytest.mark.usefixtures('get_token')
-    @pytest.mark.debug
     def test_x_request_id_equals_TraceID(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
