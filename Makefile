@@ -63,7 +63,7 @@ release: clean publish build-proxy
 	for env in internal-dev-sandbox internal-qa-sandbox sandbox; do \
 		cp ecs-proxies-deploy-sandbox.yml dist/ecs-deploy-$$env.yml; \
 	done
-	for env in internal-dev internal-qa; do \
+	for env in internal-dev internal-qa int; do \
 			cp ecs-proxies-deploy.yml dist/ecs-deploy-$$env.yml; \
 	done
 
