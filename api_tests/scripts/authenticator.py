@@ -68,7 +68,7 @@ class Authenticator:
 
         # Confirm request was successful
         if callback_response.status_code != 302:
-            raise ValueError(f"Callback request failed with {callback_response.text}")
+            raise ValueError(f"Callback request failed with {callback_response.status_code} : {callback_response.text}")
 
         # Return code param from location header
         return self.get_params_from_url(callback_response.headers.get('Location'))['code']
