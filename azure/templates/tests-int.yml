@@ -10,7 +10,7 @@ steps:
       displayName: Setup integration tests
 
     - bash: |
-          docker run --entrypoint "pytest" -m debug -v $(pwd)/reports:/var/api_tests/reports \
+          docker run --entrypoint "pytest" -v $(pwd)/reports:/var/api_tests/reports \
             -e BASE_URL="https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk/oauth2-no-smartcard" \
             -e CLIENT_ID="$(CLIENT_ID)" \
             -e CLIENT_SECRET="$(CLIENT_SECRET)" \
