@@ -34,9 +34,16 @@ extends:
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
     enable_monitoring: true
+    secret_ids:
+        - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
+        - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
     config_ids:
         - /ptl/azure-devops/env-int/test-app/ra-testing/RA_INT_CLIENT_ID
         - /ptl/azure-devops/env-int/test-app/ra-testing/RA_INT_CLIENT_SECRET
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_ID
+        - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_SECRET
+        - /ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ODS_KEY
+        - /ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ODS_SECRET
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
