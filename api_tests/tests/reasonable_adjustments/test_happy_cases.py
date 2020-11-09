@@ -13,6 +13,7 @@ class TestHappyCasesSuite:
     """ A test suite to verify all the happy path oauth endpoints """
 
     @pytest.mark.happy_path
+    @pytest.mark.debug
     def test_consent_get(self, use_internal_testing_internal_dev_app, get_token):
         # Given
         expected_status_code = 200
@@ -40,7 +41,7 @@ class TestHappyCasesSuite:
     def test_consent_post(self):
         # Given
         expected_status_code = 201
-        
+
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
@@ -117,7 +118,7 @@ class TestHappyCasesSuite:
                 'x-request-id': 'test',
                 'content-type': 'application/fhir+json'
             },
-            json=json.dumps({'message': 'test'})            
+            json=json.dumps({'message': 'test'})
         )
 
         # Then
@@ -249,7 +250,7 @@ class TestHappyCasesSuite:
         Utils.send_request(self)
 
         # Then
-        actual_header_value = debug_session.get_apigee_header('FromASID')        
+        actual_header_value = debug_session.get_apigee_header('FromASID')
         assert_that(expected_header_value).is_equal_to(actual_header_value)
 
     @pytest.mark.spine_headers
@@ -268,7 +269,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.spine_headers
     @pytest.mark.usefixtures('get_token')
-    @pytest.mark.debug
     def test_x_request_id_equals_TraceID(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -431,7 +431,7 @@ class TestHappyCasesSuite:
 
         # When
         Utils.send_request(self)
-        
+
         # Then
         actual_jwt = debug_session.get_apigee_header('jwt')
         actual_jwt_claims = jwt.decode(actual_jwt, verify=False)
