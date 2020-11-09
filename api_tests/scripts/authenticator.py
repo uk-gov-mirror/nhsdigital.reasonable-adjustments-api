@@ -10,7 +10,7 @@ class Authenticator:
     def _simulated_oauth_prerequisite(self):
         """Request the login page and retrieve the callback url and assigned state"""
         login_page_response = self.session.get(config.AUTHENTICATE_URL)
-        
+
         if login_page_response.status_code != 200:
             raise ValueError("Invalid login page respons statuse code")
 
@@ -68,7 +68,7 @@ class Authenticator:
 
         # Confirm request was successful
         if callback_response.status_code != 302:
-            raise ValueError(f"Callback request failed with {callback_response.status_code}")
+            raise ValueError(f"Callback request failed with {callback_response.text}")
 
         # Return code param from location header
         return self.get_params_from_url(callback_response.headers.get('Location'))['code']
