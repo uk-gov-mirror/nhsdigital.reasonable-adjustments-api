@@ -26,7 +26,7 @@ class Authenticator:
 
         # Confirm request was successful
         if success_response.status_code != 302:
-            raise ValueError(f"Getting an error: {success_response.text}")
+            raise ValueError(f"Getting an error: {success_response.status_code} : {success_response.text}")
 
         call_back_url = success_response.headers.get('Location')
         state = self.get_params_from_url(call_back_url)['state']
@@ -56,7 +56,7 @@ class Authenticator:
         # Confirm request was successful
         if sign_in_response.status_code != 302:
             raise ValueError(f"Failed to get authenticated " \
-                                                    f"with error {sign_in_response.status_code}")
+                                                    f"with {sign_in_response.status_code} : {sign_in_response.text}")
 
         return sign_in_response
 
