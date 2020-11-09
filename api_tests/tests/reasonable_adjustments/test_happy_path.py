@@ -29,6 +29,7 @@ class TestHappyPathSuite:
         )
 
         # Then
+        print(response.text)
         assert expected_status_code == response.status_code, f"Expected status code: {expected_status_code} Actual: {response.status_code}"
 
     @pytest.mark.happy_path
