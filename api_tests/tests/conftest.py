@@ -46,23 +46,23 @@ def update_token_in_parametrized_headers(request):
 
 @pytest.fixture()
 def use_internal_testing_internal_dev_app():
-    config.CLIENT_ID = ENV['apps']['internal_testing_internal_dev']['client_id']
-    config.CLIENT_SECRET = ENV['apps']['internal_testing_internal_dev']['client_secret']
-    config.REDIRECT_URI = ENV['apps']['internal_testing_internal_dev']['redirect_url']
+    config.CLIENT_ID = config.INTERNAL_TESTING_INTERNAL_DEV['client_id']
+    config.CLIENT_SECRET = config.INTERNAL_TESTING_INTERNAL_DEV['client_secret']
+    config.REDIRECT_URI = config.INTERNAL_TESTING_INTERNAL_DEV['redirect_url']
 
 
 @pytest.fixture()
 def use_internal_testing_internal_dev_without_asid_app():
-    config.CLIENT_ID = ENV['apps']['missing_asid']['client_id']
-    config.CLIENT_SECRET = ENV['apps']['missing_asid']['client_secret']
-    config.REDIRECT_URI = ENV['apps']['missing_asid']['redirect_url']
+    config.CLIENT_ID = config.MISSING_ASID['client_id']
+    config.CLIENT_SECRET = config.MISSING_ASID['client_secret']
+    config.REDIRECT_URI = config.MISSING_ASID['redirect_url']
 
 
 @pytest.fixture()
 def use_internal_testing_internal_dev_without_ods_app():
-    config.CLIENT_ID = ENV['apps']['missing_ods']['client_id']
-    config.CLIENT_SECRET = ENV['apps']['missing_ods']['client_secret']
-    config.REDIRECT_URI = ENV['apps']['missing_ods']['redirect_url']
+    config.CLIENT_ID = config.MISSING_ODS['client_id']
+    config.CLIENT_SECRET = config.MISSING_ODS['client_secret']
+    config.REDIRECT_URI = config.MISSING_ODS['redirect_url']
 
 
 @pytest.fixture(scope='function')
