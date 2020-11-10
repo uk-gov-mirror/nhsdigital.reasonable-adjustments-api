@@ -4,4 +4,5 @@ variables:
   short_service_name: reasonable-adjustments
   product_display_name: Reasonable Adjustments Api
   product_description: Reasonable Adjustments Api
+  System.Debug: true
   spec_file: reasonable-adjustments.json
