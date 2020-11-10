@@ -32,4 +32,7 @@ class CheckOauth:
             data['_access_token_expiry_ms'] = timeout
 
         response = self.session.post(self.endpoints['token'], data=data)
+        if response.status_code != 200:
+            raise Exception(f'/token endpoint failed: {response.status_code} : {response.text}')
+
         return json.loads(response.text)
