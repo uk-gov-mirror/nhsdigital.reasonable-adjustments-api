@@ -11,8 +11,8 @@
             <Step>
                 <Name>Quota</Name>
             </Step>
-            <Step> 
-                <Name>SpikeArrest</Name>   
+            <Step>
+                <Name>SpikeArrest</Name>
             </Step>
             <Step>
               <Name>VerifyAPIKey.CustomAttributes</Name>
@@ -25,9 +25,6 @@
             </Step>
             <Step>
                 <Name>JavaScript.CreateClaimVars</Name>
-            </Step>
-            <Step>
-                <Name>GenerateJWT</Name>
             </Step>
             <Step>
                 <Name>AssignMessage.JWT</Name>
