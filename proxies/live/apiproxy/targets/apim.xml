@@ -27,6 +27,9 @@
                 <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
+              <Name>AssignMessage.RemoveHeaders</Name>
+            </Step>
+            <Step>
                 <Name>AssignMessage.JWT</Name>
             </Step>
             <Step>
