@@ -14,7 +14,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.debug
     def test_consent_get(self, use_internal_testing_internal_dev_app, get_token):
         # Given
         expected_status_code = 200
@@ -426,12 +425,13 @@ class TestHappyCasesSuite:
 
     @pytest.mark.jwt
     @pytest.mark.usefixtures('get_token')
+    @pytest.mark.debug
     def test_jwt(self):
         # Given
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
         expected_jwt_claims = {
             'reason_for_request': 'directcare',
-            'scope': 'patient=test&category=test&status=test',
+            'scope': 'scope here',
             'requesting_organization': 'https://fhir.nhs.uk/Id/ods-organization-code|D82106',
             'requesting_system': 'https://fhir.nhs.uk/Id/accredited-system|200000001115',
             'requesting_user': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
@@ -444,7 +444,10 @@ class TestHappyCasesSuite:
         Utils.send_request(self)
 
         # Then
-        actual_jwt = debug_session.get_apigee_header('jwt')
+        actual_jwt = debug_session.get_apigee_header('Authorization')
+        jwt = debug_session.get_apigee_variable('spineJwt')
+        print()
+
         actual_jwt_claims = jwt.decode(actual_jwt, verify=False)
 
         assert_that(expected_jwt_claims['reason_for_request']).is_equal_to_ignoring_case(actual_jwt_claims['reason_for_request'])
