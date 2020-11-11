@@ -2,7 +2,7 @@ subClaim = 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('
 requestingSystemClaim = 'https://fhir.nhs.uk/Id/accredited-system|' + context.getVariable('verifyapikey.VerifyAPIKey.CustomAttributes.asid')
 requestingOrganisationClaim = 'https://fhir.nhs.uk/Id/ods-organization-code|' + context.getVariable('verifyapikey.VerifyAPIKey.CustomAttributes.ods')
 requestingUserClaim = 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('request.header.nhsd-session-urid')
-scope = "user/Consent.read"
+scope = context.getVariable('kvm_scope')
 audience = "/" + context.getVariable('proxy.basepath') + context.getVariable('proxy.pathsuffix')
 
 header = {
