@@ -1,15 +1,19 @@
-subClaim = context.setVariable('subClaim', 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('request.header.nhsd-session-urid'))
-requestingSystemClaim = context.setVariable('requestingSystemClaim', 'https://fhir.nhs.uk/Id/accredited-system|' + context.getVariable('verifyapikey.VerifyAPIKey.CustomAttributes.asid'))
-requestingOrganisationClaim = context.setVariable('requestingOrganisationClaim', 'https://fhir.nhs.uk/Id/ods-organization-code|' + context.getVariable('verifyapikey.VerifyAPIKey.CustomAttributes.ods'))
-requestingUserClaim = context.setVariable('requestingUserClaim', 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('request.header.nhsd-session-urid'))
+subClaim = 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('request.header.nhsd-session-urid')
+requestingSystemClaim = 'https://fhir.nhs.uk/Id/accredited-system|' + context.getVariable('verifyapikey.VerifyAPIKey.CustomAttributes.asid')
+requestingOrganisationClaim = 'https://fhir.nhs.uk/Id/ods-organization-code|' + context.getVariable('verifyapikey.VerifyAPIKey.CustomAttributes.ods')
+requestingUserClaim = 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('request.header.nhsd-session-urid')
 scope = "user/Consent.read"
+audience = context.getVariable('context.targetRequest.url')
 
 header = {
   "alg": "none",
   "typ": "JWT"
 }
 
-content = {
+payload = {
+  sub: subClaim,
+  iss: "http://api.service.nhs.uk",
+  aud: audience,
   reason_for_request: "directcare",
   scope: scope,
   requesting_organization: requestingOrganisationClaim,
@@ -18,6 +22,6 @@ content = {
 }
 
 headerB64 =Base64.encode(JSON.stringify(header))
-contentB64 =Base64.encode(JSON.stringify(content))
+payloadB64 =Base64.encode(JSON.stringify(payload))
 
-context.setVariable("spineJwt", headerB64 + "." + contentB64 + ".")
+context.setVariable("spineJwt", headerB64 + "." + payloadB64 + ".")

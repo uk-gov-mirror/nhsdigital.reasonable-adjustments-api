@@ -431,7 +431,7 @@ class TestHappyCasesSuite:
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
         expected_jwt_claims = {
             'reason_for_request': 'directcare',
-            'scope': 'scope here',
+            'scope': 'user/Consent.read',
             'requesting_organization': 'https://fhir.nhs.uk/Id/ods-organization-code|D82106',
             'requesting_system': 'https://fhir.nhs.uk/Id/accredited-system|200000001115',
             'requesting_user': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
@@ -445,8 +445,8 @@ class TestHappyCasesSuite:
 
         # Then
         actual_jwt = debug_session.get_apigee_header('Authorization')
-        jwt = debug_session.get_apigee_variable('spineJwt')
-        print()
+        jwt_ = debug_session.get_apigee_variable('spineJwt')
+        print(actual_jwt)
 
         actual_jwt_claims = jwt.decode(actual_jwt, verify=False)
 
