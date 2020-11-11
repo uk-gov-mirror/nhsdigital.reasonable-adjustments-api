@@ -14,6 +14,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
+    @pytest.mark.debug
     def test_consent_get(self, use_internal_testing_internal_dev_app, get_token):
         # Given
         expected_status_code = 200
@@ -34,6 +35,7 @@ class TestHappyCasesSuite:
         )
 
         # Then
+        print(response.text)
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path

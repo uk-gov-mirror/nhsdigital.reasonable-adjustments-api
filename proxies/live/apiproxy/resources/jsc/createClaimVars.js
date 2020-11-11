@@ -4,7 +4,12 @@ requestingOrganisationClaim = context.setVariable('requestingOrganisationClaim',
 requestingUserClaim = context.setVariable('requestingUserClaim', 'https://fhir.nhs.uk/Id/sds-role-profile-id|' + context.getVariable('request.header.nhsd-session-urid'))
 scope = "scope here"
 
-jwt = {
+header = {
+  "alg": "none",
+  "typ": "JWT"
+}
+
+content = {
   reason_for_request: "directcare",
   scope: scope,
   requesting_organization: requestingOrganisationClaim,
@@ -12,6 +17,7 @@ jwt = {
   requesting_user: requestingUserClaim
 }
 
-jwt_b64 =btoa(JSON.stringify(jwt))
+headerB64 =Base64.encode(JSON.stringify(header))
+contentB64 =Base64.encode(JSON.stringify(content))
 
-context.setVariable("spineJwt",jwt_b64)
+context.setVariable("spineJwt", header + "." + content)
