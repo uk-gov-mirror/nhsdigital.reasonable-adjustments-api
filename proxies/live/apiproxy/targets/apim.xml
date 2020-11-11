@@ -21,9 +21,6 @@
               <Name>AccessEntity.CustomAttributes</Name>
             </Step>
             <Step>
-                <Name>KeyValueMapOperations.GetVariables</Name>
-            </Step>
-            <Step>
                 <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
