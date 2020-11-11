@@ -6,7 +6,7 @@
       <Parameter>consent</Parameter>
     </Key>
   </Get>
-  <Get assignTo="scope" index="2">
+  <Get assignTo="kvm_scope" index="2">
     <Key>
       <Parameter ref="request.verb"/>
       <Parameter>consent</Parameter>
