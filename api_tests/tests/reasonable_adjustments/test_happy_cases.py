@@ -35,7 +35,6 @@ class TestHappyCasesSuite:
         )
 
         # Then
-        print(response.text)
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
@@ -426,7 +425,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.jwt
     @pytest.mark.usefixtures('get_token')
-    @pytest.mark.debug
     def test_jwt(self):
         # Given
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
