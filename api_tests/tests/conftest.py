@@ -11,11 +11,22 @@ def _get_parametrized_values(request):
             # here we are only interested in the values
             return mark.args[1]
 
+@pytest.fixture()
+def get_token_internal_dev(request):
+    return _get_token(request, config.INTERNAL_TESTING_INTERNAL_DEV)
 
 @pytest.fixture()
-def get_token(request):
+def get_token_missing_ods(request):
+    return _get_token(request, config.MISSING_ODS)
+
+@pytest.fixture()
+def get_token_missing_asid(request):
+    return _get_token(request, config.MISSING_ASID)
+
+
+def _get_token(request, creds):
     """Get the token and assign it to the test instance"""
-    oauth_endpoints = CheckOauth()
+    oauth_endpoints = CheckOauth(creds)
     token = oauth_endpoints.get_token_response()
     setattr(request.cls, 'token', token['access_token'])
     setattr(request.cls, 'refresh', token['refresh_token'])  # This is required if you want to request a refresh token
@@ -73,8 +84,8 @@ def setup(request, use_internal_testing_internal_dev_app):
     name = (request.node.name, request.node.originalname)[request.node.originalname is not None]
     setattr(request.cls, "name", name)
 
-    oauth = CheckOauth()
-    setattr(request.cls, "oauth", oauth)
+    # oauth = CheckOauth(creds)
+    # setattr(request.cls, "oauth", oauth)
 
     yield  # Handover to test
 
