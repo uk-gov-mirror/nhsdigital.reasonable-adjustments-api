@@ -11,14 +11,11 @@
             <Step>
                 <Name>Quota</Name>
             </Step>
-            <Step> 
-                <Name>SpikeArrest</Name>   
+            <Step>
+                <Name>SpikeArrest</Name>
             </Step>
             <Step>
               <Name>VerifyAPIKey.CustomAttributes</Name>
-            </Step>
-            <Step>
-              <Name>AccessEntity.CustomAttributes</Name>
             </Step>
             <Step>
                 <Name>KeyValueMapOperations.GetVariables</Name>
