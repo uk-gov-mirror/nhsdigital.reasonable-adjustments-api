@@ -13,6 +13,7 @@ class TestHappyCasesSuite:
     """ A test suite to verify all the happy path oauth endpoints """
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -37,11 +38,12 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
         # Given
         expected_status_code = 201
-        
+
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
@@ -58,6 +60,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
         # Given
@@ -79,6 +82,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get(self):
 
@@ -104,6 +108,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
         # Given
@@ -118,13 +123,14 @@ class TestHappyCasesSuite:
                 'x-request-id': 'test',
                 'content-type': 'application/fhir+json'
             },
-            json=json.dumps({'message': 'test'})            
+            json=json.dumps({'message': 'test'})
         )
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_put(self):
         # Given
@@ -147,6 +153,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_get(self):
         # Given
@@ -171,6 +178,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_post(self):
         # Given
@@ -193,6 +201,7 @@ class TestHappyCasesSuite:
 
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Given
@@ -215,6 +224,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_post(self):
         # Given
@@ -251,7 +261,7 @@ class TestHappyCasesSuite:
         Utils.send_request(self)
 
         # Then
-        actual_header_value = debug_session.get_apigee_header('FromASID')        
+        actual_header_value = debug_session.get_apigee_header('FromASID')
         assert_that(expected_header_value).is_equal_to(actual_header_value)
 
     @pytest.mark.spine_headers
@@ -432,7 +442,7 @@ class TestHappyCasesSuite:
 
         # When
         Utils.send_request(self)
-        
+
         # Then
         actual_jwt = debug_session.get_apigee_header('jwt')
         actual_jwt_claims = jwt.decode(actual_jwt, verify=False)

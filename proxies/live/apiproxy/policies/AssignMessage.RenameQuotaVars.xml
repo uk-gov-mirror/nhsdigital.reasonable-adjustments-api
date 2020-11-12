@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage name="AssignMessage.RenameQuotaVars">
+    <AssignVariable>
+        <Name>apiproduct.developer.quota.limit</Name>
+        <Value>300</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>apiproduct.developer.quota.interval</Name>
+        <Value>1</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>apiproduct.developer.quota.timeunit</Name>
+        <Value>minute</Value>
+    </AssignVariable>
+    <AssignVariable>
+        <Name>apiproduct.ratelimit</Name>
+        <Value>5ps</Value>
+    </AssignVariable>
+</AssignMessage>
