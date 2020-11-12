@@ -5,6 +5,7 @@ from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.tests.utils import Utils
 from api_tests.config_files import config
 from assertpy import assert_that
+import uuid
 
 
 @pytest.mark.usefixtures("setup")
@@ -30,7 +31,7 @@ class TestErrorCaseSuite:
             },
             headers={
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
         actual_response = json.loads(response.text)
@@ -43,6 +44,7 @@ class TestErrorCaseSuite:
 
     @pytest.mark.errors
     @pytest.mark.usefixtures('get_token')
+    @pytest.mark.debug
     def test_missing_x_request_id_header(self):
         # Given
         expected_status_code = 400
@@ -71,11 +73,43 @@ class TestErrorCaseSuite:
         assert_that(actual_response['message_id']).is_not_empty()
         assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
-        
+
+    @pytest.mark.errors
+    @pytest.mark.usefixtures('get_token')
+    def test_invalid_x_request_id_header(self):
+        # Given
+        expected_status_code = 400
+        expected_response = {
+            "error": "invalid header",
+            "error_description": "x-request-id is missing or invalid"
+        }
+
+        # When
+        response = requests.get(
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
+            params={
+                'patient':  'test',
+                'category': 'test',
+                'status':   'test',
+            },
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': 'test',
+                'x-request-id': 'not-GUID'
+            }
+        )
+        actual_response = json.loads(response.text)
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(actual_response['message_id']).is_not_empty()
+        assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
+        assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
+
     @pytest.mark.errors
     @pytest.mark.usefixtures('get_token')
     def test_missing_nhsd_session_urid_header(self):
-        # Given 
+        # Given
         expected_status_code = 400
         expected_response = {
             "error": "invalid header",
@@ -92,7 +126,7 @@ class TestErrorCaseSuite:
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'nhsd-session-urid': '',
             }
         )
@@ -119,7 +153,7 @@ class TestErrorCaseSuite:
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'nhsd-session-urid': 'test',
                 'content-type': 'application/json'
             },
@@ -150,7 +184,7 @@ class TestErrorCaseSuite:
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'nhsd-session-urid': 'test',
                 'content-type': 'application/fhir+json'
             }
@@ -183,7 +217,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
         actual_response = json.loads(response.text)
@@ -214,7 +248,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
         actual_response = json.loads(response.text)
@@ -224,7 +258,7 @@ class TestErrorCaseSuite:
         assert_that(actual_response['message_id']).is_not_empty()
         assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
-    
+
 
     @pytest.mark.errors
     @pytest.mark.usefixtures('get_token')
@@ -242,7 +276,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             },
             data={
                 'message': 'test'
@@ -277,7 +311,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
         actual_response = json.loads(response.text)
@@ -297,7 +331,7 @@ class TestErrorCaseSuite:
             "error": "invalid header",
             "error_description": "if-match is missing or invalid"
         }
-        
+
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
@@ -339,7 +373,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
         actual_response = json.loads(response.text)
@@ -363,7 +397,7 @@ class TestErrorCaseSuite:
         # When
         response = Utils.send_request(self)
         actual_response = json.loads(response.text)
-        
+
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
         assert_that(actual_response['message_id']).is_not_empty()

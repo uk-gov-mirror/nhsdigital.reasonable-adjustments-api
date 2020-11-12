@@ -7,6 +7,7 @@ from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY_NAME, REA
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.tests.utils import Utils
 from assertpy import assert_that
+import uuid
 
 @pytest.mark.usefixtures("setup")
 class TestHappyCasesSuite:
@@ -29,7 +30,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
 
@@ -50,7 +51,7 @@ class TestHappyCasesSuite:
             headers= {
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             }
         )
@@ -72,7 +73,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             }
         )
@@ -99,7 +100,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
 
@@ -119,7 +120,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
             json=json.dumps({'message': 'test'})
@@ -141,7 +142,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'if-match': 'test'
             },
@@ -169,7 +170,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
 
@@ -189,7 +190,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
             json=json.dumps({'message': 'test'})
@@ -212,7 +213,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'if-match': 'test'
             },
@@ -240,7 +241,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
             },
             json=json.dumps({'message': 'test'})
@@ -339,7 +340,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test'
+                'x-request-id': str(uuid.uuid4()),
             }
         )
 
@@ -361,7 +362,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
             data=json.dumps({'message': 'test'})
@@ -385,7 +386,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'If-Match': 'abc123'
             },
@@ -410,7 +411,7 @@ class TestHappyCasesSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
-                'x-request-id': 'test',
+                'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'If-Match': 'abc123'
             },
