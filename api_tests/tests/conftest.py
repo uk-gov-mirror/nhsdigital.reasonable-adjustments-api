@@ -84,9 +84,6 @@ def setup(request, use_internal_testing_internal_dev_app):
     name = (request.node.name, request.node.originalname)[request.node.originalname is not None]
     setattr(request.cls, "name", name)
 
-    # oauth = CheckOauth(creds)
-    # setattr(request.cls, "oauth", oauth)
-
     yield  # Handover to test
 
     # Teardown
