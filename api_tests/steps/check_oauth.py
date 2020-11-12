@@ -29,6 +29,9 @@ class CheckOauth:
             data['redirect_uri'] = self.creds['redirect_url']
             data['code'] = self.get_authenticated()
             data['_access_token_expiry_ms'] = timeout
-
+            
         response = self.session.post(self.creds['endpoints']['token'], data=data)
+        if response.status_code != 200:
+            raise Exception(f'/token endpoint failed: {response.status_code} : {response.text}')
+            
         return json.loads(response.text)
