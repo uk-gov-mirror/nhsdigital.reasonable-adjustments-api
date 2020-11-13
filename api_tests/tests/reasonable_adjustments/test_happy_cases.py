@@ -7,6 +7,7 @@ from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY_NAME, REA
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.tests.utils import Utils
 from assertpy import assert_that
+import base64
 
 @pytest.mark.usefixtures("setup")
 class TestHappyCasesSuite:
@@ -444,8 +445,12 @@ class TestHappyCasesSuite:
         Utils.send_request(self)
 
         # Then
-        actual_jwt = debug_session.get_apigee_header('jwt')
-        actual_jwt_claims = jwt.decode(actual_jwt, verify=False)
+        # We should pull Authorization header instead but Apigee mask that value so we get spineJwt variable instead
+        actual_jwt = debug_session.get_apigee_variable('spineJwt')
+
+        # We manually decode jwt because, jwt library requires all three segments but we only have two (no signature).
+        jwt_segments = actual_jwt.split('.')
+        actual_jwt_claims = json.loads(base64.b64decode(jwt_segments[1]))
 
         assert_that(expected_jwt_claims['reason_for_request']).is_equal_to_ignoring_case(actual_jwt_claims['reason_for_request'])
         assert_that(expected_jwt_claims['scope']).is_equal_to_ignoring_case(actual_jwt_claims['scope'])

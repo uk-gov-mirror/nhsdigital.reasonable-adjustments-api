@@ -11,8 +11,8 @@
             <Step>
                 <Name>Quota</Name>
             </Step>
-            <Step> 
-                <Name>SpikeArrest</Name>   
+            <Step>
+                <Name>SpikeArrest</Name>
             </Step>
             <Step>
               <Name>VerifyAPIKey.CustomAttributes</Name>
@@ -21,13 +21,10 @@
               <Name>AccessEntity.CustomAttributes</Name>
             </Step>
             <Step>
-                <Name>KeyValueMapOperations.GetVariables</Name>
-            </Step>
-            <Step>
                 <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
-                <Name>GenerateJWT</Name>
+              <Name>AssignMessage.RemoveHeaders</Name>
             </Step>
             <Step>
                 <Name>AssignMessage.JWT</Name>
