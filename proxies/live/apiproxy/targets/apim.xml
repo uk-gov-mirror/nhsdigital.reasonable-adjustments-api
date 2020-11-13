@@ -18,15 +18,6 @@
               <Name>VerifyAPIKey.CustomAttributes</Name>
             </Step>
             <Step>
-                <Name>JavaScript.CreateClaimVars</Name>
-            </Step>
-            <Step>
-              <Name>AssignMessage.RemoveHeaders</Name>
-            </Step>
-            <Step>
-                <Name>AssignMessage.JWT</Name>
-            </Step>
-            <Step>
                 <Name>RaiseFault.Invalid-X-Request-Id</Name>
                 <Condition>(request.header.X-Request-ID == null) or (not request.header.X-Request-ID ~~ "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")</Condition>
             </Step>
@@ -53,7 +44,16 @@
             <Step>
               <Name>KeyValueMapOperations.GetSecureVariables</Name>
             </Step>
-          <Step>
+            <Step>
+              <Name>JavaScript.CreateClaimVars</Name>
+            </Step>
+            <Step>
+              <Name>AssignMessage.RemoveHeaders</Name>
+            </Step>
+            <Step>
+              <Name>AssignMessage.JWT</Name>
+            </Step>
+            <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
         </Request>
