@@ -15,6 +15,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -24,17 +25,18 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': 'test',
-                'category': 'test',
-                'status': 'test'
+                'patient': '590000814',
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1%7CNRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
             }
         )
 
+        print(response.text)
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
