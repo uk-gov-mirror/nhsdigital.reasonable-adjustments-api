@@ -1,28 +1,28 @@
-from api_tests.config_files import config
 from urllib import parse
 
 
 class Authenticator:
-    def __init__(self, session):
+    def __init__(self, session, creds):
         self.session = session
+        self.creds = creds
         self.data = self._get_request_data()
 
     def _simulated_oauth_prerequisite(self):
         """Request the login page and retrieve the callback url and assigned state"""
-        login_page_response = self.session.get(config.AUTHENTICATE_URL)
-
+        login_page_response = self.session.get(self.creds['endpoints']['authenticate'])
+        
         if login_page_response.status_code != 200:
             raise ValueError("Invalid login page respons statuse code")
 
         # Login
         params = {
-            'client_id': config.CLIENT_ID,
-            'redirect_uri': config.REDIRECT_URI,
+            'client_id': self.creds['client_id'],
+            'redirect_uri': self.creds['redirect_url'],
             'response_type': 'code',
             'state': '1234567890'
         }
 
-        success_response = self.session.get(config.AUTHORIZE_URL, params=params, allow_redirects=False)
+        success_response = self.session.get(self.creds['endpoints']['authorize'], params=params, allow_redirects=False)
 
         # Confirm request was successful
         if success_response.status_code != 302:
