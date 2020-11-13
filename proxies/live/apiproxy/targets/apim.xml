@@ -18,9 +18,6 @@
               <Name>VerifyAPIKey.CustomAttributes</Name>
             </Step>
             <Step>
-              <Name>AccessEntity.CustomAttributes</Name>
-            </Step>
-            <Step>
                 <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
