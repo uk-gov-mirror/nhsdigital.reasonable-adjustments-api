@@ -74,7 +74,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_invalid_x_request_id_header(self):
         # Given
         expected_status_code = 400
