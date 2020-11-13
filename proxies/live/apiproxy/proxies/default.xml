@@ -26,7 +26,7 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
         </Flow>
-        <Flow name="consent-GET">
+        <Flow name="Consent-GET">
             <Request>
               <Step>
                 <Name>RaiseFault.InvalidQueryParams</Name>
@@ -42,9 +42,9 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/consent") and (request.verb = "GET"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "GET"))</Condition>
         </Flow>
-        <Flow name="consent-POST">
+        <Flow name="Consent-POST">
             <Request>
               <Step>
                 <Name>JS.AmmendPath</Name>
@@ -56,9 +56,9 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/consent") and (request.verb = "POST"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "POST"))</Condition>
         </Flow>
-        <Flow name="consent-PUT">
+        <Flow name="Consent-PUT">
             <Request>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionIDPutConsent</Name>
@@ -67,7 +67,7 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/consent/*") and (request.verb = "PUT"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Consent/*") and (request.verb = "PUT"))</Condition>
         </Flow>
         <Flow name="flag-GET">
             <Request>
@@ -116,7 +116,7 @@
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/flag/*") and (request.verb = "PUT"))</Condition>
         </Flow>
-        <Flow name="list-GET">
+        <Flow name="List-GET">
             <Request>
                 <Step>
                   <Name>RaiseFault.InvalidQueryParams</Name>
@@ -132,9 +132,9 @@
                   <Name>AssignMessage.AddInteractionID</Name>
                 </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/list") and (request.verb = "GET"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/List") and (request.verb = "GET"))</Condition>
         </Flow>
-        <Flow name="list-POST">
+        <Flow name="List-POST">
             <Request>
               <Step>
                 <Name>JS.AmmendPath</Name>
@@ -146,9 +146,9 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/list") and (request.verb = "POST"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/List") and (request.verb = "POST"))</Condition>
         </Flow>
-        <Flow name="list-PUT">
+        <Flow name="List-PUT">
             <Request>
                 <Step>
                   <Name>RaiseFault.Invalid-If-Match</Name>
@@ -161,7 +161,7 @@
                   <Name>AssignMessage.AddInteractionID</Name>
                 </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/list/*") and (request.verb = "PUT"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/List/*") and (request.verb = "PUT"))</Condition>
         </Flow>
         <Flow name="removeRarecord-POST">
             <Request>
@@ -179,7 +179,7 @@
                   <Name>AssignMessage.AddInteractionID</Name>
                 </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/removerarecord") and (request.verb = "POST"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
         </Flow>
     </Flows>
     <PostClientFlow name="PostClientFlow">
