@@ -28,7 +28,7 @@
             </Step>
             <Step>
                 <Name>RaiseFault.Invalid-X-Request-Id</Name>
-                <Condition>request.header.X-Request-ID = null or request.header.X-Request-ID = ""</Condition>
+                <Condition>(request.header.X-Request-ID == null) or (not request.header.X-Request-ID ~~ "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")</Condition>
             </Step>
             <Step>
                 <Name>RaiseFault.Invalid-NHSD-Session-URID</Name>
