@@ -43,8 +43,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
-    @pytest.mark.debug
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_missing_x_request_id_header(self):
         # Given
         expected_status_code = 400
@@ -107,7 +106,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_missing_nhsd_session_urid_header(self):
         # Given
         expected_status_code = 400
@@ -139,7 +138,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_invalid_content_type(self):
         # Given
         expected_status_code = 400
@@ -170,7 +169,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_invalid_payload(self):
         # Given
         expected_status_code = 400
@@ -198,7 +197,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_invalid_query_params(self):
         # Given
         expected_status_code = 404
@@ -229,7 +228,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_invalid_query_params(self):
         # Given
         expected_status_code = 404
@@ -261,7 +260,7 @@ class TestErrorCaseSuite:
 
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_invalid_header_put(self):
         # Given
         expected_status_code = 400
@@ -291,7 +290,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_invalid_query_params(self):
         # Given
         expected_status_code = 404
@@ -323,7 +322,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_invalid_header_put(self):
         # Given
         expected_status_code=400
@@ -354,7 +353,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
 
     @pytest.mark.errors
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_invalid_query_params(self):
         # Given
         expected_status_code = 404
@@ -386,7 +385,8 @@ class TestErrorCaseSuite:
 
     @pytest.mark.ods
     @pytest.mark.errors
-    def test_missing_ods(self, use_internal_testing_internal_dev_without_ods_app, get_token):
+    @pytest.mark.usefixtures('get_token_missing_ods')
+    def test_missing_ods(self):
         # Given
         expected_status_code = 500
         expected_response = {
@@ -406,7 +406,8 @@ class TestErrorCaseSuite:
 
     @pytest.mark.asid
     @pytest.mark.errors
-    def test_missing_asid(self, use_internal_testing_internal_dev_without_asid_app, get_token):
+    @pytest.mark.usefixtures('get_token_missing_asid')
+    def test_missing_asid(self):
         # Given
         expected_status_code = 500
         expected_response = {
