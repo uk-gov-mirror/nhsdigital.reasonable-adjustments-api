@@ -14,7 +14,8 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    def test_consent_get(self, use_internal_testing_internal_dev_app, get_token):
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_consent_get(self):
         # Given
         expected_status_code = 200
 
@@ -38,7 +39,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
         # Given
         expected_status_code = 201
@@ -60,7 +61,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
         # Given
         expected_status_code = 200
@@ -82,7 +83,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get(self):
 
         # Given
@@ -108,7 +109,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
         # Given
         expected_status_code = 201
@@ -130,7 +131,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_put(self):
         # Given
         expected_status_code = 200
@@ -153,7 +154,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_get(self):
         # Given
         expected_status_code = 200
@@ -178,7 +179,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_post(self):
         # Given
         expected_status_code = 201
@@ -201,7 +202,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Given
         expected_status_code = 200
@@ -224,7 +225,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_post(self):
         # Given
         expected_status_code = 200
@@ -250,7 +251,8 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.spine_headers
-    def test_fromASID_header_is_set(self, use_internal_testing_internal_dev_app, get_token):
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_fromASID_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
         expected_header_value = '200000001115'
@@ -263,7 +265,7 @@ class TestHappyCasesSuite:
         assert_that(expected_header_value).is_equal_to(actual_header_value)
 
     @pytest.mark.spine_headers
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_ToASID_header_is_set(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -277,7 +279,7 @@ class TestHappyCasesSuite:
         assert_that(actual_header_value).is_not_empty()
 
     @pytest.mark.spine_headers
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_x_request_id_equals_TraceID(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -293,7 +295,7 @@ class TestHappyCasesSuite:
         assert_that(trace_id).is_equal_to(x_request_id)
 
     @pytest.mark.ods
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_valid_ods(self):
         # Given
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -308,8 +310,8 @@ class TestHappyCasesSuite:
         assert_that(expected_ods).is_equal_to(actual_ods)
 
     @pytest.mark.asid
-    @pytest.mark.usefixtures('get_token')
-    def test_valid_asid(self, get_token):
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_valid_asid(self):
         # Given
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
         expected_asid = '200000001115'
@@ -322,7 +324,7 @@ class TestHappyCasesSuite:
         assert_that(expected_asid).is_equal_to(actual_asid)
 
     @pytest.mark.interaction_id
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_interaction_id_consent_get(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -349,7 +351,7 @@ class TestHappyCasesSuite:
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
     @pytest.mark.interaction_id
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_interaction_id_consent_put(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -373,7 +375,7 @@ class TestHappyCasesSuite:
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
     @pytest.mark.interaction_id
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_interaction_id_flag_put(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -398,7 +400,7 @@ class TestHappyCasesSuite:
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
     @pytest.mark.interaction_id
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_interaction_id_list_put(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
@@ -423,7 +425,7 @@ class TestHappyCasesSuite:
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
     @pytest.mark.jwt
-    @pytest.mark.usefixtures('get_token')
+    @pytest.mark.usefixtures('get_token_internal_dev')
     def test_jwt(self):
         # Given
         debug_session = ApigeeDebugApi(REASONABLE_ADJUSTMENTS_PROXY_NAME)
