@@ -3,7 +3,7 @@
   <Get assignTo="interactionID" index="1">
     <Key>
       <Parameter ref="request.verb"/>
-      <Parameter>consent</Parameter>
+      <Parameter ref="trimmedPath"/>
     </Key>
   </Get>
   <Get assignTo="kvm_scope" index="2">
