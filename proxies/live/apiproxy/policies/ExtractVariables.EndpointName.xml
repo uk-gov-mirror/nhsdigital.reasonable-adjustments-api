@@ -1,4 +1,4 @@
-<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.FirstUrlSegment">
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.EndpointName">
   <Source>request</Source>
   <URIPath>
     <Pattern ignoreCase="false">/{trimmedPath}/*</Pattern>

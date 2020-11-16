@@ -56,9 +56,6 @@
             <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
-            <Step>
-              <Name>ExtractVariables.FirstUrlSegment</Name>
-            </Step>
         </Request>
         <Response>
             <Step>

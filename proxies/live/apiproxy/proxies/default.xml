@@ -8,6 +8,13 @@
         </DefaultFaultRule>
     </FaultRules>
     <Flows>
+        <Flow name="ExtractEndpointName">
+          <Request>
+            <Step>
+              <Name>ExtractVariables.EndpointName</Name>
+            </Step>
+          </Request>
+        </Flow>
         <Flow name="OptionsPreFlight">
             <Request/>
             <Response>
