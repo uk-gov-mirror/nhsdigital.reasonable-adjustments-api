@@ -1,0 +1,7 @@
+<ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.FirstUrlSegment">
+  <Source>request</Source>
+  <URIPath>
+    <Pattern ignoreCase="false">/{trimmedPath}/*</Pattern>
+  </URIPath>
+  <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
+</ExtractVariables>

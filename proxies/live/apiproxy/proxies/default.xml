@@ -33,9 +33,6 @@
                 <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.status = null or request.queryparam.status = "" or request.queryparam.category = null or request.queryparam.category = ""</Condition>
               </Step>
               <Step>
-                <Name>JS.AmmendPath</Name>
-              </Step>
-              <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
               <Step>
@@ -46,9 +43,6 @@
         </Flow>
         <Flow name="Consent-POST">
             <Request>
-              <Step>
-                <Name>JS.AmmendPath</Name>
-              </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
@@ -76,9 +70,6 @@
                 <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.status = null or request.queryparam.status = "" or request.queryparam.category = null or request.queryparam.category = ""</Condition>
               </Step>
               <Step>
-                <Name>JS.AmmendPath</Name>
-              </Step>
-              <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
               <Step>
@@ -89,9 +80,6 @@
         </Flow>
         <Flow name="flag-POST">
             <Request>
-              <Step>
-                <Name>JS.AmmendPath</Name>
-              </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
@@ -123,9 +111,6 @@
                   <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.status = null or request.queryparam.status = "" or request.queryparam.code = null or request.queryparam.code = ""</Condition>
                 </Step>
                 <Step>
-                  <Name>JS.AmmendPath</Name>
-                </Step>
-                <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
                 <Step>
@@ -136,9 +121,6 @@
         </Flow>
         <Flow name="List-POST">
             <Request>
-              <Step>
-                <Name>JS.AmmendPath</Name>
-              </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
@@ -168,9 +150,6 @@
                 <Step>
                   <Name>RaiseFault.InvalidQueryParams</Name>
                   <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.removalReason = null or request.queryparam.removalReason = "" or request.queryparam.supportingComment = null or request.queryparam.supportingComment = ""</Condition>
-                </Step>
-                <Step>
-                  <Name>JS.AmmendPath</Name>
                 </Step>
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
