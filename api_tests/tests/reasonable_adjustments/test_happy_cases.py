@@ -15,6 +15,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -377,7 +378,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.interaction_id
     @pytest.mark.usefixtures('get_token_internal_dev')
-    @pytest.mark.debug
     def test_interaction_id_flag_put(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
