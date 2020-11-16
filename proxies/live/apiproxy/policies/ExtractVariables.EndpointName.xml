@@ -1,7 +1,7 @@
 <ExtractVariables async="false" continueOnError="false" enabled="true" name="ExtractVariables.EndpointName">
   <Source>request</Source>
   <URIPath>
-    <Pattern ignoreCase="false">/{trimmedPath}/*</Pattern>
+    <Pattern ignoreCase="false">/{trimmedPath}/**</Pattern>
   </URIPath>
   <IgnoreUnresolvedVariables>false</IgnoreUnresolvedVariables>
 </ExtractVariables>
