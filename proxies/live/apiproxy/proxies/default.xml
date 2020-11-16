@@ -13,8 +13,7 @@
             <Step>
               <Name>ExtractVariables.EndpointName</Name>
             </Step>
-            <Condition>not (proxy.pathsuffix MatchesPath "/_ping") or not (proxy.pathsuffix MatchesPath "/_status")</Condition>
-
+            <Condition>not ((proxy.pathsuffix MatchesPath "/_ping") or (proxy.pathsuffix MatchesPath "/_status"))</Condition>
           </Request>
         </Flow>
         <Flow name="OptionsPreFlight">
@@ -85,7 +84,7 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/flag") and (request.verb = "GET"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Flag") and (request.verb = "GET"))</Condition>
         </Flow>
         <Flow name="flag-POST">
             <Request>
@@ -96,7 +95,7 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/flag") and (request.verb = "POST"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Flag") and (request.verb = "POST"))</Condition>
         </Flow>
         <Flow name="flag-PUT">
             <Request>
@@ -111,7 +110,7 @@
                   <Name>AssignMessage.AddInteractionID</Name>
                 </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/flag/*") and (request.verb = "PUT"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Flag/*") and (request.verb = "PUT"))</Condition>
         </Flow>
         <Flow name="List-GET">
             <Request>
