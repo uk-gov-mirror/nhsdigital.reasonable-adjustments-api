@@ -8,14 +8,6 @@
         </DefaultFaultRule>
     </FaultRules>
     <Flows>
-        <Flow name="ExtractEndpointName">
-          <Request>
-            <Step>
-              <Name>ExtractVariables.EndpointName</Name>
-            </Step>
-            <Condition>not ((proxy.pathsuffix MatchesPath "/_ping") or (proxy.pathsuffix MatchesPath "/_status"))</Condition>
-          </Request>
-        </Flow>
         <Flow name="OptionsPreFlight">
             <Request/>
             <Response>
@@ -41,6 +33,9 @@
                 <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.status = null or request.queryparam.status = "" or request.queryparam.category = null or request.queryparam.category = ""</Condition>
               </Step>
               <Step>
+                <Name>ExtractVariables.EndpointName</Name>
+              </Step>
+              <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
               <Step>
@@ -52,6 +47,9 @@
         <Flow name="Consent-POST">
             <Request>
               <Step>
+                <Name>ExtractVariables.EndpointName</Name>
+              </Step>
+              <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
               <Step>
@@ -62,6 +60,9 @@
         </Flow>
         <Flow name="Consent-PUT">
             <Request>
+              <Step>
+                <Name>ExtractVariables.EndpointName</Name>
+              </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionIDPutConsent</Name>
               </Step>
@@ -78,6 +79,9 @@
                 <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.status = null or request.queryparam.status = "" or request.queryparam.category = null or request.queryparam.category = ""</Condition>
               </Step>
               <Step>
+                <Name>ExtractVariables.EndpointName</Name>
+              </Step>
+              <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
               <Step>
@@ -88,6 +92,9 @@
         </Flow>
         <Flow name="flag-POST">
             <Request>
+              <Step>
+                <Name>ExtractVariables.EndpointName</Name>
+              </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
@@ -104,7 +111,10 @@
                   <Condition>(request.header.If-Match = null or request.header.If-Match = "")</Condition>
                 </Step>
                 <Step>
-                  <Name>KeyValueMapOperations.GetInteractionIDPutFlag</Name>
+                  <Name>ExtractVariables.EndpointName</Name>
+                </Step>
+                <Step>
+                  <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
                 <Step>
                   <Name>AssignMessage.AddInteractionID</Name>
@@ -119,6 +129,9 @@
                   <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.status = null or request.queryparam.status = "" or request.queryparam.code = null or request.queryparam.code = ""</Condition>
                 </Step>
                 <Step>
+                  <Name>ExtractVariables.EndpointName</Name>
+                </Step>
+                <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
                 <Step>
@@ -129,6 +142,9 @@
         </Flow>
         <Flow name="List-POST">
             <Request>
+              <Step>
+                <Name>ExtractVariables.EndpointName</Name>
+              </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
@@ -145,7 +161,10 @@
                   <Condition>request.header.If-Match = null or request.header.If-Match = ""</Condition>
                 </Step>
                 <Step>
-                  <Name>KeyValueMapOperations.GetInteractionIDPutList</Name>
+                  <Name>ExtractVariables.EndpointName</Name>
+                </Step>
+                <Step>
+                  <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
                 <Step>
                   <Name>AssignMessage.AddInteractionID</Name>
@@ -158,6 +177,9 @@
                 <Step>
                   <Name>RaiseFault.InvalidQueryParams</Name>
                   <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.removalReason = null or request.queryparam.removalReason = "" or request.queryparam.supportingComment = null or request.queryparam.supportingComment = ""</Condition>
+                </Step>
+                <Step>
+                  <Name>ExtractVariables.EndpointName</Name>
                 </Step>
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>

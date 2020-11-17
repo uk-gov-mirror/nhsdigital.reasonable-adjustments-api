@@ -15,6 +15,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
