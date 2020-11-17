@@ -64,7 +64,7 @@
                 <Name>ExtractVariables.EndpointName</Name>
               </Step>
               <Step>
-                <Name>KeyValueMapOperations.GetInteractionIDPutConsent</Name>
+                <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
               <Step>
                 <Name>AssignMessage.AddInteractionID</Name>
