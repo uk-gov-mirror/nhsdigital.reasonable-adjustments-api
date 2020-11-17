@@ -15,7 +15,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
-    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -26,7 +25,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
                 'patient': '590000814',
-                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1%7CNRAF',
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
                 'status': 'active'
             },
             headers={
@@ -87,6 +86,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
+    @pytest.mark.debug
     def test_flag_get(self):
 
         # Given
@@ -96,9 +96,9 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': 'test',
-                'category': 'test',
-                'status': 'test'
+                'patient': '590000814',
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
