@@ -440,7 +440,7 @@ class TestHappyCasesSuite:
             'requesting_user': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
             'sub': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
             'iss': 'http://api.service.nhs.uk',
-            'aud': f'/{REASONABLE_ADJUSTMENTS_PROXY_PATH}/consent'
+            'aud': f'/{REASONABLE_ADJUSTMENTS_PROXY_PATH}/Consent'
         }
 
         # When
