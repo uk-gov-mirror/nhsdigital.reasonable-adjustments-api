@@ -190,6 +190,26 @@
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
         </Flow>
+        <Flow name="StatusEndpoint">
+            <Request>
+                <Step>
+                  <Name>KeyValueMapOperations.GetSecureVariables</Name>
+                </Step>
+                <Step>
+                  <Name>RaiseFault.401Unauthorized</Name>
+                  <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
+                </Step>
+                <Step>
+                  <Name>ServiceCallout.CallSpineHealthcheck</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                  <Name>javascript.SetStatusResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+        </Flow>
     </Flows>
     <PostClientFlow name="PostClientFlow">
         <Response>
@@ -207,6 +227,9 @@
     </RouteRule>
     <RouteRule name="NoRoutePing">
         <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </RouteRule>
+    <RouteRule name="NoRouteStatus">
+      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
     <RouteRule name="apim">
         <TargetEndpoint>apim</TargetEndpoint>
