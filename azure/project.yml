@@ -1,5 +1,5 @@
 variables:
-  service_name: reasonable-adjustment-flag
+  service_name: reasonable-adjustment
   service_base_path: reasonable-adjustment-flag
   short_service_name: reasonable-adjustment-flag
   product_display_name: Reasonable Adjustment Flag Api
