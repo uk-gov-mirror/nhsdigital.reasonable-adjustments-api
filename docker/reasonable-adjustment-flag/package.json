@@ -1,7 +1,7 @@
 {
   "name": "mock",
   "version": "1.0.0",
-  "description": "reasonable-adjustments-api",
+  "description": "reasonable-adjustment-flag",
   "scripts": {
     "lint": "find . -type f -name '*.js' ! -name '.eslintrc.js' | grep -v 'node_modules/' | xargs eslint",
     "start": "node src/app.js --use_strict"

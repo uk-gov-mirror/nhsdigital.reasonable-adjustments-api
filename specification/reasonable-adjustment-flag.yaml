@@ -1716,5 +1716,39 @@ components:
         type: string
         pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+        
+  schemas:
+    adjustmentCategoryExtension:
+      $ref: components/schemas/adjustmentCategoryExtension.yaml
+    createConsent:
+      $ref: components/schemas/createConsent.yaml
+    createFlag:
+      $ref: components/schemas/createFlag.yaml
+    createList:
+      $ref: components/schemas/createList.yaml
+    errorCode:
+      $ref: components/schemas/errorCode.yaml
+    flagRemovalReason:
+      $ref: components/schemas/flagRemovalReason.yaml
+    flagSupportingComment:
+      $ref: components/schemas/flagSupportingComment.yaml
+    nhsNumber:
+      $ref: components/schemas/nhsNumber.yaml
+    operationOutcome:
+      $ref: components/schemas/operationOutcome.yaml
+    provenanceExtension:
+      $ref: components/schemas/provenanceExtension.yaml
+    removalReason:
+      $ref: components/schemas/removalReason.yaml
+    removalReasonExtension:
+      $ref: components/schemas/removalReasonExtension.yaml
+    removerarecord:
+      $ref: components/schemas/removerarecord.yaml
+    supportingComment:
+      $ref: components/schemas/supportingComment.yaml
+    updateFlag:
+      $ref: components/schemas/updateFlag.yaml
+    updateList:
+      $ref: components/schemas/updateList.yaml
 tags:
   - name: Reasonable Adjustment Flag
