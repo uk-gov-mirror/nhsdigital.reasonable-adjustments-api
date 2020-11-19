@@ -16,6 +16,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -42,6 +43,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
         # Given
@@ -65,6 +67,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
         # Given
@@ -88,6 +91,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get(self):
 
@@ -115,6 +119,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
         # Given
@@ -138,6 +143,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_put(self):
         # Given
@@ -162,6 +168,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_get(self):
         # Given
@@ -188,6 +195,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_post(self):
         # Given
@@ -212,6 +220,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Given
@@ -236,6 +245,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_post(self):
         # Given

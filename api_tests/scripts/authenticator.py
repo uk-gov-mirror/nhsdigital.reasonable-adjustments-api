@@ -10,9 +10,9 @@ class Authenticator:
     def _simulated_oauth_prerequisite(self):
         """Request the login page and retrieve the callback url and assigned state"""
         login_page_response = self.session.get(self.creds['endpoints']['authenticate'])
-        
+
         if login_page_response.status_code != 200:
-            raise ValueError("Invalid login page respons statuse code")
+            raise ValueError("Invalid login page response status code")
 
         # Login
         params = {

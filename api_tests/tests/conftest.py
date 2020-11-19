@@ -1,8 +1,8 @@
 import pytest
 
 from api_tests.config_files import config
-from api_tests.config_files.environments import ENV
 from api_tests.steps.check_oauth import CheckOauth
+
 
 def _get_parametrized_values(request):
     for mark in request.node.own_markers:
@@ -11,13 +11,20 @@ def _get_parametrized_values(request):
             # here we are only interested in the values
             return mark.args[1]
 
+
 @pytest.fixture()
 def get_token_internal_dev(request):
-    return _get_token(request, config.INTERNAL_TESTING_INTERNAL_DEV)
+    if 'sandbox' in config.REASONABLE_ADJUSTMENTS_BASE_URL:
+        # auth token is not required when executing against sandbox
+        setattr(request.cls, 'token', None)
+    else:
+        return _get_token(request, config.INTERNAL_TESTING_INTERNAL_DEV)
+
 
 @pytest.fixture()
 def get_token_missing_ods(request):
     return _get_token(request, config.MISSING_ODS)
+
 
 @pytest.fixture()
 def get_token_missing_asid(request):
@@ -39,20 +46,6 @@ def get_refresh_token(request, get_token):
     # Requesting a refresh token will expire the previous access token
     refresh_token = get_token.get_token_response(grant_type='refresh_token', refresh_token=request.cls.refresh)
     setattr(request.cls, 'refresh_token', refresh_token['refresh_token'])
-
-
-@pytest.fixture(scope='function')
-def update_token_in_parametrized_headers(request):
-    # Manually setting this fixture for session use because the pytest
-    # session scope is called before any of the markers are set.
-    if not hasattr(request.cls, 'setup_done'):
-        token = CheckOauth().get_token_response()
-        for value in _get_parametrized_values(request):
-            if value.get('Authorization', None) == 'valid_token':
-                value['Authorization'] = f'Bearer {token["access_token"]}'
-
-        # Make sure the token is not refreshed before every test
-        setattr(request.cls, 'setup_done', True)
 
 
 @pytest.fixture(scope='function')

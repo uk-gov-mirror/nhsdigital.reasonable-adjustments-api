@@ -62,12 +62,18 @@ extends:
             - internal_qa
             - internal_qa_sandbox
         post_deploy:
-            - template: templates/tests-int.yml
+            - template: templates/tests.yml
               parameters:
                   service_name: ${{ variables.service_name }}
+                  test_tag: -m smoke
       - environment: sandbox
         make_spec_visible: true
         proxy_path: sandbox
         depends_on:
             - internal_qa
             - internal_qa_sandbox
+        post_deploy:
+            -   template: templates/tests.yml
+                parameters:
+                    service_name: ${{ variables.service_name }}
+                    test_tag: -m sandbox
