@@ -1,7 +1,7 @@
 variables:
-  service_name: ra-flag
+  service_name: reasonable-adjustment-flag
   service_base_path: reasonable-adjustment-flag
-  short_service_name: reasonable-adjustment-flag
+  short_service_name: reasonable-adjustment
   product_display_name: Reasonable Adjustment Flag Api
   product_description: Reasonable Adjustment Flag Api
   spec_file: reasonable-adjustment-flag.json
