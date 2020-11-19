@@ -15,6 +15,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
+    @pytest.mark.consent_get
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -24,7 +25,7 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': '590000814',
+                'patient': '5900008142',
                 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
                 'status': 'active'
             },
@@ -41,24 +42,119 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.smoke
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
         # Given
         expected_status_code = 201
 
+        # TODO this json is from FHIR example. 500 response from spine
+        j = """
+        {
+  "resourceType": "Consent",
+  "fhir_comments": [
+    " CreateExample-CreateConsentRequest.xml "
+  ],
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
+    ]
+  },
+  "extension": [
+    {
+      "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
+      "valueCodeableConcept": {
+        "coding": [
+          {
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1",
+            "code": "lpa",
+            "display": "Lasting power of attorney personal welfare"
+          }
+        ]
+      }
+    }
+  ],
+  "status": "active",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
+          "code": "reasonable adjustments flag",
+          "display": "Reasonable Adjustments Flag"
+        }
+      ]
+    }
+  ],
+  "patient": {
+    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+  },
+  "policy": [
+    {
+      "authority": "https://www.gov.uk/",
+      "uri": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+    }
+  ],
+  "purpose": [
+    {
+      "system": "https://snomed.info/sct",
+      "code": "370856009",
+      "display": "Limiting access to confidential patient information"
+    }
+  ]
+}
+        """
+        x = """
+        <Consent xmlns="http://hl7.org/fhir">
+    <meta>
+        <profile value="https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"/>
+    </meta>
+    <extension url="https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1">
+        <valueCodeableConcept>
+            <coding>
+                <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1"/>
+                <code value="lpa"/>
+                <display value="Lasting power of attorney personal welfare"/>
+            </coding>
+        </valueCodeableConcept>
+    </extension>
+    <status value="active"/>
+    <category>
+        <coding>
+            <system value="https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1"/>
+            <code value="reasonable adjustments flag"/>
+            <display value="Reasonable Adjustments Flag"/>
+        </coding>
+    </category>
+    <patient>
+        <reference value="demographics.spineservices.nhs.uk/STU3/Patient/999999998"/>
+    </patient>
+    <policy>
+        <authority value="https://www.gov.uk/"/>
+        <uri value="https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"/>
+    </policy>
+    <purpose>
+        <system value="https://snomed.info/sct"/>
+        <code value="370856009"/>
+        <display value="Limiting access to confidential patient information"/>
+    </purpose>
+</Consent>
+        """
+
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            json=json.dumps({'message': 'test'}),
+            json=j,
             headers= {
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             }
         )
 
         # Then
+        print(response.text)
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
@@ -74,7 +170,7 @@ class TestHappyCasesSuite:
             data=json.dumps({'message': 'test'}),
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             }
@@ -86,7 +182,6 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
-    @pytest.mark.debug
     def test_flag_get(self):
 
         # Given
@@ -96,13 +191,13 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': '590000814',
+                'patient': '5900008142',
                 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
                 'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
             }
         )
@@ -122,7 +217,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
@@ -144,7 +239,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'if-match': 'test'
@@ -166,18 +261,21 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             params={
-                'patient':  'test',
-                'code': 'test',
-                'status':   'test',
+                'patient': '5900008142',
+                # TODO: 400 because of invalid code
+                # I got this code from FHIR spec but now I'm getting ASID not authorised TODO: Ask Gurdeep to check ASID permission
+                'code': 'http://snomed.info/sct|1094391000000102',
+                'status':   'active',
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
             }
         )
 
         # Then
+        print(response.text)
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
@@ -192,7 +290,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
@@ -215,7 +313,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'if-match': 'test'
@@ -237,13 +335,13 @@ class TestHappyCasesSuite:
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
             params={
-                'patient': 'test',
+                'patient': '5900008142',
                 'removalReason': 'test',
                 'supportingComment': 'test',
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
             },
@@ -337,13 +435,13 @@ class TestHappyCasesSuite:
         requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient':  'test',
+                'patient': '5900008142',
                 'category': 'test',
                 'status':   'test',
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
             }
         )
@@ -365,7 +463,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
@@ -389,7 +487,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'If-Match': 'abc123'
@@ -414,7 +512,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': str(uuid.uuid4()),
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'If-Match': 'abc123'
