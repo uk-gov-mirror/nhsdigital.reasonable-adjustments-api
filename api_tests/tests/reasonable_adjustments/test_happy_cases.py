@@ -261,6 +261,23 @@ class TestHappyCasesSuite:
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
+    @pytest.mark.happy_path
+    @pytest.mark.integration
+    @pytest.mark.smoke
+    def test_status_get(self):
+        # Given
+        expected_status_code = 200
+        # When
+        response = requests.get(
+            url=config.REASONABLE_ADJUSTMENTS_STATUS,
+            headers={
+                'apikey': config.STATUS_APIKEY
+            }
+        )
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+
     @pytest.mark.spine_headers
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
