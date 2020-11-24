@@ -22,10 +22,10 @@ class Utils:
         return response
 
     @staticmethod
-    def get_version_id(self, resource_url: str):
+    def get_etag(self, resource_url: str, params):
         response = requests.get(
             url=resource_url,
-            params={'patient': 'test', 'category': 'test', 'status': 'test'},
+            params=params,
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': str(uuid.uuid4()),
@@ -33,4 +33,4 @@ class Utils:
             }
         )
 
-        return response.text
+        return response.headers['Etag']
