@@ -60,6 +60,7 @@ class TestHappyCasesSuite:
                 'content-type': 'application/fhir+json'
             }
         )
+        print(Utils.get_version_id(self, config.REASONABLE_ADJUSTMENTS_CONSENT))
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
