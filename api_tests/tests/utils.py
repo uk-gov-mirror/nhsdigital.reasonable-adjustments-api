@@ -20,3 +20,17 @@ class Utils:
         )
 
         return response
+
+    @staticmethod
+    def get_version_id(self, resource_url: str):
+        response = requests.get(
+            url=resource_url,
+            params={'patient': 'test', 'category': 'test', 'status': 'test'},
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': str(uuid.uuid4()),
+                'x-request-id': str(uuid.uuid4()),
+            }
+        )
+
+        return response.text

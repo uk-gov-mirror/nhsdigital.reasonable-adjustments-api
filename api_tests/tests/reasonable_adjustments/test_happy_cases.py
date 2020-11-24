@@ -42,6 +42,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
         # Given
@@ -58,6 +59,8 @@ class TestHappyCasesSuite:
                 'content-type': 'application/fhir+json'
             }
         )
+
+        print(Utils.get_version_id(self, config.REASONABLE_ADJUSTMENTS_CONSENT))
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
