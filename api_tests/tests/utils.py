@@ -1,5 +1,5 @@
 import requests
-import pytest
+import time
 
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_CONSENT
 import uuid
@@ -32,5 +32,6 @@ class Utils:
                 'x-request-id': str(uuid.uuid4()),
             }
         )
+        time.sleep(1)
 
         return response.headers['Etag']
