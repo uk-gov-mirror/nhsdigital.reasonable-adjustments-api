@@ -1,9 +1,9 @@
 docker_containers:
 
-    - name: reasonable-adjustments
-      dockerfile: "docker/reasonable-adjustments/Dockerfile"
-      path: "docker/reasonable-adjustments"
+    - name: reasonable-adjustment-flag
+      dockerfile: "docker/reasonable-adjustment-flag/Dockerfile"
+      path: "docker/reasonable-adjustment-flag"
 
-    - name: reasonable-adjustments-sandbox
-      dockerfile: "docker/reasonable-adjustments-sandbox/Dockerfile"
-      path: "docker/reasonable-adjustments-sandbox"
+    - name: reasonable-adjustment-flag-sandbox
+      dockerfile: "docker/reasonable-adjustment-flag-sandbox/Dockerfile"
+      path: "docker/reasonable-adjustment-flag-sandbox"

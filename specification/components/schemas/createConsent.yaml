@@ -59,10 +59,10 @@ properties:
                                 example: "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1"
                             code:
                                 type: string
-                                example: "reasonable adjustments flag"
+                                example: "reasonable adjustment flag"
                             display:
                                 type: string
-                                example: "Reasonable Adjustments Flag"
+                                example: "Reasonable Adjustment Flag"
     patient:
         type: object
         properties:
