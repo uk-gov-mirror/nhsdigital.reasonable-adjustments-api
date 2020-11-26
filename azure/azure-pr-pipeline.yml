@@ -8,6 +8,7 @@ resources:
     - repository: common
       type: github
       name: NHSDigital/api-management-utils
+      ref: refs/heads/amb-309-add-status-to-monitoring
       endpoint: NHSDigital
 
   pipelines:
@@ -35,6 +36,7 @@ extends:
     product_display_name: ${{ variables.product_display_name }}
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
+    enable_monitoring: true
     secret_ids:
       - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
       - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
