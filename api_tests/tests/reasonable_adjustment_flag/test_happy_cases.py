@@ -512,3 +512,16 @@ class TestHappyCasesSuite:
         assert_that(expected_jwt_claims['sub']).is_equal_to_ignoring_case(actual_jwt_claims['sub'])
         assert_that(expected_jwt_claims['iss']).is_equal_to_ignoring_case(actual_jwt_claims['iss'])
         assert_that(expected_jwt_claims['aud']).is_equal_to_ignoring_case(actual_jwt_claims['aud'])
+
+    @pytest.mark.integration
+    def test_ping(self):
+        # Given
+        expected_status_code = 200
+        expected_content_type = 'application/json'
+
+        # When
+        response = requests.get(url=config.REASONABLE_ADJUSTMENTS_PING)
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(expected_content_type).is_equal_to(response.headers['content-type'])
