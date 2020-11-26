@@ -10,7 +10,7 @@ install-python:
 
 install-node:
 	npm install
-	cd docker/reasonable-adjustments-sandbox && npm install && cd ../../tests && npm install
+	cd docker/reasonable-adjustment-flag-sandbox && npm install && cd ../../tests && npm install
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
@@ -20,7 +20,7 @@ test:
 
 lint:
 	npm run lint
-	cd docker/reasonable-adjustments-sandbox && npm run lint && cd ..
+	cd docker/reasonable-adjustment-flag-sandbox && npm run lint && cd ..
 	poetry run flake8 **/*.py
 
 publish:
@@ -35,7 +35,7 @@ clean:
 
 generate-examples: publish
 	mkdir -p build/examples
-	poetry run python scripts/generate_examples.py build/reasonable-adjustments.json build/examples
+	poetry run python scripts/generate_examples.py build/reasonable-adjustment-flag.json build/examples
 
 update-examples: generate-examples
 	jq -rM . <build/examples/resources/Greeting.json >specification/components/examples/Greeting.json
@@ -72,4 +72,4 @@ release: clean publish build-proxy
 	cp -r tests dist
 
 sandbox: update-examples
-	cd docker/reasonable-adjustments-sandbox && npm run start
+	cd docker/reasonable-adjustment-flag-sandbox && npm run start
