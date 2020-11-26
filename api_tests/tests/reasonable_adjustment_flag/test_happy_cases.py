@@ -1,13 +1,17 @@
-import pytest
+import base64
 import json
+import uuid
+import time
+
+import pytest
 import requests
+from assertpy import assert_that
+
 from api_tests.config_files import config
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY_NAME, REASONABLE_ADJUSTMENTS_PROXY_PATH
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.tests.utils import Utils
-from assertpy import assert_that
-import uuid
-import base64
+
 
 @pytest.mark.usefixtures("setup")
 class TestHappyCasesSuite:
@@ -53,7 +57,7 @@ class TestHappyCasesSuite:
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             json=json.dumps({'message': 'test'}),
-            headers= {
+            headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
@@ -72,6 +76,13 @@ class TestHappyCasesSuite:
     def test_consent_put(self):
         # Given
         expected_status_code = 200
+        etag = Utils.get_etag(self,
+                              config.REASONABLE_ADJUSTMENTS_CONSENT,
+                              params={
+                                  'patient': 'test',
+                                  'category': 'test',
+                                  'status': 'test'
+                              })
 
         # When
         response = requests.put(
@@ -81,7 +92,8 @@ class TestHappyCasesSuite:
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json'
+                'content-type': 'application/fhir+json',
+                'If-Match': etag
             }
         )
 
@@ -94,7 +106,6 @@ class TestHappyCasesSuite:
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get(self):
-
         # Given
         expected_status_code = 200
 
@@ -104,7 +115,7 @@ class TestHappyCasesSuite:
             params={
                 'patient': 'test',
                 'category': 'test',
-                'status': 'test'
+                'status': 'test',
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -148,6 +159,13 @@ class TestHappyCasesSuite:
     def test_flag_put(self):
         # Given
         expected_status_code = 200
+        etag = Utils.get_etag(self,
+                              config.REASONABLE_ADJUSTMENTS_CONSENT,
+                              params={
+                                  'patient': 'test',
+                                  'category': 'test',
+                                  'status': 'test',
+                              })
 
         # When
         response = requests.put(
@@ -157,7 +175,7 @@ class TestHappyCasesSuite:
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'if-match': 'test'
+                'if-match': etag,
             },
             data=json.dumps({'message': 'test'})
         )
@@ -178,9 +196,9 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             params={
-                'patient':  'test',
+                'patient': 'test',
                 'code': 'test',
-                'status':   'test',
+                'status': 'test',
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -216,7 +234,6 @@ class TestHappyCasesSuite:
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
-
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
@@ -225,6 +242,13 @@ class TestHappyCasesSuite:
     def test_list_put(self):
         # Given
         expected_status_code = 200
+        etag = Utils.get_etag(self,
+                              config.REASONABLE_ADJUSTMENTS_CONSENT,
+                              params={
+                                  'patient': 'test',
+                                  'category': 'test',
+                                  'status': 'test',
+                              })
 
         # When
         response = requests.put(
@@ -234,7 +258,7 @@ class TestHappyCasesSuite:
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'if-match': 'test'
+                'if-match': etag,
             },
             data=json.dumps({'message': 'test'})
         )
@@ -313,7 +337,6 @@ class TestHappyCasesSuite:
         # When
         Utils.send_request(self)
 
-
         # Then
         actual_header_value = debug_session.get_apigee_header('ToASID')
         assert_that(actual_header_value).is_not_empty()
@@ -327,7 +350,6 @@ class TestHappyCasesSuite:
 
         # When
         Utils.send_request(self)
-
 
         # Then
         trace_id = debug_session.get_apigee_header('TraceID')
@@ -378,9 +400,9 @@ class TestHappyCasesSuite:
         requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient':  'test',
+                'patient': 'test',
                 'category': 'test',
-                'status':   'test',
+                'status': 'test',
             },
             headers={
                 'Authorization': f'Bearer {self.token}',

@@ -1,5 +1,5 @@
 import requests
-import pytest
+import time
 
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_CONSENT
 import uuid
@@ -20,3 +20,18 @@ class Utils:
         )
 
         return response
+
+    @staticmethod
+    def get_etag(self, resource_url: str, params):
+        response = requests.get(
+            url=resource_url,
+            params=params,
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': str(uuid.uuid4()),
+                'x-request-id': str(uuid.uuid4()),
+            }
+        )
+        time.sleep(1)
+
+        return response.headers['Etag']
