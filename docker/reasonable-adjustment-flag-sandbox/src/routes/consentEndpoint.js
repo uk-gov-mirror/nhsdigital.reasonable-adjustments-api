@@ -1,6 +1,6 @@
 const consentGet =  {
     method: 'GET',
-    path: '/Consent',
+    path: '/RAConsent',
     handler: (request, h) => {
         const path = 'consentGET.json'
         return h.file(path)
@@ -9,7 +9,7 @@ const consentGet =  {
 
 const consentPost = {
     method: 'POST',
-    path: '/Consent',
+    path: '/RAConsent',
     handler: (request, h) => {
         const path = 'consentPOST.json'
         return h.response(h.file(path)).code(201);
@@ -18,7 +18,7 @@ const consentPost = {
 
 const consentPut = {
     method: 'PUT',
-    path: '/Consent/{consentID}',
+    path: '/RAConsent/{consentID}',
     handler: (request, h) => {
         const path = 'consentPUT.json'
         return h.file(path)
