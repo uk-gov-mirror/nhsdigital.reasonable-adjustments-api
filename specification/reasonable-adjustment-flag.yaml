@@ -102,6 +102,26 @@ info:
 
       For more details on sandbox testing, or to try out the sandbox using our \"Try this API\" feature, see the documentation for each endpoint.
 
+    ### Opentest testing
+    Opentest is an open access test environment which is used as part of our onboarding process where you can test your application, generate evidence and validation reports.
+    Access the Opentest environment through a VPN. You do not need to have an HSCN connection.
+
+    Request access from [Platforms Support Desk](platforms.supportdesk@nhs.net), providing your contact details, what type of development you are interested in and any specific requirements, in this case ‘Reasonable Adjustment Flag’ testing.
+
+    - you shall receive an email containing credentials for accessing Opentest with a ‘ovpn token’ which uses the [OpenVPN](https://openvpn.net/community-downloads-2/) software
+    - the Reasonable Adjustment test harness is addressable on 192.168.128.21 using Mutual TLS (TLSMA) on port 443 or in the clear on 8080
+            
+    #### Our Opentest environment
+    - is for early developer testing
+    - provides list of supported test scenarios (available in next version)
+    - is to trigger specific test scenarios based upon the NHS Number in the request
+    - is to test conformance against happy path and exception scenarios
+      
+    While connected to the VPN, evidence and validation reports are accessible by logging into the [Opentest Portal](http://192.168.128.16/Login.aspx). You need  to request a login by contacting the [Platforms Support Desk](platforms.supportdesk@nhs.net), one or more email addresses can be registered for the portal.
+            
+    **NOTE** The Reasonable Adjustment test harness will automatically email you the validation reports when completed.
+            Completion of the Opentest scenarios and submission of the evidence to the Assurance Team allows you to access the integration environment.
+
     ## Onboarding
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
