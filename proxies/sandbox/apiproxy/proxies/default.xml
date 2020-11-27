@@ -113,6 +113,9 @@
         <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
       </Request>
     </Flow>
+    <Flow name="statusEndpoint">
+      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </Flow>
   </Flows>
 
   <HTTPProxyConnection>
