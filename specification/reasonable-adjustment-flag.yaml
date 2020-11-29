@@ -1,12 +1,12 @@
 openapi: 3.0.0
 info:
   version: 0.3.4-beta
-  title: Reasonable Adjustments API
+  title: Reasonable Adjustment Flag API
   description: |
     ## Overview
     Use this API to access and update the [Reasonable Adjustment Flag](https://digital.nhs.uk/services/reasonable-adjustment-flag#top) on the [NHS Spine](https://digital.nhs.uk/services/spine). 
 
-    The flag indicates the need for services to be adjusted to meet the needs of patients with learning, physical or sensory disabilities, autism or other significant impairments such as dementia – as defined in the [Equality Act (2010)](https://www.legislation.gov.uk/ukpga/2010/15/contents). A reasonable adjustment can mean alterations to buildings, such as providing lifts, wide doors, ramps and tactile signage. It may also mean changes to policies, procedures and staff training to ensure that services work equally well for people with physical or sensory disabilities, learning disabilities or long-term conditions such as dementia.
+    The flag indicates the need for services to be adjusted to meet the needs of patients with learning, physical or sensory disabilities, autism or other significant impairments such as dementia – as defined in the [Equality Act (2010)](https://www.legislation.gov.uk/ukpga/2010/15/contents). A reasonable adjustment flag can mean alterations to buildings, such as providing lifts, wide doors, ramps and tactile signage. It may also mean changes to policies, procedures and staff training to ensure that services work equally well for people with physical or sensory disabilities, learning disabilities or long-term conditions such as dementia.
 
     Other adjustments include longer appointments, providing easy read materials or communications via a carer. This legal duty is anticipatory, which means a service should know about a person’s need for adjustments when they are referred or when they present for care.
 
@@ -102,6 +102,26 @@ info:
 
       For more details on sandbox testing, or to try out the sandbox using our \"Try this API\" feature, see the documentation for each endpoint.
 
+    ### Opentest testing
+    Opentest is an open access test environment which is used as part of our onboarding process where you can test your application, generate evidence and validation reports.
+    Access the Opentest environment through a VPN. You do not need to have an HSCN connection.
+
+    Request access from [Platforms Support Desk](platforms.supportdesk@nhs.net), providing your contact details, what type of development you are interested in and any specific requirements, in this case ‘Reasonable Adjustment Flag’ testing.
+
+    - you shall receive an email containing credentials for accessing Opentest with a ‘ovpn token’ which uses the [OpenVPN](https://openvpn.net/community-downloads-2/) software
+    - the Reasonable Adjustment test harness is addressable on 192.168.128.21 using Mutual TLS (TLSMA) on port 443 or in the clear on 8080
+            
+    #### Our Opentest environment
+    - is for early developer testing
+    - provides list of supported test scenarios (available in next version)
+    - is to trigger specific test scenarios based upon the NHS Number in the request
+    - is to test conformance against happy path and exception scenarios
+      
+    While connected to the VPN, evidence and validation reports are accessible by logging into the [Opentest Portal](http://192.168.128.16/Login.aspx). You need  to request a login by contacting the [Platforms Support Desk](platforms.supportdesk@nhs.net), one or more email addresses can be registered for the portal.
+            
+    **NOTE** The Reasonable Adjustment test harness will automatically email you the validation reports when completed.
+            Completion of the Opentest scenarios and submission of the evidence to the Assurance Team allows you to access the integration environment.
+
     ## Onboarding
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
@@ -110,7 +130,7 @@ info:
     name: API Management Support
     email: api.management@nhs.net
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/reasonable-adjustments'
+  - url: 'https://sandbox.api.service.nhs.uk/reasonable-adjustment-flag'
     description: Sandbox environment.
 paths:
   /flag:
@@ -196,10 +216,10 @@ paths:
                             example: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1'
                           code:
                             type: string
-                            example: reasonable adjustments flag
+                            example: reasonable adjustment flag
                           display:
                             type: string
-                            example: Reasonable Adjustments Flag
+                            example: Reasonable Adjustment Flag
                 code:
                   type: object
                   properties:
@@ -243,8 +263,8 @@ paths:
                   category:
                     coding:
                       - system: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1'
-                        code: reasonable adjustments flag
-                        display: Reasonable Adjustments Flag
+                        code: reasonable adjustment flag
+                        display: Reasonable Adjustment Flag
                   code:
                     coding:
                       - system: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1'
@@ -676,10 +696,10 @@ paths:
                             example: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1'
                           code:
                             type: string
-                            example: reasonable adjustments flag
+                            example: reasonable adjustment flag
                           display:
                             type: string
-                            example: Reasonable Adjustments Flag
+                            example: Reasonable Adjustment Flag
                 code:
                   type: object
                   properties:
@@ -762,8 +782,8 @@ paths:
                   category:
                     coding:
                       - system: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1'
-                        code: reasonable adjustments flag
-                        display: Reasonable Adjustments Flag
+                        code: reasonable adjustment flag
+                        display: Reasonable Adjustment Flag
                   code:
                     coding:
                       - system: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1'
@@ -1716,5 +1736,39 @@ components:
         type: string
         pattern: '^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$'
         example: 60E0B220-8136-4CA5-AE46-1D97EF59D068
+        
+  schemas:
+    adjustmentCategoryExtension:
+      $ref: components/schemas/adjustmentCategoryExtension.yaml
+    createConsent:
+      $ref: components/schemas/createConsent.yaml
+    createFlag:
+      $ref: components/schemas/createFlag.yaml
+    createList:
+      $ref: components/schemas/createList.yaml
+    errorCode:
+      $ref: components/schemas/errorCode.yaml
+    flagRemovalReason:
+      $ref: components/schemas/flagRemovalReason.yaml
+    flagSupportingComment:
+      $ref: components/schemas/flagSupportingComment.yaml
+    nhsNumber:
+      $ref: components/schemas/nhsNumber.yaml
+    operationOutcome:
+      $ref: components/schemas/operationOutcome.yaml
+    provenanceExtension:
+      $ref: components/schemas/provenanceExtension.yaml
+    removalReason:
+      $ref: components/schemas/removalReason.yaml
+    removalReasonExtension:
+      $ref: components/schemas/removalReasonExtension.yaml
+    removerarecord:
+      $ref: components/schemas/removerarecord.yaml
+    supportingComment:
+      $ref: components/schemas/supportingComment.yaml
+    updateFlag:
+      $ref: components/schemas/updateFlag.yaml
+    updateList:
+      $ref: components/schemas/updateList.yaml
 tags:
-  - name: Reasonable Adjustments
+  - name: Reasonable Adjustment Flag

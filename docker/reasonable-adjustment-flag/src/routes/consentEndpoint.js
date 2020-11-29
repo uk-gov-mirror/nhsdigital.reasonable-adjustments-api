@@ -1,51 +1,51 @@
-const listGet =  {
-    method: 'GET',
-    path: '/List',
+const consentGet =  {
+    method: 'GET',       
+    path: '/Consent',
     handler: (request, h) => { 
         if (!request.query["patient"]) {
-            const path = 'listGETerror.json'
+            const path = 'consentGETerror.json'
             return h.response(h.file(path)).code(400);
         }        
-        const path = 'listGET.json'
+        const path = 'consentGET.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT');
     }
   };
 
-const listPost = {
+const consentPost = {
     method: 'POST',
-    path: '/List',
+    path: '/Consent',
     handler: (request, h) => {
         if (!request.headers["x-request-id"]) {
-            const path = 'listPOSTerror.json'
+            const path = 'consentPOSTerror.json'
             return h.response(h.file(path)).code(400);
         } 
-        const path = 'listPOST.json'
+        const path = 'consentPOST.json'
         return h.response(h.file(path)).code(201)
         .header('content-type', 'application/fhir+json')
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
-        .header('Location', 'https://clinicals.spineservices.nhs.uk/STU3/List/130f416a-055d-4a5d-a453-2b7c2de3b57b/_history/f2fef5e5-c38a-408c-a9bc-2d49923928f8')
-        .header('Etag', 'W/"f2fef5e5-c38a-408c-a9bc-2d49923928f8”');
+        .header('Location', 'resourceURL')
+        .header('Etag', 'W/"resourceVID”');
     }
 };
 
-const listPut = {
+const consentPut = {
     method: 'PUT',
-    path: '/List/{listID}',
+    path: '/Consent/{consentID}',
     handler: (request, h) => {
         if (!request.headers["x-request-id"]) {
-            const path = 'listPUTerror.json'
+            const path = 'consentPUTerror.json'
             return h.response(h.file(path)).code(400);
         } 
-        const path = 'listPUT.json'
+        const path = 'consentPUT.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
-        .header('Date', 'Thur, 25 Jul 2018 11:00:00 GMT')
+        .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
-        .header('Etag', 'W/"d65be6d8-128a-40f2-9a1d-b250d6485c6d”');
+        .header('Etag', 'W/"resourceVID”');
     }
 };
 
-module.exports = [listGet, listPost, listPut]
+module.exports = [consentGet, consentPost, consentPut]

@@ -1,5 +1,5 @@
 const consentGet =  {
-    method: 'GET',
+    method: 'GET',       
     path: '/Consent',
     handler: (request, h) => { 
         if (!request.query["patient"]) {

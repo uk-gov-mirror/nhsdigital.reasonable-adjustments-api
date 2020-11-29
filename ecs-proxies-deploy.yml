@@ -3,7 +3,7 @@
 
 docker_service:
 
-    - name: reasonable-adjustments
+    - name: reasonable-adjustment-flag
       expose: true
       environment:
         - name: NODE_ENV
@@ -14,4 +14,4 @@ docker_service:
           value: "{{ apigee_uri }}"
       health_check:
         matcher: "200"
-        path: "/_status"    
+        path: "/_status"
