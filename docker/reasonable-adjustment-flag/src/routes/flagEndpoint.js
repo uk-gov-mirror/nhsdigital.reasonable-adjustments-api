@@ -2,10 +2,6 @@ const flagGet =  {
     method: 'GET',
     path: '/Flag',
     handler: (request, h) => {    
-        if (!request.query["patient"]) {
-            const path = 'flagGETerror.json'
-            return h.response(h.file(path)).code(400);
-        } 
             const path = 'flagGET.json'
             return h.response(h.file(path))
             .header('content-type', 'application/fhir+json')
@@ -17,10 +13,6 @@ const flagPost = {
     method: 'POST',
     path: '/Flag',
     handler: (request, h) => {
-        if (!request.headers["x-request-id"]) {
-            const path = 'flagPOSTerror.json'
-            return h.response(h.file(path)).code(400);
-        }
         const path = 'flagPOST.json'
         return h.response(h.file(path)).code(201)
         .header('content-type', 'application/fhir+json')
@@ -35,10 +27,6 @@ const flagPut = {
     method: 'PUT',
     path: '/Flag/{flagID}',
     handler: (request, h) => {
-        if (!request.headers["x-request-id"]) {
-            const path = 'flagPUTerror.json'
-            return h.response(h.file(path)).code(400);
-        }
         const path = 'flagPUT.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
