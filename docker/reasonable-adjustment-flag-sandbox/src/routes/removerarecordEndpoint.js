@@ -2,7 +2,7 @@ const removerarecordPost = {
     method: 'POST',
     path: '/$removerarecord',
     handler: (request, h) => {
-        if (!request.headers["x-request-id"]) {
+        if (request.query["patient"] != '9999999998') {
             const path = 'removerarecordPOSTerror.json'
             return h.response(h.file(path)).code(400);
         } 

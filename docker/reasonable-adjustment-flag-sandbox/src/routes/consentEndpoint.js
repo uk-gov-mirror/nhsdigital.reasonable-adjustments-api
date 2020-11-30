@@ -2,7 +2,7 @@ const consentGet =  {
     method: 'GET',       
     path: '/Consent',
     handler: (request, h) => { 
-        if (!request.query["patient"]) {
+        if (request.query["patient"] != '9999999998') {
             const path = 'consentGETerror.json'
             return h.response(h.file(path)).code(400);
         }        
@@ -17,7 +17,7 @@ const consentPost = {
     method: 'POST',
     path: '/Consent',
     handler: (request, h) => {
-        if (!request.headers["x-request-id"]) {
+        if (request.query["patient"] != '9999999998') {
             const path = 'consentPOSTerror.json'
             return h.response(h.file(path)).code(400);
         } 
@@ -35,7 +35,7 @@ const consentPut = {
     method: 'PUT',
     path: '/Consent/{consentID}',
     handler: (request, h) => {
-        if (!request.headers["x-request-id"]) {
+        if (request.query["patient"] != '9999999998') {
             const path = 'consentPUTerror.json'
             return h.response(h.file(path)).code(400);
         } 
