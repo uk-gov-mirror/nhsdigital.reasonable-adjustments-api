@@ -30,7 +30,7 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': 'test',
+                'patient': '9999999998',
                 'category': 'test',
                 'status': 'test'
             },
@@ -56,6 +56,11 @@ class TestHappyCasesSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
+            params={
+                'patient': '9999999998',
+                'category': 'test',
+                'status': 'test'
+            },
             json=json.dumps({'message': 'test'}),
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -79,7 +84,7 @@ class TestHappyCasesSuite:
         etag = Utils.get_etag(self,
                               config.REASONABLE_ADJUSTMENTS_CONSENT,
                               params={
-                                  'patient': 'test',
+                                  'patient': '9999999998',
                                   'category': 'test',
                                   'status': 'test'
                               })
@@ -113,9 +118,9 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': 'test',
+                'patient': '9999999998',
                 'category': 'test',
-                'status': 'test',
+                'status': 'test'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -139,6 +144,11 @@ class TestHappyCasesSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
+            params={
+                'patient': '9999999998',
+                'category': 'test',
+                'status': 'test'
+            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -162,7 +172,7 @@ class TestHappyCasesSuite:
         etag = Utils.get_etag(self,
                               config.REASONABLE_ADJUSTMENTS_CONSENT,
                               params={
-                                  'patient': 'test',
+                                  'patient': '9999999998',
                                   'category': 'test',
                                   'status': 'test',
                               })
@@ -196,9 +206,9 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             params={
-                'patient': 'test',
-                'code': 'test',
-                'status': 'test',
+                'patient': '9999999998',
+                'category': 'test',
+                'status': 'test'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -222,6 +232,11 @@ class TestHappyCasesSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_LIST,
+            params={
+                'patient': '9999999998',
+                'category': 'test',
+                'status': 'test'
+            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -245,7 +260,7 @@ class TestHappyCasesSuite:
         etag = Utils.get_etag(self,
                               config.REASONABLE_ADJUSTMENTS_CONSENT,
                               params={
-                                  'patient': 'test',
+                                  'patient': '9999999998',
                                   'category': 'test',
                                   'status': 'test',
                               })
@@ -279,7 +294,7 @@ class TestHappyCasesSuite:
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
             params={
-                'patient': 'test',
+                'patient': '9999999998',
                 'removalReason': 'test',
                 'supportingComment': 'test',
             },
