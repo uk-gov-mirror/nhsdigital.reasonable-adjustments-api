@@ -39,6 +39,10 @@
             <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
+            <Step>
+              <Name>Javascript.ChangeConsentTarget</Name>
+              <Condition>proxy.pathsuffix MatchesPath "/Consent*"</Condition>
+            </Step>
         </Request>
         <Response>
             <Step>
