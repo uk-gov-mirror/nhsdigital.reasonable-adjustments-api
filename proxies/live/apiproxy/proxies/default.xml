@@ -42,7 +42,7 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/RAConsent") and (request.verb = "GET"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "GET"))</Condition>
         </Flow>
         <Flow name="Consent-POST">
             <Request>
@@ -56,7 +56,7 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/RAConsent") and (request.verb = "POST"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "POST"))</Condition>
         </Flow>
         <Flow name="Consent-PUT">
             <Request>
@@ -70,7 +70,7 @@
                 <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
-            <Condition>((proxy.pathsuffix MatchesPath "/RAConsent/*") and (request.verb = "PUT"))</Condition>
+            <Condition>((proxy.pathsuffix MatchesPath "/Consent/*") and (request.verb = "PUT"))</Condition>
         </Flow>
         <Flow name="flag-GET">
             <Request>

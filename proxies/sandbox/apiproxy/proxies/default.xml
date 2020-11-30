@@ -26,7 +26,7 @@
         <Condition>request.queryparam.patient = null or request.queryparam.status = null or request.queryparam.category = null</Condition>
       </Step>
       </Request>
-      <Condition>((proxy.pathsuffix MatchesPath "/RAConsent") and (request.verb = "GET"))</Condition>
+      <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "GET"))</Condition>
     </Flow>
     <Flow name="consent-POST">
       <Request>
@@ -35,7 +35,7 @@
           <Condition>request.content = ""</Condition>
         </Step>
       </Request>
-      <Condition>((proxy.pathsuffix MatchesPath "/RAConsent") and (request.verb = "POST"))</Condition>
+      <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "POST"))</Condition>
     </Flow>
     <Flow name="consent-PUT">
       <Request>
@@ -44,7 +44,7 @@
           <Condition>request.content = ""</Condition>
         </Step>
       </Request>
-      <Condition>((proxy.pathsuffix MatchesPath "/RAConsent/*") and (request.verb = "PUT"))</Condition>
+      <Condition>((proxy.pathsuffix MatchesPath "/Consent/*") and (request.verb = "PUT"))</Condition>
     </Flow>
     <Flow name="flag-GET">
       <Request>
