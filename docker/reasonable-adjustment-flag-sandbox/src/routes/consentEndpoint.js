@@ -4,7 +4,7 @@ const consentGet =  {
     handler: (request, h) => { 
         if (request.query["patient"] != '9999999998') {
             const path = 'consentGETerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         }        
         const path = 'consentGET.json'
         return h.file(path)
@@ -19,7 +19,7 @@ const consentPost = {
     handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'consentPOSTerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         } 
         const path = 'consentPOST.json'
         return h.response(h.file(path)).code(201)
@@ -37,7 +37,7 @@ const consentPut = {
     handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'consentPUTerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         } 
         const path = 'consentPUT.json'
         return h.file(path)

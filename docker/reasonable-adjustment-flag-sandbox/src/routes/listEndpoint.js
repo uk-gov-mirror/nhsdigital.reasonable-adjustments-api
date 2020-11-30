@@ -4,7 +4,7 @@ const listGet =  {
     handler: (request, h) => { 
         if (request.query["patient"] != '9999999998') {
             const path = 'listGETerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         }        
         const path = 'listGET.json'
         return h.file(path)
@@ -19,7 +19,7 @@ const listPost = {
     handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'listPOSTerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         } 
         const path = 'listPOST.json'
         return h.response(h.file(path)).code(201)
@@ -37,7 +37,7 @@ const listPut = {
     handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'listPUTerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         } 
         const path = 'listPUT.json'
         return h.file(path)

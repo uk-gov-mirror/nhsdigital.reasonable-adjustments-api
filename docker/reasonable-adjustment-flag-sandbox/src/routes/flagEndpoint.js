@@ -4,7 +4,7 @@ const flagGet =  {
     handler: (request, h) => {    
         if (request.query["patient"] != '9999999998') {
             const path = 'flagGETerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         } 
             const path = 'flagGET.json'
             return h.response(h.file(path))
@@ -19,7 +19,7 @@ const flagPost = {
     handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'flagPOSTerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         }
         const path = 'flagPOST.json'
         return h.response(h.file(path)).code(201)
@@ -37,7 +37,7 @@ const flagPut = {
     handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'flagPUTerror.json'
-            return h.response(h.file(path)).code(400);
+            return h.response(h.file(path)).code(404);
         }
         const path = 'flagPUT.json'
         return h.file(path)
