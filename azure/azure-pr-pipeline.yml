@@ -41,6 +41,7 @@ extends:
     secret_ids:
       - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
       - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
+      - ptl/monitoring/status-endpoint-api-key
     config_ids:
       - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_ID
       - /ptl/azure-devops/env-internal-dev/test-app/internal-testing-internal-dev/CLIENT_SECRET
