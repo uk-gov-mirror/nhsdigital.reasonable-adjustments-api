@@ -151,7 +151,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
                 'patient': '9999999998',
-                'category': 'test',
+                'code': 'test',
                 'status': 'test'
             },
             headers={
