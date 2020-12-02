@@ -34,6 +34,7 @@ extends:
     product_description: ${{ variables.product_description }}
     spec_file: ${{ variables.spec_file }}
     enable_monitoring: true
+    enable_status_monitoring: true
     secret_ids:
         - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_KEY
         - ptl/app-credentials/internal-dev/INTERNAL_TESTING_WITHOUT_ASID_SECRET
