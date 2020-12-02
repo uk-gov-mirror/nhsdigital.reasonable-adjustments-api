@@ -21,6 +21,7 @@ class TestHappyCasesSuite:
     @pytest.mark.integration
     @pytest.mark.smoke
     @pytest.mark.sandbox
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
