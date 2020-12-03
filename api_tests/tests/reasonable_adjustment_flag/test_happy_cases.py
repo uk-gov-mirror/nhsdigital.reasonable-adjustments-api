@@ -151,7 +151,7 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
                 'patient': '9999999998',
-                'category': 'test',
+                'code': 'test',
                 'status': 'test'
             },
             headers={
@@ -457,6 +457,11 @@ class TestHappyCasesSuite:
         # When
         requests.put(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/1',
+            params={
+                'patient': '9999999998',
+                'category': 'test',
+                'status': 'test'
+            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -482,6 +487,11 @@ class TestHappyCasesSuite:
         # When
         requests.put(
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
+            params={
+                'patient': '9999999998',
+                'category': 'test',
+                'status': 'test'
+            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -508,6 +518,11 @@ class TestHappyCasesSuite:
         # When
         requests.put(
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
+            params={
+                'patient': '9999999998',
+                'status': 'test',
+                'code': 'test'
+            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
