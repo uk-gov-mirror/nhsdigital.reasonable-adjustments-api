@@ -1,0 +1,5 @@
+<TargetEndpoint name="status">
+  <HTTPTargetConnection>
+    {{ HOSTED_TARGET_CONNECTION }}
+  </HTTPTargetConnection>
+</TargetEndpoint>

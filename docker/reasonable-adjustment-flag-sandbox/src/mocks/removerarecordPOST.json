@@ -1,0 +1,16 @@
+{
+  "resourceType": "OperationOutcome",
+  "id": "89842084-66c6-4b3c-9eb2-63d43e5ab074",
+  "meta": {
+    "profile": "https://fhir.nhs.uk/STU3/StructureDefinition/Spine-OperationOutcome-1"
+  },
+  "issue": [
+    {
+      "severity": "information",
+      "code": "informational",
+      "details": {
+        "text": "OK"
+      }
+    }
+  ]
+}
