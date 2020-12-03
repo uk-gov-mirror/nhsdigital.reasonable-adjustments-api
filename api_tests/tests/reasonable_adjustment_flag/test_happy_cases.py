@@ -1,7 +1,6 @@
 import base64
 import json
 import uuid
-import time
 
 import pytest
 import requests
@@ -157,8 +156,6 @@ class TestHappyCasesSuite:
                 'category': 'test',
                 'status': 'test'
             },
-            json=json.dumps({'message': 'test'}),
-            headers={
             json=j,
             headers= {
                 'Authorization': f'Bearer {self.token}',
