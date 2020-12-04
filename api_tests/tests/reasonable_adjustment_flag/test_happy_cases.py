@@ -442,7 +442,7 @@ class TestHappyCasesSuite:
         )
 
         # Then
-        actual_interaction_id = debug_session.get_apigee_header('Interaction-ID')
+        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
 
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
@@ -472,7 +472,7 @@ class TestHappyCasesSuite:
         )
 
         # Then
-        actual_interaction_id = debug_session.get_apigee_header('Interaction-ID')
+        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
 
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
@@ -503,7 +503,7 @@ class TestHappyCasesSuite:
         )
 
         # Then
-        actual_interaction_id = debug_session.get_apigee_header('Interaction-ID')
+        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
 
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
@@ -534,7 +534,7 @@ class TestHappyCasesSuite:
         )
 
         # Then
-        actual_interaction_id = debug_session.get_apigee_header('Interaction-ID')
+        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
 
         assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
