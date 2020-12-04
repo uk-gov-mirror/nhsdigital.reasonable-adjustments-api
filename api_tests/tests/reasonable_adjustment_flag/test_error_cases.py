@@ -215,8 +215,8 @@ class TestErrorCaseSuite:
     @pytest.mark.errors
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}), 
-                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}), 
+    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}),
+                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}),
                                             (config.REASONABLE_ADJUSTMENTS_FLAG, {'patient': 'test', 'category': 'test'})])
     def test_get_invalid_query_params(self, url, params):
         # Given
@@ -247,8 +247,8 @@ class TestErrorCaseSuite:
     @pytest.mark.errors
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}), 
-                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}), 
+    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}),
+                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}),
                                             (config.REASONABLE_ADJUSTMENTS_FLAG, {'patient': 'test', 'code': 'test'}),
                                             (config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD, {'patient': 'test', 'removalReason': 'test'})])
     def test_post_invalid_query_params(self, url, params):
@@ -282,8 +282,8 @@ class TestErrorCaseSuite:
     @pytest.mark.errors
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}), 
-                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}), 
+    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}),
+                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}),
                                             (config.REASONABLE_ADJUSTMENTS_FLAG, {'patient': 'test', 'category': 'test'})])
     def test_put_invalid_query_params(self, url, params):
         # Given
@@ -498,7 +498,7 @@ class TestErrorCaseSuite:
 
     @pytest.mark.errors
     @pytest.mark.integration
-    def test_invalid_url(self): 
+    def test_invalid_url(self):
         # Given
         expected_status_code = 404
         expected_response = {
