@@ -9,7 +9,6 @@ const listGet =  {
         const path = 'listGET.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
-        .header('Access-Control-Allow-Origin', '*')
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT');
     }
   };
@@ -28,7 +27,6 @@ const listPost = {
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
         .header('Location', 'https://clinicals.spineservices.nhs.uk/STU3/List/130f416a-055d-4a5d-a453-2b7c2de3b57b/_history/f2fef5e5-c38a-408c-a9bc-2d49923928f8')
-        .header('Access-Control-Allow-Origin', '*')
         .header('Etag', 'W/"f2fef5e5-c38a-408c-a9bc-2d49923928f8”');
     }
 };
@@ -46,7 +44,6 @@ const listPut = {
         .header('content-type', 'application/fhir+json')
         .header('Date', 'Thur, 25 Jul 2018 11:00:00 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
-        .header('Access-Control-Allow-Origin', '*')
         .header('Etag', 'W/"d65be6d8-128a-40f2-9a1d-b250d6485c6d”');
     }
 };
