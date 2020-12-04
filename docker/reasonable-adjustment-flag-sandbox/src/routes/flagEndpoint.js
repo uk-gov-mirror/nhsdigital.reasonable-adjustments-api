@@ -9,6 +9,7 @@ const flagGet =  {
             const path = 'flagGET.json'
             return h.response(h.file(path))
             .header('content-type', 'application/fhir+json')
+            .header('Access-Control-Allow-Origin', '*')
             .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT');
     }
   };
@@ -27,6 +28,7 @@ const flagPost = {
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
         .header('Location', 'https://clinicals.spineservices.nhs.uk/STU3/Flag/2acb0536-0a8f-48c9-8a2f-6ee82860f186/_history/aa755bd6-2be9-4971-972a-6724879c5cb1')
+        .header('Access-Control-Allow-Origin', '*')
         .header('Etag', 'W/"aa755bd6-2be9-4971-972a-6724879c5cb1”');
     }
 };
@@ -44,6 +46,7 @@ const flagPut = {
         .header('content-type', 'application/fhir+json')
         .header('Date', 'Thur, 25 Jul 2018 11:00:00 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
+        .header('Access-Control-Allow-Origin', '*')
         .header('Etag', 'W/"aa755bd6-2be9-4971-972a-6724879c5cb1”');
     }
 };

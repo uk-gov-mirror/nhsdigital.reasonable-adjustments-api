@@ -9,7 +9,8 @@ const consentGet =  {
         const path = 'consentGET.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
-        .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT');
+        .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
+        .header('Access-Control-Allow-Origin', '*');
     }
   };
 
@@ -27,6 +28,7 @@ const consentPost = {
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
         .header('Location', 'resourceURL')
+        .header('Access-Control-Allow-Origin', '*')
         .header('Etag', 'W/"resourceVID”');
     }
 };
@@ -44,6 +46,7 @@ const consentPut = {
         .header('content-type', 'application/fhir+json')
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
+        .header('Access-Control-Allow-Origin', '*')
         .header('Etag', 'W/"resourceVID”');
     }
 };
