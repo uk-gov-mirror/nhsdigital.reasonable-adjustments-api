@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<ProxyEndpoint name="ig3">
+<ProxyEndpoint name="default">
     <FaultRules>
         <DefaultFaultRule>
             <Step>
@@ -234,6 +234,13 @@
             </Response>
             <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
         </Flow>
+        <Flow name="InvalidEndpoint">
+          <Request>
+              <Step>
+                  <Name>RaiseFault.404NotFound</Name>
+              </Step>
+          </Request>
+      </Flow>
     </Flows>
     <PostClientFlow name="PostClientFlow">
         <Response>
@@ -255,7 +262,7 @@
     <RouteRule name="NoRouteStatus">
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
-    <RouteRule name="ig3">
-        <TargetEndpoint>ig3</TargetEndpoint>
+    <RouteRule name="apim">
+        <TargetEndpoint>apim</TargetEndpoint>
     </RouteRule>
 </ProxyEndpoint>
