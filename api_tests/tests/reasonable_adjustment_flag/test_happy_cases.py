@@ -10,6 +10,7 @@ from api_tests.config_files import config
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY_NAME, REASONABLE_ADJUSTMENTS_PROXY_PATH
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.tests.utils import Utils
+import logging
 
 
 @pytest.mark.usefixtures("setup")
@@ -42,6 +43,7 @@ class TestHappyCasesSuite:
         )
 
         print(response.text)
+        print(response.headers)
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
@@ -57,11 +59,8 @@ class TestHappyCasesSuite:
 
         # TODO this json is from FHIR example. 500 response from spine
         j = """
-        {
+{
   "resourceType": "Consent",
-  "fhir_comments": [
-    " CreateExample-CreateConsentRequest.xml "
-  ],
   "meta": {
     "profile": [
       "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
@@ -74,27 +73,27 @@ class TestHappyCasesSuite:
         "coding": [
           {
             "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1",
-            "code": "lpa",
+            "code": "003",
             "display": "Lasting power of attorney personal welfare"
           }
         ]
       }
     }
-  ],
-  "status": "active",
+    ],
+  "status":"active",
   "category": [
     {
       "coding": [
         {
-          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
-          "code": "reasonable adjustments flag",
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1",
+          "code": "NRAF",
           "display": "Reasonable Adjustments Flag"
         }
       ]
     }
   ],
   "patient": {
-    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/5900008142"
   },
   "policy": [
     {
@@ -104,9 +103,47 @@ class TestHappyCasesSuite:
   ],
   "purpose": [
     {
-      "system": "https://snomed.info/sct",
-      "code": "370856009",
-      "display": "Limiting access to confidential patient information"
+      "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1",
+      "code": "RACONSENT",
+      "display": "Reasonable Adjustments - Consent to record Reasonable Adjustments"
+    }
+  ]
+}
+        """
+        j2 ="""
+{
+  "resourceType": "Consent",
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
+    ]
+  },
+  "status":"active",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1",
+          "code": "NRAF",
+          "display": "Reasonable Adjustments Flag"
+        }
+      ]
+    }
+  ],
+  "patient": {
+    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/5900008142"
+  },
+  "policy": [
+    {
+      "authority": "https://www.gov.uk/",
+      "uri": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
+    }
+  ],
+  "purpose": [
+    {
+      "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1",
+      "code": "RACONSENT",
+      "display": "Reasonable Adjustments - Consent to record Reasonable Adjustments"
     }
   ]
 }
@@ -148,25 +185,33 @@ class TestHappyCasesSuite:
 </Consent>
         """
 
+        logging.basicConfig(level=logging.DEBUG)
+        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
+
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
+                # 'patient': '5900008142',
+                # 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                # 'status': 'active'
             },
-            json=j,
+            json=json.loads(j2),
             headers= {
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': str(uuid.uuid4()),
+                'nhsd-session-urid': '093895563513',
                 'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json'
+                'content-type': 'application/json',
+                # 'If-Match': 'd6f3d5e8e4cb366e2741bfb4e6522575d9d3f261',
+                'Prefer': 'return=representation',
+                'Accept': 'application/fhir+json'
+
             }
         )
 
         # Then
         print(response.text)
+        # print(debug_session.get_apigee_variable("spineJwt"))
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
