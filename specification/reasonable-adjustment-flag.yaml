@@ -309,7 +309,7 @@ paths:
                 $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
-                  summary: Invalid NHS Number for patient supplied.
+                  summary: Invalid NHS Number for a patient supplied.
                   value:
                     resourceType: OperationOutcome
                     issue:
