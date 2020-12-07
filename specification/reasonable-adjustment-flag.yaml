@@ -1713,7 +1713,7 @@ components:
         **Note: This parameter is required unless interacting with the Sandbox.**
       schema:
         type: string
-        pattern: '^Bearer\ [[:ascii:]]+$'
+        format: '^Bearer\ [[:ascii:]]+$'
         example: 'Bearer g1112R_ccQ1Ebbb4gtHBP1aaaNM'
     CorrelationID:
       name: X-Correlation-ID
