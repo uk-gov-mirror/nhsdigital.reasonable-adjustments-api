@@ -134,7 +134,7 @@ info:
     name: API Management Support
     email: api.management@nhs.net
 servers:
-  - url: 'https://sandbox.api.service.nhs.uk/reasonable-adjustment-flag'
+  - url: 'https://internal-dev-sandbox.api.service.nhs.uk/reasonable-adjustment-flag-pr-94'
     description: Sandbox environment.
 paths:
   /Flag:
