@@ -306,7 +306,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/OperationOutcome.yaml
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
