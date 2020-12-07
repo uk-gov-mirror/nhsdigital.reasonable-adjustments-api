@@ -309,7 +309,7 @@ paths:
                 $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
-                  summary: Invalid NHS Number for a patient supplied.
+                  summary: Invalid NHS Number for patient supplied.
                   value:
                     resourceType: OperationOutcome
                     issue:
@@ -822,7 +822,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -923,7 +923,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -977,7 +977,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1063,7 +1063,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1275,7 +1275,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1329,7 +1329,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1371,11 +1371,11 @@ paths:
         content:
           application/fhir+json:
             schema:
-              $ref: '#/paths/~1Flag~1%7BflagID%7D/put/requestBody/content/application~1fhir%2Bjson/schema'
+              $ref: components/schemas/updateConsent.yaml
             examples:
               success:
                 value:
-                  $ref: '#/paths/~1Flag~1%7BflagID%7D/put/requestBody/content/application~1fhir%2Bjson/examples/success/value'
+                  $ref: components/examples/updateConsent.json
       responses:
         '200':
           description: Successful response.
@@ -1403,7 +1403,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1549,7 +1549,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: '#/paths/~1Flag/get/responses/400/content/application~1fhir%2Bjson/schema'
+                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
