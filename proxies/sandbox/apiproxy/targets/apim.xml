@@ -11,9 +11,9 @@
       </Step>
     </Request>
     <Response>
-      <Step>
+      <!-- <Step>
         <Name>AssignMessage.AddCors</Name>
-      </Step>
+      </Step> -->
     </Response>
   </PreFlow>
   <HTTPTargetConnection>
@@ -25,9 +25,9 @@
         </Step>
       </Request>
       <Response>
-        <Step>
+        <!-- <Step>
           <Name>AssignMessage.AddCors</Name>
-        </Step>
+        </Step> -->
       </Response>
     </PreFlow>
     {{ HOSTED_TARGET_CONNECTION }}
