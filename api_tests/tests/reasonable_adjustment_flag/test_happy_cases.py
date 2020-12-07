@@ -1,7 +1,5 @@
 import base64
-import json
 import uuid
-import time
 
 import pytest
 import requests
@@ -11,6 +9,7 @@ from api_tests.config_files import config
 from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_PROXY_NAME, REASONABLE_ADJUSTMENTS_PROXY_PATH
 from api_tests.scripts.apigee_api import ApigeeDebugApi
 from api_tests.tests.utils import Utils
+from api_tests.tests.reasonable_adjustment_flag.request_bodies import *
 
 
 @pytest.mark.usefixtures("setup")
@@ -21,6 +20,7 @@ class TestHappyCasesSuite:
     @pytest.mark.integration
     @pytest.mark.smoke
     @pytest.mark.sandbox
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -30,17 +30,18 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
+                'patient': '5900008142',
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': '200000006422',
                 'x-request-id': str(uuid.uuid4()),
             }
         )
 
+        print(response.text)
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
@@ -61,7 +62,7 @@ class TestHappyCasesSuite:
                 'category': 'test',
                 'status': 'test'
             },
-            json=json.dumps({'message': 'test'}),
+            json=POST_Consent,
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
