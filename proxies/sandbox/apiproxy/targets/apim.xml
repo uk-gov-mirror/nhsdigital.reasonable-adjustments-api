@@ -10,11 +10,6 @@
         <Condition>request.verb != "GET" and request.header.content-type != "application/fhir+json"</Condition>
       </Step>
     </Request>
-    <Response>
-      <!-- <Step>
-        <Name>AssignMessage.AddCors</Name>
-      </Step> -->
-    </Response>
   </PreFlow>
   <HTTPTargetConnection>
     <PreFlow name="PreFlow">
@@ -24,11 +19,6 @@
           <Condition>request.header.X-Request-ID = null or request.header.NHSD-Session-URID = null</Condition>
         </Step>
       </Request>
-      <Response>
-        <!-- <Step>
-          <Name>AssignMessage.AddCors</Name>
-        </Step> -->
-      </Response>
     </PreFlow>
     {{ HOSTED_TARGET_CONNECTION }}
   </HTTPTargetConnection>
