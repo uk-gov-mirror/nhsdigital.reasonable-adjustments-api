@@ -16,11 +16,14 @@ from api_tests.tests.reasonable_adjustment_flag.request_bodies import *
 class TestHappyCasesSuite:
     """ A test suite to verify all the happy path oauth endpoints """
 
+    # existing_patient = '9449261458'
+    existing_patient = '5900008142'
+    nhsd_session_urid = '093895563513'
+
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
     @pytest.mark.sandbox
-    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -30,24 +33,27 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': '5900008142',
+                'patient': self.existing_patient,
                 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
                 'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': '200000006422',
+                'nhsd-session-urid': self.nhsd_session_urid,
                 'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/json',
+                'accept': 'application/fhir+json',
             }
         )
 
+        print(response.headers['etag'])
         print(response.text)
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
-    @pytest.mark.smoke
+    # @pytest.mark.integration
+    # @pytest.mark.smoke
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
@@ -57,11 +63,6 @@ class TestHappyCasesSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             json=POST_Consent,
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -75,8 +76,8 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
-    @pytest.mark.smoke
+    # @pytest.mark.integration
+    # @pytest.mark.smoke
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
@@ -125,14 +126,16 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
+                'patient': self.existing_patient,
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': self.nhsd_session_urid,
                 'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/json',
+                'accept': 'application/fhir+json',
             }
         )
 
@@ -142,6 +145,7 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
+    @pytest.mark.debug
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
@@ -151,19 +155,21 @@ class TestHappyCasesSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
-            params={
-                'patient': '9999999998',
-                'code': 'test',
-                'status': 'test'
-            },
+            # params={
+            #     'patient': '9999999998',
+            #     'code': 'test',
+            #     'status': 'test'
+            # },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': self.nhsd_session_urid,
                 'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json'
+                'content-type': 'application/json',
+                'accept': 'application/fhir+json',
             },
-            json=json.dumps({'message': 'test'})
+            json=POST_Flag,
         )
+        print(response.text)
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
@@ -179,9 +185,6 @@ class TestHappyCasesSuite:
         etag = Utils.get_etag(self,
                               config.REASONABLE_ADJUSTMENTS_CONSENT,
                               params={
-                                  'patient': '9999999998',
-                                  'category': 'test',
-                                  'status': 'test',
                               })
 
         # When
@@ -214,20 +217,23 @@ class TestHappyCasesSuite:
         # Given
         expected_status_code = 200
 
+        # TODO: check the ASID, it doesn't have permission
         # When
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             params={
-                'patient': '9999999998',
-                'status': 'test',
-                'code': 'test'
+                'patient': self.existing_patient,
+                # 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active',
+                'code': 'http://snomed.info/sct|1094391000000102'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': self.nhsd_session_urid,
                 'x-request-id': str(uuid.uuid4()),
             }
         )
+        print(response.text)
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)

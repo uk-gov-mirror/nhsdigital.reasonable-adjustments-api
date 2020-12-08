@@ -33,5 +33,6 @@ class Utils:
             }
         )
         time.sleep(1)
+        print(response.text)
 
-        return response.headers['Etag']
+        return response.headers['etag']

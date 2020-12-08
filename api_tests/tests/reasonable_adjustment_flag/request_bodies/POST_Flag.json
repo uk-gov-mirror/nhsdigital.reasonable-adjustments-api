@@ -1,0 +1,36 @@
+{
+  "resourceType": "Condition",
+  "fhir_comments": [
+    " xml example fileAddExample-CreateConditionRequest.xml "
+  ],
+  "meta": {
+    "profile": [
+      "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1"
+    ]
+  },
+  "clinicalStatus": "active",
+  "category": [
+    {
+      "coding": [
+        {
+          "system": "https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1",
+          "code": "issue",
+          "display": "Issue"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "coding": [
+      {
+        "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ConditionCode-1",
+        "code": "720821000000105",
+        "display": "Mental health condition(s)"
+      }
+    ],
+    "text": "Patient diagnosed with Stranger anxiety (disorder). Consider home-visit"
+  },
+  "subject": {
+    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/5900008142"
+  }
+}

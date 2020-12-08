@@ -35,6 +35,7 @@ def _get_token(request, creds):
     """Get the token and assign it to the test instance"""
     oauth_endpoints = CheckOauth(creds)
     token = oauth_endpoints.get_token_response()
+    print(token)
     setattr(request.cls, 'token', token['access_token'])
     setattr(request.cls, 'refresh', token['refresh_token'])  # This is required if you want to request a refresh token
     return oauth_endpoints
