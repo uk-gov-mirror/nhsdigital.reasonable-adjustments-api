@@ -24,6 +24,7 @@ class TestHappyCasesSuite:
     @pytest.mark.integration
     @pytest.mark.smoke
     @pytest.mark.sandbox
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get(self):
         # Given
@@ -41,8 +42,7 @@ class TestHappyCasesSuite:
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': self.nhsd_session_urid,
                 'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/json',
-                'accept': 'application/fhir+json',
+                'accept': 'application/json'
             }
         )
 
@@ -145,7 +145,6 @@ class TestHappyCasesSuite:
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.smoke
-    @pytest.mark.debug
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
