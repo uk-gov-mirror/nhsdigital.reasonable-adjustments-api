@@ -295,26 +295,31 @@ paths:
               $ref: components/schemas/ETag.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Last-Modified:
-                    type: string
-                    format: date-time
-                    example: '2018-07-23T11:00:00+00:00'
-                  Location:
-                    type: string
-                    example: null
-                  ETag:
-                    type: string
-                    example: resourceVID
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              # schema:
+              #   type: object
+              #   properties:
+              #     Date:
+              #       type: string
+              #       format: date-time
+              #       example: 'Tue, 23 Jul 2018 11:00:00 GMT'
+              #     Last-Modified:
+              #       type: string
+              #       format: date-time
+              #       example: '2018-07-23T11:00:00+00:00'
+              #     Location:
+              #       type: string
+              #       example: null
+              #     ETag:
+              #       type: string
+              #       example: resourceVID
+              #     Content-Type:
+              #       type: string
+              #       example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/createConsentResponse.json      
         '400':
           description: Invalid parameters.
           content:
