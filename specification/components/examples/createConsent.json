@@ -1,8 +1,5 @@
 {
     "resourceType": "Consent",
-    "fhir_comments": [
-      " CreateExample-CreateConsentRequest.xml "
-    ],
     "meta": {
       "profile": [
         "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
