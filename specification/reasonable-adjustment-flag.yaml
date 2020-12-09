@@ -410,6 +410,7 @@ paths:
         - $ref: '#/components/parameters/CorrelationID'
         - $ref: '#/components/parameters/RequestID'
         - $ref: '#/components/parameters/consentID'
+        - $ref: '#/components/parameters/If-Match'
       requestBody:
         description: Update record
         required: true
@@ -1647,10 +1648,14 @@ components:
       name: If-Match
       in: header
       required: true
-      description: Latest known version identifier enclosed in quotes preceded by `W/`.
+      description: |
+        Latest known version identifier enclosed in quotes preceded by `W/`.
+        Send the value of the patient's `ETag` response header on patient retrieval when updating a patient.
+        This is to ensure that any updates are applied against an up-to-date version of the patient resource.
       schema:
         type: string
-        example: aa755bd6-2be9-4971-972a-6724879c5cb1
+        pattern: "^W\/\"[0-9]+\"$"
+        example: 'W/"2"'
     consentID:
       name: consentID
       in: path
