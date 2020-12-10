@@ -1,0 +1,5 @@
+schema:
+  type: string
+  format: date-time
+  example: '2018-07-23T11:00:00+00:00'
+description: The date the resource was last modified.

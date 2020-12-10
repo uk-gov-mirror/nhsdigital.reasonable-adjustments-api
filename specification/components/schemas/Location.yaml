@@ -1,0 +1,4 @@
+schema:
+  type: string
+  example: 'https://clinicals.spineservices.nhs.uk/STU3/[type]/[id]/_history/[vid]'
+description: The location of the resource.

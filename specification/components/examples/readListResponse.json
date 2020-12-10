@@ -1,0 +1,130 @@
+{
+    "Bundle": {
+      "-xmlns": "http://hl7.org/fhir",
+      "id": "b45afdbc-cce1-4623-8942-2ec3baf879e7",
+      "meta": {
+        "profile": "http://hl7.org/fhir/bundle"
+      },
+      "type": "searchset",
+      "total": "1",
+      "link": {
+        "relation": "self",
+        "url": "https://clinicals.spineservices.nhs.uk/STU3/List?patient=999999998&status=current&code=http://snomed.info/sct|1094391000000102&_format=xml"
+      },
+      "entry": {
+        "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/List/e00c5a85-d34f-4075-96ac-b787deb484b1",
+        "resource": {
+          "List": {
+            "-xmlns": "http://hl7.org/fhir",
+            "id": "130f416a-055d-4a5d-a453-2b7c2de3b57b",
+            "meta": {
+              "versionId": "f2fef5e5-c38a-408c-a9bc-2d49923928f8",
+              "profile": "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1"
+            },
+            "contained": [
+              {
+                "Condition": {
+                  "-xmlns": "http://hl7.org/fhir",
+                  "id": "57f04652-6dd0-4135-a560-f9091b1b26fa",
+                  "meta": {
+                    "versionId": "557ccfc3-0c78-48bf-aedd-70cc08af2ba1",
+                    "lastUpdated": "2018-07-23T11:00:00+00:00",
+                    "profile": "https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-Condition-1"
+                  },
+                  "extension": {
+                    "-url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+                    "extension": {
+                      "-url": "created",
+                      "valueReference": {
+                        "reference": "urn:uuid:8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+                      }
+                    }
+                  },
+                  "clinicalStatus": "active",
+                  "category": {
+                    "coding": {
+                      "system": "https://fhir.hl7.org.uk/STU3/CodeSystem/CareConnect-ConditionCategory-1",
+                      "code": "issue",
+                      "display": "Issue"
+                    }
+                  },
+                  "code": {
+                    "coding": {
+                      "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ConditionCode-1",
+                      "code": "1855002",
+                      "display": "Learning Disability(s)"
+                    }
+                  },
+                  "subject": {
+                    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+                  }
+                }
+              },
+              {
+                "Provenance": {
+                  "id": "8ce7de6b-1307-432d-8e96-ae6a613ca3e4",
+                  "meta": {
+                    "profile": "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+                  },
+                  "target": {
+                    "reference": "Condition/57f04652-6dd0-4135-a560-f9091b1b26fa"
+                  },
+                  "recorded": "2018-07-23T11:00:00+00:00",
+                  "agent": {
+                    "role": {
+                      "coding": {
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
+                        "code": "R0260",
+                        "display": "General Medical Practitioner"
+                      }
+                    },
+                    "whoReference": {
+                      "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/2ee4tr6a9",
+                      "display": "Dr.D"
+                    },
+                    "onBehalfOfReference": {
+                      "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7",
+                      "display": "Some GP Clinic"
+                    }
+                  }
+                }
+              }
+            ],
+            "status": "current",
+            "mode": "changes",
+            "title": "Reasonable Adjustment List",
+            "code": {
+              "coding": {
+                "system": "http://snomed.info/sct",
+                "code": "1094391000000102",
+                "display": "Reasonable adjustments for health and care access"
+              }
+            },
+            "subject": {
+              "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+            },
+            "date": "2018-07-23T11:00:00+00:00",
+            "entry": [
+              {
+                "deleted": "false",
+                "date": "2018-07-23T11:00:00+00:00",
+                "item": {
+                  "reference": "urn:uuid:557ccfc3-0c78-48bf-aedd-70cc08af2ba1"
+                }
+              },
+              {
+                "deleted": "false",
+                "date": "2018-07-23T11:00:00+00:00",
+                "item": {
+                  "reference": "urn:uuid:8ce7de6b-1307-432d-8e96-ae6a613ca3e4"
+                }
+              }
+            ]
+          }
+        },
+        "search": {
+          "mode": "match"
+        }
+      }
+    }
+  }

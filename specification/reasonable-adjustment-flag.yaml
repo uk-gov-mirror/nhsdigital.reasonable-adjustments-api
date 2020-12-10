@@ -293,28 +293,16 @@ paths:
           headers:
             ETag:
               $ref: components/schemas/ETag.yaml
+            Date:
+              $ref: components/schemas/Date.yaml
+            Last-Modified:
+              $ref: components/schemas/Last-Modified.yaml
+            Location:
+              $ref: components/schemas/Location.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              # schema:
-              #   type: object
-              #   properties:
-              #     Date:
-              #       type: string
-              #       format: date-time
-              #       example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-              #     Last-Modified:
-              #       type: string
-              #       format: date-time
-              #       example: '2018-07-23T11:00:00+00:00'
-              #     Location:
-              #       type: string
-              #       example: null
-              #     ETag:
-              #       type: string
-              #       example: resourceVID
-              #     Content-Type:
-              #       type: string
-              #       example: application/fhir+json
               examples:
                 Successful:
                   summary: The response from a successful request.
@@ -362,18 +350,18 @@ paths:
       responses:
         '200':
           description: Successful response.
+          headers:
+            Date:
+              $ref: components/schemas/Date.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/readConsentResponse.json   
         '400':
           description: Invalid parameters.
           content:
@@ -433,25 +421,19 @@ paths:
           headers:
             ETag:
               $ref: components/schemas/ETag.yaml
+            Date:
+              $ref: components/schemas/Date.yaml
+            Last-Modified:
+              $ref: components/schemas/Last-Modified.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Last-Modified:
-                    type: string
-                    format: date-time
-                    example: '2018-07-23T11:00:00+00:00'
-                  ETag:
-                    type: string
-                    example: resourceVID
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/updateConsentResponse.json
         '400':
           description: Invalid parameters.
           content:
@@ -497,51 +479,32 @@ paths:
         required: true
         content:
           application/fhir+json:
-            schema:
-              type: object
-              properties:
-                resourceType:
-                  type: string
-                  example: Condition
-                fhir_comments:
-                  type: array
-                  items:
-                    type: string
-                    example: ' json example AAJSONPlaceholder.json '
             examples:
-              success:
+              Successful:
+                summary: A successful request.
                 value:
-                  resourceType: Condition
-                  fhir_comments:
-                    - ' json example AAJSONPlaceholder.json '
+                  $ref: components/examples/createList.json  
       responses:
         '201':
           description: Successful response.
           headers:
             Etag:
               $ref: components/schemas/ETag.yaml
+            Date:
+              $ref: components/schemas/Date.yaml
+            Last-Modified:
+              $ref: components/schemas/Last-Modified.yaml
+            Location:
+              $ref: components/schemas/Location.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Last-Modified:
-                    type: string
-                    format: date-time
-                    example: '2018-07-23T11:00:00+00:00'
-                  Location:
-                    type: string
-                    example: null
-                  ETag:
-                    type: string
-                    example: resourceVID
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/createListResponse.json    
         '400':
           description: Invalid parameters.
           content:
@@ -584,18 +547,18 @@ paths:
       responses:
         '200':
           description: Successful response.
+          headers:
+            Date:
+              $ref: components/schemas/Date.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/readListResponse.json 
         '400':
           description: Invalid parameters.
           content:
@@ -666,25 +629,19 @@ paths:
           headers:
             ETag:
               $ref: components/schemas/ETag.yaml
+            Date:
+              $ref: components/schemas/Date.yaml
+            Last-Modified:
+              $ref: components/schemas/Last-Modified.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Last-Modified:
-                    type: string
-                    format: date-time
-                    example: '2018-07-23T11:00:00+00:00'
-                  ETag:
-                    type: string
-                    example: resourceVID
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/updateListResponse.json
         '400':
           description: Invalid parameters.
           content:
@@ -867,28 +824,21 @@ paths:
           headers:
             ETag:
               $ref: components/schemas/ETag.yaml
+            Date:
+              $ref: components/schemas/Date.yaml
+            Last-Modified:
+              $ref: components/schemas/Last-Modified.yaml
+            Location:
+              $ref: components/schemas/Location.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Last-Modified:
-                    type: string
-                    format: date-time
-                    example: '2018-07-23T11:00:00+00:00'
-                  Location:
-                    type: string
-                    example: null
-                  ETag:
-                    type: string
-                    example: resourceVID
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/createFlagResponse.json
         '400':
           description: Invalid parameters.
           content:
@@ -932,18 +882,26 @@ paths:
       responses:
         '200':
           description: Successful response.
+          headers:
+            Date:
+              $ref: components/schemas/Date.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                0 flags:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/readZeroFlagResponse.json
+                1 flag:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/readOneFlagResponse.json
+                2 flags:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/readTwoFlagResponse.json
         '400':
           description: Invalid parameters.
           content:
@@ -1389,25 +1347,19 @@ paths:
           headers:
             ETag:
               $ref: components/schemas/ETag.yaml
+            Date:
+              $ref: components/schemas/Date.yaml
+            Last-Modified:
+              $ref: components/schemas/Last-Modified.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Last-Modified:
-                    type: string
-                    format: date-time
-                    example: '2018-07-23T11:00:00+00:00'
-                  ETag:
-                    type: string
-                    example: resourceVID
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/updateFlagResponse.json
         '400':
           description: Invalid parameters.
           content:
@@ -1556,18 +1508,18 @@ paths:
       responses:
         '200':
           description: Successful response.
+          headers:
+            Date:
+              $ref: components/schemas/Date.yaml
+            Content-Type:
+              $ref: components/schemas/Content-Type.yaml
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  Date:
-                    type: string
-                    format: date-time
-                    example: 'Tue, 23 Jul 2018 11:00:00 GMT'
-                  Content-Type:
-                    type: string
-                    example: application/fhir+json
+              examples:
+                Successful:
+                  summary: The response from a successful request.
+                  value:
+                    $ref: components/examples/removerarecordResponse.json 
         '400':
           description: Invalid parameters.
           content:
@@ -1804,3 +1756,4 @@ components:
       $ref: components/schemas/updateList.yaml
 tags:
   - name: Reasonable Adjustment Flag
+
