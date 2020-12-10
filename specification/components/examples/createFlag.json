@@ -1,8 +1,5 @@
 {
     "resourceType": "Flag",
-    "fhir_comments": [
-      " xml example fileAddExample-CreateFlagRequest.xml "
-    ],
     "meta": {
       "profile": [
         "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
