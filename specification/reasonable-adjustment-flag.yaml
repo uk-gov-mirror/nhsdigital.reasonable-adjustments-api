@@ -305,8 +305,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -821,8 +819,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -922,8 +918,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -976,8 +970,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1062,8 +1054,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1274,8 +1264,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1328,8 +1316,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1402,8 +1388,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1548,8 +1532,6 @@ paths:
           description: Invalid search parameters supplied.
           content:
             application/fhir+json:
-              schema:
-                $ref: components/schemas/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1758,8 +1740,6 @@ components:
       $ref: components/schemas/flagSupportingComment.yaml
     nhsNumber:
       $ref: components/schemas/nhsNumber.yaml
-    operationOutcome:
-      $ref: components/schemas/operationOutcome.yaml
     provenanceExtension:
       $ref: components/schemas/provenanceExtension.yaml
     removalReason:
