@@ -110,7 +110,6 @@ class TestProxyCasesSuite:
 
     @pytest.mark.interaction_id
     @pytest.mark.integration
-    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_interaction_id_consent_put(self):
         # Given
@@ -196,7 +195,7 @@ class TestProxyCasesSuite:
             'reason_for_request': 'directcare',
             'scope': 'user/Consent.read',
             'requesting_organization': 'https://fhir.nhs.uk/Id/ods-organization-code|D82106',
-            'requesting_system': 'https://fhir.nhs.uk/Id/accredited-system|200000001115',
+            'requesting_system': 'https://fhir.nhs.uk/Id/accredited-system|200000001390',
             'requesting_user': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
             'sub': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
             'iss': 'http://api.service.nhs.uk',
