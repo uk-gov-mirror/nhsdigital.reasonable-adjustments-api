@@ -1,33 +1,20 @@
 {
     "resourceType": "Bundle",
     "id": "fda1cad0-ba84-11e8-96f8-529269fb1459",
-    "fhir_comments": [
-      " ReadFlagResponseBody-example1Flag.xml "
-    ],
     "type": "searchset",
     "total": 2,
     "link": [
       {
-        "fhir_comments": [
-          "  all search sets include the self link - the statement of the query string searched on. "
-        ],
         "relation": "self",
         "url": "https://clinicals.spineservices.nhs.uk/STU3/Flag?patient=999999998&status=active&category=https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=xml"
       }
     ],
     "entry": [
       {
-        "fhir_comments": [
-          "this example has 2 Flag (adjustment) included",
-          "the first flag entry"
-        ],
         "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Flag/9e63f370-ba72-11e8-96f8-529269fb1459",
         "resource": {
           "resourceType": "Flag",
           "id": "9e63f370-ba72-11e8-96f8-529269fb1459",
-          "fhir_comments": [
-            " found payload resource or operationOutcome in here "
-          ],
           "meta": {
             "versionId": "2042385c-ba73-11e8-96f8-529269fb1459",
             "lastUpdated": "2018-07-24T10:01:00+00:00",
@@ -39,9 +26,6 @@
             {
               "resourceType": "Provenance",
               "id": "2042526a-ba73-11e8-96f8-529269fb1459",
-              "fhir_comments": [
-                " Provenance constructed and persisted "
-              ],
               "meta": {
                 "profile": [
                   "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
@@ -128,16 +112,10 @@
         }
       },
       {
-        "fhir_comments": [
-          "second flag entry"
-        ],
         "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Flag/fda1e088-ba84-11e8-96f8-529269fb1459",
         "resource": {
           "resourceType": "Flag",
           "id": "fda1e088-ba84-11e8-96f8-529269fb1459",
-          "fhir_comments": [
-            " found payload resource or operationOutcome in here "
-          ],
           "meta": {
             "versionId": "27e70bd4-ba85-11e8-96f8-529269fb1459",
             "lastUpdated": "2018-06-22T10:01:00+00:00",
@@ -149,9 +127,6 @@
             {
               "resourceType": "Provenance",
               "id": "27e7030a-ba85-11e8-96f8-529269fb1459",
-              "fhir_comments": [
-                " Provenance constructed and persisted "
-              ],
               "meta": {
                 "profile": [
                   "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"

@@ -1,9 +1,6 @@
 {
     "resourceType": "Flag",
     "id": "2acb0536-0a8f-48c9-8a2f-6ee82860f186",
-    "fhir_comments": [
-      " xml example fileUpdateExample-UpdateFlagResponse.xml "
-    ],
     "meta": {
       "versionId": "b0c4bd5f-6133-4ac4-af48-82570ad15007",
       "lastUpdated": "2018-07-25T11:00:00+00:00",
