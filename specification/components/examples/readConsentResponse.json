@@ -106,9 +106,14 @@
               ]
             }
           ],
-          "patient": {
-            "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
-          },
+          "patient" : {
+            "identifier": [
+            {
+                "system": "https://fhir.nhs.uk/Id/nhs-number",
+                "value": "999999998"
+            }
+        ]
+      },
           "policy": [
             {
               "authority": "https://www.gov.uk/",
