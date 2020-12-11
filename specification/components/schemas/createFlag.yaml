@@ -3,11 +3,6 @@ properties:
     resourceType:
         type: string
         example: "Flag"
-    fhir_comments:
-        type: array
-        items:
-            type: string
-            example:  " xml example fileAddExample-CreateFlagRequest.xml "
     meta:
         type: object
         properties:
