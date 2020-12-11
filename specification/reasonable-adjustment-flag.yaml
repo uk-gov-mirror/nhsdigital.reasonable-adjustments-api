@@ -147,9 +147,6 @@ paths:
         For full details of the request payload for this endpoint, see [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1).
       operationId: postConsent
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/category'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
@@ -395,9 +392,6 @@ paths:
         For full details of this API resource see [RARecord-Consent-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1)
       operationId: updateConsent
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/category'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
@@ -467,9 +461,6 @@ paths:
         For full details of this API resource see [CareConnect-RARecord-List-1](https://fhir.nhs.uk/STU3/StructureDefinition/CareConnect-RARecord-List-1)
       operationId: postList
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/code'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
@@ -614,9 +605,6 @@ paths:
                   fhir_comments:
                     - ' json example AAJSONPlaceholder.json '
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/code'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
@@ -690,9 +678,6 @@ paths:
         For full details of this API resource see [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5).
       operationId: postFlag
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/code'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
@@ -1032,9 +1017,6 @@ paths:
         For full details of this API resource see [RARecord-Flag-1](https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1/_history/0.0.5).
       operationId: updateFlag
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/status'
-        - $ref: '#/components/parameters/category'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
