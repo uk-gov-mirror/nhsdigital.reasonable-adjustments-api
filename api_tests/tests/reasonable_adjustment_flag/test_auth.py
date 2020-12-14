@@ -14,6 +14,7 @@ class TestAuthCasesSuite:
     nhsd_session_urid = '093895563513'
 
     @pytest.mark.integration
+    @pytest.mark.smoke
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_asid_auth(self):
         # Given
