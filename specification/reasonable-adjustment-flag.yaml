@@ -306,7 +306,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -822,7 +822,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -923,7 +923,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -977,7 +977,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/d77d8c113ebbf91c0bedf1790cf7a29e59d21e59/
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1063,7 +1063,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1275,7 +1275,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1329,7 +1329,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/d77d8c113ebbf91c0bedf1790cf7a29e59d21e59/
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1403,7 +1403,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1549,7 +1549,7 @@ paths:
           content:
             application/fhir+json:
               schema:
-                $ref: components/schemas/operationOutcome.yaml
+                $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
               examples:
                 invalid-nhsNumber:
                   summary: Invalid NHS Number for patient supplied.
@@ -1759,7 +1759,7 @@ components:
     nhsNumber:
       $ref: components/schemas/nhsNumber.yaml
     operationOutcome:
-      $ref: components/schemas/operationOutcome.yaml
+      $ref: https://gist.githubusercontent.com/artronics/1b4523ffaf0475c3d779551ce628798a/raw/bf3652aeef9b47789d5c097c0bee54e7ed99287d/operationOutcome.yaml
     provenanceExtension:
       $ref: components/schemas/provenanceExtension.yaml
     removalReason:
