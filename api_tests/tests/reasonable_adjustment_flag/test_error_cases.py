@@ -155,11 +155,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
@@ -192,11 +187,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
@@ -258,11 +248,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -327,16 +312,44 @@ class TestErrorCaseSuite:
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
-            params={
-                'patient': '9999999998',
-                'status': 'test',
-                'code': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': 'test',
                 'if-match': ''
+            },
+            data={
+                'message': 'test'
+            }
+        )
+        actual_response = json.loads(response.text)
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(actual_response['message_id']).is_not_empty()
+        assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
+        assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
+
+    @pytest.mark.errors
+    @pytest.mark.integration
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_removerarecord_invalid_header_post(self):
+        # Given
+        expected_status_code=400
+        expected_response={
+            "error": "invalid header",
+            "error_description": "if-match is missing or invalid"
+        }
+
+        # When
+        response = requests.post(
+            url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': 'test',
+                'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'If-Match': ''
             },
             data={
                 'message': 'test'
