@@ -34,4 +34,4 @@ class Utils:
         )
         time.sleep(1)
 
-        return response.headers['Etag']
+        return response.headers['etag']

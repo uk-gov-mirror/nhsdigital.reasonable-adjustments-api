@@ -175,6 +175,10 @@
         <Flow name="removeRarecord-POST">
             <Request>
                 <Step>
+                  <Name>RaiseFault.Invalid-If-Match</Name>
+                  <Condition>(request.header.If-Match = null or request.header.If-Match = "")</Condition>
+                </Step>
+                <Step>
                   <Name>ExtractVariables.EndpointName</Name>
                 </Step>
                 <Step>
@@ -234,7 +238,7 @@
     <RouteRule name="NoRouteStatus">
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
-    <RouteRule name="apim">
-        <TargetEndpoint>apim</TargetEndpoint>
+    <RouteRule name="ig3">
+        <TargetEndpoint>ig3</TargetEndpoint>
     </RouteRule>
 </ProxyEndpoint>
