@@ -60,7 +60,7 @@ build-proxy:
 release: clean publish build-proxy
 	mkdir -p dist
 	tar -zcvf dist/package.tar.gz build
-	for env in internal-dev-sandbox internal-qa-sandbox sandbox internal-dev internal-qa int; do \
+	for env in internal-dev-sandbox internal-qa-sandbox sandbox; do \
 		cp ecs-proxies-deploy-sandbox.yml dist/ecs-deploy-$$env.yml; \
 	done
 
