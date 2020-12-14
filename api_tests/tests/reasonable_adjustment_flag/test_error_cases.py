@@ -155,11 +155,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
@@ -192,11 +187,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
@@ -258,11 +248,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
-            params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -327,11 +312,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
-            params={
-                'patient': '9999999998',
-                'status': 'test',
-                'code': 'test'
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -364,11 +344,6 @@ class TestErrorCaseSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
-            params={
-                'patient': '9999999998',
-                'removalReason': 'test',
-                'supportingComment': 'test',
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
