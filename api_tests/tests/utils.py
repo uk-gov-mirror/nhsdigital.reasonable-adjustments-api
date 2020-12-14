@@ -32,7 +32,6 @@ class Utils:
                 'x-request-id': str(uuid.uuid4()),
             }
         )
-        print(response.text)
         time.sleep(1)
 
         return response.headers['etag']
