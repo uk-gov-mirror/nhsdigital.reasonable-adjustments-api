@@ -1,11 +1,11 @@
 const listGet =  {
-    method: 'GET',       
+    method: 'GET',
     path: '/List',
-    handler: (request, h) => { 
+    handler: (request, h) => {
         if (request.query["patient"] != '9999999998') {
             const path = 'listGETerror.json'
             return h.response(h.file(path)).code(404);
-        }        
+        }
         const path = 'listGET.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
@@ -17,10 +17,6 @@ const listPost = {
     method: 'POST',
     path: '/List',
     handler: (request, h) => {
-        if (request.query["patient"] != '9999999998') {
-            const path = 'listPOSTerror.json'
-            return h.response(h.file(path)).code(404);
-        } 
         const path = 'listPOST.json'
         return h.response(h.file(path)).code(201)
         .header('content-type', 'application/fhir+json')
@@ -35,10 +31,6 @@ const listPut = {
     method: 'PUT',
     path: '/List/{listID}',
     handler: (request, h) => {
-        if (request.query["patient"] != '9999999998') {
-            const path = 'listPUTerror.json'
-            return h.response(h.file(path)).code(404);
-        } 
         const path = 'listPUT.json'
         return h.file(path)
         .header('content-type', 'application/fhir+json')
