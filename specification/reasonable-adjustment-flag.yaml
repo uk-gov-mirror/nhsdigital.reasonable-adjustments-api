@@ -770,9 +770,6 @@ paths:
                 value:
                   $ref: components/examples/removerarecord.json
       parameters:
-        - $ref: '#/components/parameters/patient'
-        - $ref: '#/components/parameters/removalReason'
-        - $ref: '#/components/parameters/supportingComment'
         - $ref: '#/components/parameters/BearerAuthorization'
         - $ref: '#/components/parameters/RoleId'
         - $ref: '#/components/parameters/CorrelationID'
