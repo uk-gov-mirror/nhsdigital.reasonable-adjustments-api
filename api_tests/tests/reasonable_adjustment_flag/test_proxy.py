@@ -224,7 +224,6 @@ class TestProxyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
-    @pytest.mark.smoke
     def test_status_get(self):
         # Given
         expected_status_code = 200
