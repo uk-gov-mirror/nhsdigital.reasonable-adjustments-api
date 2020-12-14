@@ -260,6 +260,7 @@ class TestHappyCasesSuite:
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
+                'If-Match': 'abc123'
             },
             json=json.dumps({'message': 'test'})
         )
