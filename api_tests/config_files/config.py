@@ -46,7 +46,7 @@ ENDPOINTS = {
 INTERNAL_TESTING_INTERNAL_DEV = {
     'client_id': ENV['oauth']['client_id'],
     'client_secret': ENV['oauth']['client_secret'],
-    'redirect_url': 'https://example.org/callback',
+    'redirect_url': ENV['apps']['internal_testing_internal_dev']['redirect_url'],
     'endpoints': ENDPOINTS
 }
 
