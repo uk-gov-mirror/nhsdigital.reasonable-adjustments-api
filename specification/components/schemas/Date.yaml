@@ -1,0 +1,5 @@
+schema:
+  type: string
+  format: date-time
+  example: 'Tue, 23 Jul 2018 11:00:00 GMT'
+description: The current date.

@@ -6,11 +6,6 @@ properties:
     id:
         type: string
         example: "2acb0536-0a8f-48c9-8a2f-6ee82860f186"
-    fhir_comments:
-        type: array
-        items:
-            type: string
-            example: " xml example fileUpdateExample-UpdateConsentRequest.xml "
     meta:
         type: object
         properties:

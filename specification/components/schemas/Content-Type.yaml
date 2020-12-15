@@ -1,0 +1,4 @@
+schema:
+  type: string
+  example: application/fhir+json
+description: The content type of the response.

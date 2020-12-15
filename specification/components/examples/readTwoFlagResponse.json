@@ -1,0 +1,223 @@
+{
+    "resourceType": "Bundle",
+    "id": "fda1cad0-ba84-11e8-96f8-529269fb1459",
+    "type": "searchset",
+    "total": 2,
+    "link": [
+      {
+        "relation": "self",
+        "url": "https://clinicals.spineservices.nhs.uk/STU3/Flag?patient=999999998&status=active&category=https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=xml"
+      }
+    ],
+    "entry": [
+      {
+        "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Flag/9e63f370-ba72-11e8-96f8-529269fb1459",
+        "resource": {
+          "resourceType": "Flag",
+          "id": "9e63f370-ba72-11e8-96f8-529269fb1459",
+          "meta": {
+            "versionId": "2042385c-ba73-11e8-96f8-529269fb1459",
+            "lastUpdated": "2018-07-24T10:01:00+00:00",
+            "profile": [
+              "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
+            ]
+          },
+          "contained": [
+            {
+              "resourceType": "Provenance",
+              "id": "2042526a-ba73-11e8-96f8-529269fb1459",
+              "meta": {
+                "profile": [
+                  "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+                ]
+              },
+              "target": [
+                {
+                  "reference": "Flag/9e63f370-ba72-11e8-96f8-529269fb1459"
+                }
+              ],
+              "recorded": "2018-07-24T10:01:00+00:00",
+              "agent": [
+                {
+                  "role": [
+                    {
+                      "coding": [
+                        {
+                          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
+                          "code": "R1974",
+                          "display": "Community Learning Disabilities Nurse"
+                        }
+                      ]
+                    }
+                  ],
+                  "whoReference": {
+                    "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/4tr6ee6a9",
+                    "display": "Nurse N"
+                  },
+                  "onBehalfOfReference": {
+                    "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7",
+                    "display": "Some Hospital Learning Disability Support Department"
+                  }
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+              "extension": [
+                {
+                  "url": "created",
+                  "valueReference": {
+                    "reference": "#2042526a-ba73-11e8-96f8-529269fb1459"
+                  }
+                }
+              ]
+            },
+            {
+              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AdjustmentCategories-1",
+                    "code": "comms",
+                    "display": "Communication"
+                  }
+                ]
+              }
+            }
+          ],
+          "status": "active",
+          "category": {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
+                "code": "reasonable adjustments flag",
+                "display": "Reasonable Adjustments Flag"
+              }
+            ]
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1",
+                "code": "requiresinformationineasyread",
+                "display": "Requires information in Easyread"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "https://demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+          }
+        }
+      },
+      {
+        "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Flag/fda1e088-ba84-11e8-96f8-529269fb1459",
+        "resource": {
+          "resourceType": "Flag",
+          "id": "fda1e088-ba84-11e8-96f8-529269fb1459",
+          "meta": {
+            "versionId": "27e70bd4-ba85-11e8-96f8-529269fb1459",
+            "lastUpdated": "2018-06-22T10:01:00+00:00",
+            "profile": [
+              "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
+            ]
+          },
+          "contained": [
+            {
+              "resourceType": "Provenance",
+              "id": "27e7030a-ba85-11e8-96f8-529269fb1459",
+              "meta": {
+                "profile": [
+                  "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+                ]
+              },
+              "target": [
+                {
+                  "reference": "Flag/fda1e088-ba84-11e8-96f8-529269fb1459"
+                }
+              ],
+              "recorded": "2018-06-22T10:01:00+00:00",
+              "agent": [
+                {
+                  "role": [
+                    {
+                      "coding": [
+                        {
+                          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
+                          "code": "R0260",
+                          "display": "General Medical Practitioner"
+                        }
+                      ]
+                    }
+                  ],
+                  "whoReference": {
+                    "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/4tr6ff7f8",
+                    "display": "General Practitioner GP"
+                  },
+                  "onBehalfOfReference": {
+                    "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/B82025",
+                    "display": "DERWENT PRACTICE"
+                  }
+                }
+              ]
+            }
+          ],
+          "extension": [
+            {
+              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+              "extension": [
+                {
+                  "url": "created",
+                  "valueReference": {
+                    "reference": "#27e7030a-ba85-11e8-96f8-529269fb1459"
+                  }
+                }
+              ]
+            },
+            {
+              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentNotes-1",
+              "valueAnnotation": {
+                "time": "2018-06-22T10:01:00+00:00",
+                "text": "Added during consultation"
+              }
+            },
+            {
+              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+              "valueCodeableConcept": {
+                "coding": [
+                  {
+                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AdjustmentCategories-1",
+                    "code": "addsupport",
+                    "display": "Provision of Additional Support"
+                  }
+                ]
+              }
+            }
+          ],
+          "status": "active",
+          "category": {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
+                "code": "reasonable adjustments flag",
+                "display": "Reasonable Adjustments Flag"
+              }
+            ]
+          },
+          "code": {
+            "coding": [
+              {
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1",
+                "code": "patientnottobeleftalone",
+                "display": "Patient not to be left alone"
+              }
+            ]
+          },
+          "subject": {
+            "reference": "https://demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+          }
+        }
+      }
+    ]
+  }
