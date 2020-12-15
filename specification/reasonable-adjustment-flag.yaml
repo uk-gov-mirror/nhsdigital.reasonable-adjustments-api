@@ -92,8 +92,8 @@ info:
     | Purpose                                | Base URL                                 |
     | ---------------------------------------|------------------------------------------|
     | Sandbox                                | `https://sandbox.service.nhs.uk/reasonable-adjustment-flag`    |
-    | Integration test **(available Nov 2020)**  | `https://int.service.nhs.uk/reasonable-adjustment-flag`        |
-    | Production **(available Dec 2020/Jan 2021)** | `https://api.service.nhs.uk/reasonable-adjustment-flag`      |
+    | Integration test **(available Jan 2021)**  | `https://int.service.nhs.uk/reasonable-adjustment-flag`        |
+    | Production **(available Mar 2021)** | `https://api.service.nhs.uk/reasonable-adjustment-flag`      |
 
 
     ### Sandbox testing
@@ -108,7 +108,7 @@ info:
     ## Onboarding
     You need to get your software approved by us before it can go live with this API. We call this onboarding. The onboarding process can sometimes be quite long, so it’s worth planning well ahead.
 
-    We will provide further details about how to onboard onto the API in December 2020.
+    We will provide further details about how to onboard onto the API in January 2021.
 
     ## Using this API
     To check if a Reasonable Adjustment Flag exists:
