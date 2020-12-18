@@ -109,7 +109,7 @@ info:
     Our [integration test environment](https://digital.nhs.uk/developer/guides-and-documentation/testing#integration-testing):
     * is for formal integration testing
     * is stateful, so persists updates
-    * includes authorisation, with options for user-restricted access (with or without smartcard) and application-restricted access
+    * includes authorisation, with options for user-restricted access (with or without smartcard)
 
     To test updating patient details, you must set up your own test data.
 
