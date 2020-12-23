@@ -49,6 +49,8 @@ extends:
     apigee_deployments:
       - environment: internal-dev
         make_spec_visible: true
+        jinja_templates:
+          RA_TARGET_SERVER: spine-demographics
         post_deploy:
           - template: templates/tests.yml
             parameters:

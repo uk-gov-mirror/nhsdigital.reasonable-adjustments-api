@@ -57,7 +57,7 @@
         <Enabled>true</Enabled>
       </SSLInfo>
       <LoadBalancer>
-        <Server name="spine-demographics"/>
+        <Server name="{{ RA-TARGET-SERVER }}"/>
       </LoadBalancer>
       <Path>/STU3</Path>
     </HTTPTargetConnection>
