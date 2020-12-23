@@ -57,7 +57,7 @@
         <Enabled>true</Enabled>
       </SSLInfo>
       <LoadBalancer>
-        <Server name="{{ RA-TARGET-SERVER }}"/>
+        <Server name="{{ RA_TARGET_SERVER }}"/>
       </LoadBalancer>
       <Path>/STU3</Path>
     </HTTPTargetConnection>
