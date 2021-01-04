@@ -59,6 +59,8 @@ extends:
         jinja_templates:
             RA_TARGET_SERVER: spine-demographics
       - environment: internal-qa-sandbox
+        jinja_templates:
+            RA_TARGET_SERVER: spine-demographics
         make_spec_visible: true
         proxy_path: sandbox
       - environment: int
@@ -71,6 +73,8 @@ extends:
       - environment: sandbox
         make_spec_visible: true
         proxy_path: sandbox
+        jinja_templates:
+            RA_TARGET_SERVER: spine-demographics
         depends_on:
             - internal_qa
             - internal_qa_sandbox
