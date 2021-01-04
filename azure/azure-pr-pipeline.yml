@@ -56,6 +56,8 @@ extends:
             parameters:
               service_name: ${{ variables.service_name }}
       - environment: internal-dev-sandbox
+        jinja_templates:
+            RA_TARGET_SERVER: spine-demographics
         make_spec_visible: true
         proxy_path: sandbox
         post_deploy:
