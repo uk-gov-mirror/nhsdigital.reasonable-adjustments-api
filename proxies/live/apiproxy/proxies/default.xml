@@ -238,7 +238,11 @@
     <RouteRule name="NoRouteStatus">
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
-    <RouteRule name="ig3">
+    <RouteRule name="RAConsent">
+      <Condition>proxy.pathsuffix MatchesPath "/Consent"</Condition>
+      <TargetEndpoint>RAConsent</TargetEndpoint>
+    </RouteRule>
+  <RouteRule name="ig3">
         <TargetEndpoint>ig3</TargetEndpoint>
     </RouteRule>
 </ProxyEndpoint>
