@@ -205,7 +205,10 @@ class TestErrorCaseSuite:
     @pytest.mark.errors
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_consent_invalid_query_params(self):
+    @pytest.mark.parametrize('url,params', [(config.REASONABLE_ADJUSTMENTS_CONSENT, {'patient': 'test', 'category': 'test'}),
+                                            (config.REASONABLE_ADJUSTMENTS_LIST, {'patient': 'test', 'code': 'test'}),
+                                            (config.REASONABLE_ADJUSTMENTS_FLAG, {'patient': 'test', 'category': 'test'})])
+    def test_get_invalid_query_params(self, url, params):
         # Given
         expected_status_code = 404
         expected_response={
@@ -215,11 +218,8 @@ class TestErrorCaseSuite:
 
         # When
         response = requests.get(
-            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient':  'test',
-                'category': 'test'
-            },
+            url,
+            params,
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
@@ -233,39 +233,6 @@ class TestErrorCaseSuite:
         assert_that(actual_response['message_id']).is_not_empty()
         assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
-
-    @pytest.mark.errors
-    @pytest.mark.integration
-    @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_flag_invalid_query_params(self):
-        # Given
-        expected_status_code = 404
-        expected_response={
-            'error': 'invalid query parameters',
-            'error_description': 'required query parameters are missing or have empty values'
-        }
-
-        # When
-        response = requests.get(
-            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient':  'test',
-                'status':   'test',
-            },
-            headers={
-                'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
-                'x-request-id': str(uuid.uuid4()),
-            }
-        )
-        actual_response = json.loads(response.text)
-
-        # Then
-        assert_that(expected_status_code).is_equal_to(response.status_code)
-        assert_that(actual_response['message_id']).is_not_empty()
-        assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
-        assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
-
 
     @pytest.mark.errors
     @pytest.mark.integration
@@ -366,25 +333,26 @@ class TestErrorCaseSuite:
     @pytest.mark.errors
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_remove_ra_record_invalid_query_params(self):
+    def test_removerarecord_invalid_header_post(self):
         # Given
-        expected_status_code = 404
-        expected_response = {
-            'error': 'invalid query parameters',
-            'error_description': 'required query parameters are missing or have empty values'
+        expected_status_code=400
+        expected_response={
+            "error": "invalid header",
+            "error_description": "if-match is missing or invalid"
         }
 
+        # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
-            params={
-                'patient':  'test',
-                'removalReason': '',
-                'supportingComment': 'test',
-            },
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'If-Match': ''
+            },
+            data={
+                'message': 'test'
             }
         )
         actual_response = json.loads(response.text)
@@ -439,3 +407,20 @@ class TestErrorCaseSuite:
         assert_that(actual_response['message_id']).is_not_empty()
         assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
         assert_that(expected_response['error_description']).is_equal_to_ignoring_case(actual_response['error_description'])
+
+    @pytest.mark.errors
+    @pytest.mark.integration
+    def test_invalid_url(self):
+        # Given
+        expected_status_code = 404
+        expected_response = {
+            'error': "Resource Not Found"
+        }
+
+        # When
+        response = requests.get(url=config.REASONABLE_ADJUSTMENTS_BASE_URL + '/' + config.REASONABLE_ADJUSTMENTS_PROXY_PATH + '/test')
+        actual_response = json.loads(response.text)
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])

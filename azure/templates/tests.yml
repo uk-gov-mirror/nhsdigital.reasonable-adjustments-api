@@ -13,10 +13,13 @@ steps:
       displayName: Setup integration tests
 
     - bash: |
+
+        mkdir -p "$(pwd)/reports"
+
         docker run --entrypoint "pytest" -v $(pwd)/reports:/var/api_tests/reports \
           -e BASE_URL="https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk/oauth2" \
-          -e CLIENT_ID="$(CLIENT_ID)" \
-          -e CLIENT_SECRET="$(CLIENT_SECRET)" \
+          -e CLIENT_ID="$(client_key)" \
+          -e CLIENT_SECRET="$(client_secret)" \
           -e REDIRECT_URI="https://nhsd-apim-testing-$(APIGEE_ENVIRONMENT).herokuapp.com/callback" \
           -e AUTHENTICATE_URL="https://nhsd-apim-testing-$(APIGEE_ENVIRONMENT).herokuapp.com/" \
           -e API_URL="https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk/hello-world/hello/user" \
@@ -30,7 +33,8 @@ steps:
           -e REASONABLE_ADJUSTMENTS_BASE_URL=https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk \
           -e REASONABLE_ADJUSTMENTS_PROXY_PATH=$(SERVICE_BASE_PATH) \
           -e REASONABLE_ADJUSTMENTS_PROXY_NAME=$(FULLY_QUALIFIED_SERVICE_NAME) \
-          reasonable-adjustments-api/test-env:latest   -v ${{ parameters.test_tag }} --junitxml=/var/api_tests/reports/test_report.xml tests
+          -e STATUS_APIKEY="$(status-endpoint-api-key)" \
+          reasonable-adjustments-api/test-env:latest  -m integration -v ${{ parameters.test_tag }} --junitxml=/var/api_tests/reports/test_report.xml tests
 
       workingDirectory: $(Pipeline.Workspace)/s/${{ parameters.service_name }}/$(SERVICE_ARTIFACT_NAME)/api_tests
       displayName: 'Run Integration Tests'

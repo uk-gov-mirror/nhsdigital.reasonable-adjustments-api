@@ -3,11 +3,6 @@ properties:
     resourceType: 
         type: string
         example: Consent
-    fhir_comments:
-        type: array
-        items:
-            type: string
-            example: ' CreateExample-CreateConsentRequest.xml '
     meta:
         type: object
         properties:

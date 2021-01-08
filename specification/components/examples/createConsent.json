@@ -1,8 +1,5 @@
 {
     "resourceType": "Consent",
-    "fhir_comments": [
-      " CreateExample-CreateConsentRequest.xml "
-    ],
     "meta": {
       "profile": [
         "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
@@ -34,9 +31,14 @@
         ]
       }
     ],
-    "patient": {
-      "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
-    },
+    "patient" : {
+      "identifier": [
+      {
+          "system": "https://fhir.nhs.uk/Id/nhs-number",
+          "value": "999999998"
+      }
+  ]
+},
     "policy": [
       {
         "authority": "https://www.gov.uk/",

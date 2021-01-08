@@ -175,8 +175,8 @@
         <Flow name="removeRarecord-POST">
             <Request>
                 <Step>
-                  <Name>RaiseFault.InvalidQueryParams</Name>
-                  <Condition>request.queryparam.patient = null or request.queryparam.patient = "" or request.queryparam.removalReason = null or request.queryparam.removalReason = "" or request.queryparam.supportingComment = null or request.queryparam.supportingComment = ""</Condition>
+                  <Name>RaiseFault.Invalid-If-Match</Name>
+                  <Condition>(request.header.If-Match = null or request.header.If-Match = "")</Condition>
                 </Step>
                 <Step>
                   <Name>ExtractVariables.EndpointName</Name>
@@ -190,6 +190,33 @@
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
         </Flow>
+        <Flow name="StatusEndpoint">
+            <Request>
+                <Step>
+                  <Name>KeyValueMapOperations.GetSecureVariables</Name>
+                </Step>
+                <Step>
+                  <Name>RaiseFault.401Unauthorized</Name>
+                  <Condition>private.apigee.status-endpoint-api-key NotEquals request.header.apikey</Condition>
+                </Step>
+                <Step>
+                  <Name>ServiceCallout.CallSpineHealthcheck</Name>
+                </Step>
+            </Request>
+            <Response>
+                <Step>
+                  <Name>JavaScript.SetStatusResponse</Name>
+                </Step>
+            </Response>
+            <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+        </Flow>
+        <Flow name="InvalidEndpoint">
+          <Request>
+              <Step>
+                  <Name>RaiseFault.404NotFound</Name>
+              </Step>
+          </Request>
+      </Flow>
     </Flows>
     <PostClientFlow name="PostClientFlow">
         <Response>
@@ -208,7 +235,10 @@
     <RouteRule name="NoRoutePing">
         <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
-    <RouteRule name="apim">
-        <TargetEndpoint>apim</TargetEndpoint>
+    <RouteRule name="NoRouteStatus">
+      <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
+    </RouteRule>
+    <RouteRule name="ig3">
+        <TargetEndpoint>ig3</TargetEndpoint>
     </RouteRule>
 </ProxyEndpoint>
