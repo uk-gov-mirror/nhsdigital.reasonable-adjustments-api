@@ -59,11 +59,11 @@
       </Properties>
       <SSLInfo>
         <Enabled>true</Enabled>
+        <ClientAuthEnabled>true</ClientAuthEnabled>
+        <KeyStore>ref://backends-keystore</KeyStore>
+        <KeyAlias>int.api.service.nhs.uk</KeyAlias>
       </SSLInfo>
-      <LoadBalancer>
-        <Server name="ig3"/>
-      </LoadBalancer>
-      <Path>/STU3/RAConsent</Path>
+      <URL>https://veit07.devspineservices.nhs.uk/STU3</URL>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">
