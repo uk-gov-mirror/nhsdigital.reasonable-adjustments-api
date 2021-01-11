@@ -8,6 +8,9 @@ steps:
       workingDirectory: $(Pipeline.Workspace)/s/${{ parameters.service_name }}/$(SERVICE_ARTIFACT_NAME)/api_tests
       displayName: Setup integration tests
     - bash: |
+
+          mkdir -p "$(pwd)/reports"
+
           docker run --entrypoint "pytest" -v $(pwd)/reports:/var/api_tests/reports \
             -e BASE_URL="https://$(APIGEE_ENVIRONMENT).api.service.nhs.uk/oauth2-no-smartcard" \
             -e CLIENT_ID="$(RA_INT_CLIENT_ID)" \

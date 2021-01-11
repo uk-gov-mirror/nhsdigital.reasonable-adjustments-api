@@ -1,9 +1,6 @@
 {
   "resourceType": "Consent",
   "id": "f1dc0ac6-45ff-4d2b-bf91-793971e3e286",
-  "fhir_comments": [
-    " CreateExample-CreateConsentResponse.xml "
-  ],
   "meta": {
     "versionId": "cccacb16-e087-45ee-8ddd-5fbd6223e5a2",
     "lastUpdated": "2018-07-23T11:00:00+00:00",
@@ -15,9 +12,6 @@
     {
       "resourceType": "Provenance",
       "id": "e0531fd1-212d-4a97-a7a9-d17cec9a6af2",
-      "fhir_comments": [
-        " Provenance constructed and persisted "
-      ],
       "meta": {
         "profile": [
           "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
@@ -92,8 +86,13 @@
     }
   ],
   "patient": {
-    "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
-  },
+    "identifier": [
+    {
+      "system": "https://fhir.nhs.uk/Id/nhs-number",
+      "value": "999999998"
+    }
+  ]
+},
   "policy": [
     {
       "authority": "https://www.gov.uk/",

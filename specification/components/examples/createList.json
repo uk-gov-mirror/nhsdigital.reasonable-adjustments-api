@@ -40,8 +40,13 @@
               "display": "Learning Disability(s)"
             }
           },
-          "subject": {
-            "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+          "patient": {
+            "identifier": [
+            {
+              "system": "https://fhir.nhs.uk/Id/nhs-number",
+              "value": "999999998"
+            }
+          ]
           }
         }
       },
@@ -85,8 +90,13 @@
         "display": "Reasonable adjustments for health and care access"
       }
     },
-    "subject": {
-      "reference": "demographics.spineservices.nhs.uk/STU3/Patient/999999998"
+    "patient": {
+      "identifier": [
+      {
+        "system": "https://fhir.nhs.uk/Id/nhs-number",
+        "value": "999999998"
+      }
+    ]
     },
     "date": "2018-07-23T11:00:00+00:00",
     "entry": [
