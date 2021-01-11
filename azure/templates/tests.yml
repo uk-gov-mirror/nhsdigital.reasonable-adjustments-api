@@ -7,7 +7,7 @@ parameters:
 
 steps:
     - bash: |
-          docker build -t reasonable-adjustments-api/test-env:latest .
+          docker build -t reasonable-adjustments-api/test-env:latest -f api_tests/Dockerfile .
 
       workingDirectory: $(Pipeline.Workspace)/s/${{ parameters.service_name }}/$(SERVICE_ARTIFACT_NAME)
       displayName: Setup integration tests
