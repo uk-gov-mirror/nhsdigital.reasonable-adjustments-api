@@ -54,7 +54,6 @@ class Utils:
             }
         )
         time.sleep(1)
-
         return response.headers['etag']
 
     @staticmethod
@@ -71,6 +70,7 @@ class Utils:
                 'content-type': 'application/fhir+json'
             })
 
+        time.sleep(1)
         assert_that(expected_status_code).is_equal_to(response.status_code)
         return response
 
@@ -90,6 +90,7 @@ class Utils:
             }
         )
 
+        time.sleep(1)
         assert_that(expected_status_code).is_equal_to(response.status_code)
         return response
 
@@ -110,5 +111,5 @@ class Utils:
             }
         )
 
-        time.sleep(2)
+        time.sleep(1)
         return get_consent_details(response)
