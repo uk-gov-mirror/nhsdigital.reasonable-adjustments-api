@@ -137,6 +137,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get(self):
@@ -148,14 +149,15 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
+                'patient': '9692247317',
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': '093895563513',
                 'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json'
             }
         )
 
