@@ -1,7 +1,9 @@
 import pytest
 import json
 import requests
-from api_tests.scripts.apigee_api import ApigeeDebugApi
+
+from api_tests.tests import request_bank
+from api_tests.tests.request_bank import Request
 from api_tests.tests.utils import Utils
 from api_tests.config_files import config
 from assertpy import assert_that
@@ -424,3 +426,32 @@ class TestErrorCaseSuite:
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
         assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
+
+    @pytest.mark.errors
+    @pytest.mark.integration
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_duplicate_consent_record(self):
+        # Pre-Req
+        Utils.send_consent_post(self.token)
+
+        # Given
+        expected_status_code = 422
+
+        # When
+        response = requests.post(
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
+            json=request_bank.get_body(Request.CONSENT_POST),
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': '093895563513',
+                'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'Accept': 'application/fhir+json'
+            }
+        )
+
+        response_body = json.loads(response.text)
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that('duplicate').is_equal_to(response_body['issue'][0]['code'])
