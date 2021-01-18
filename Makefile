@@ -20,7 +20,7 @@ test:
 
 lint:
 	npm run lint
-	cd docker/reasonable-adjustment-flag-sandbox && npm run lint && cd ..
+	cd docker/reasonable-adjustment-flag-sandbox && npm run lint && cd ../..
 	poetry run flake8 **/*.py
 
 publish:
