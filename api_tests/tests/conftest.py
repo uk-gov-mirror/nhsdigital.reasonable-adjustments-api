@@ -61,11 +61,12 @@ def setup(request):
     yield  # Handover to test
 
     # Teardown
-    # Return patient to previous state by removing consent record
+    # Return patient to previous state
+
     if hasattr(request.cls, 'token'):
-        response = Utils.send_get_consent(request.cls.token)
-        if response['consent_exists']:
-            Utils.send_consent_put(request.cls.token, response['consent_id'], response['version_id'])
+
+        # Call this regardless whether any flags exist
+        Utils.send_raremoverecord_post(request.cls.token)
 
     try:
         # Close any lingering sessions
