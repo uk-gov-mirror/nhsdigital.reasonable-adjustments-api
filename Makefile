@@ -9,6 +9,7 @@ install-python:
 	poetry install
 
 install-node:
+	npm install -g yarn
 	npm install
 	cd docker/reasonable-adjustment-flag-sandbox && npm install && cd ../../tests && npm install
 
@@ -19,12 +20,12 @@ test:
 	npm run test
 
 lint:
-	npm run lint
-	cd docker/reasonable-adjustment-flag-sandbox && npm run lint && cd ../..
+	yarn run lint
+	cd docker/reasonable-adjustment-flag-sandbox && yarn run lint && cd ../..
 	poetry run flake8 **/*.py
 
 publish:
-	npm run publish 2> /dev/null
+	yarn run publish 2> /dev/null
 
 serve: update-examples
 	npm run serve
