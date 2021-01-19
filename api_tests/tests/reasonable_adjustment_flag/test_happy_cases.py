@@ -15,13 +15,6 @@ from api_tests.tests.utils import Utils
 class TestHappyCasesSuite:
     """ A test suite to verify all the happy path endpoints """
 
-    @classmethod
-    def setup_class(cls):
-        """ setup any state specific to the execution of the given class (which
-        usually contains tests).
-        """
-        print('hello')
-
     @pytest.mark.happy_path
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
