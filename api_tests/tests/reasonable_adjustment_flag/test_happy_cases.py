@@ -138,7 +138,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
-    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_without_flag(self):
         # Given
@@ -168,7 +167,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
-    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_with_flag(self):
         # Pre-Req: Patient record with both a consent and flag
@@ -275,13 +273,13 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             params={
-                'patient': '9692247317',
+                'patient': '9999999998',
                 'status': 'active',
                 'code': 'http://snomed.info/sct|1094391000000102'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
             }
         )
