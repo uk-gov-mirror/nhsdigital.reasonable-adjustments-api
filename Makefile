@@ -9,25 +9,26 @@ install-python:
 	poetry install
 
 install-node:
-	npm install
-	cd docker/reasonable-adjustment-flag-sandbox && npm install && cd ../../tests && npm install
+	npm install -g yarn
+	yarn install
+	cd docker/reasonable-adjustment-flag-sandbox && yarn install && cd ../../tests && yarn install
 
 install-hooks:
 	cp scripts/pre-commit .git/hooks/pre-commit
 
 test:
-	npm run test
+	yarn run test
 
 lint:
-	npm run lint
-	cd docker/reasonable-adjustment-flag-sandbox && npm run lint && cd ..
+	yarn run lint
+	cd docker/reasonable-adjustment-flag-sandbox && yarn run lint && cd ..
 	poetry run flake8 **/*.py
 
 publish:
-	npm run publish 2> /dev/null
+	yarn run publish 2> /dev/null
 
 serve: update-examples
-	npm run serve
+	yarn run serve
 
 clean:
 	rm -rf build
@@ -42,7 +43,7 @@ update-examples: generate-examples
 	make publish
 
 check-licenses:
-	npm run check-licenses
+	yarn run check-licenses
 	scripts/check_python_licenses.sh
 
 deploy-proxy: update-examples
@@ -70,4 +71,4 @@ release: clean publish build-proxy
 	cp -r specification dist
 
 sandbox: update-examples
-	cd docker/reasonable-adjustment-flag-sandbox && npm run start
+	cd docker/reasonable-adjustment-flag-sandbox && yarn run start
