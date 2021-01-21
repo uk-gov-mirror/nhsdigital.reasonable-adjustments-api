@@ -2,8 +2,7 @@ import requests
 import time
 import json
 
-from api_tests.config_files.config import REASONABLE_ADJUSTMENTS_CONSENT, REASONABLE_ADJUSTMENTS_FLAG, \
-    REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD
+from api_tests.config_files import config
 from assertpy import assert_that
 import uuid
 
@@ -30,7 +29,7 @@ class Utils:
     @staticmethod
     def send_request(self) -> requests.Response:
         response = requests.get(
-            url=REASONABLE_ADJUSTMENTS_CONSENT,
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={'patient': 'test', 'category': 'test', 'status': 'test'},
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -48,7 +47,7 @@ class Utils:
             params=params,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
             }
         )
@@ -60,11 +59,11 @@ class Utils:
         expected_status_code = 201
 
         response = requests.post(
-            url=REASONABLE_ADJUSTMENTS_CONSENT,
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             json=request_bank.get_body(Request.CONSENT_POST),
             headers={
                 'Authorization': f'Bearer {auth_token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             })
@@ -76,15 +75,15 @@ class Utils:
     @staticmethod
     def send_consent_get(auth_token: str):
         response = requests.get(
-            url=REASONABLE_ADJUSTMENTS_CONSENT,
+            url= config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': '9692247317',
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
                 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
                 'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {auth_token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'Accept': 'application/fhir+json'
             }
@@ -96,15 +95,15 @@ class Utils:
     @staticmethod
     def send_flag_get(auth_token: str):
         response = requests.get(
-            url=REASONABLE_ADJUSTMENTS_FLAG,
+            url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': '9692247317',
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
                 'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
                 'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {auth_token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'Accept': 'application/fhir+json'
@@ -117,10 +116,10 @@ class Utils:
     @staticmethod
     def send_flag_post(auth_token: str):
         response = requests.post(
-            url=REASONABLE_ADJUSTMENTS_FLAG,
+            url=config.REASONABLE_ADJUSTMENTS_FLAG,
             headers={
                 'Authorization': f'Bearer {auth_token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             },
@@ -132,10 +131,10 @@ class Utils:
     @staticmethod
     def send_raremoverecord_post(auth_token: str):
         response = requests.post(
-            url=REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
+            url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
             headers={
                 'Authorization': f'Bearer {auth_token}',
-                'nhsd-session-urid': '093895563513',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'If-Match': 'W/"1"'
