@@ -17,11 +17,22 @@ proxies = {
 }
 
 
+def switch_scenario(scenario: str):
+    cmd_url = f'http://mitm.it/cmd/scenario.{scenario}'
+    requests.get(
+        proxies=proxies,
+        url=cmd_url,
+        verify=cert_path,
+    )
+
+
 class TestSaCasesSuite:
 
     @pytest.mark.solution_assurance
+    @pytest.mark.debug
     def test_ra_api_cs_024(self):
         # Given
+        switch_scenario("RA-API-CS-024")
         expected_status_code = 500
 
         # When
@@ -29,9 +40,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-024',
-            }
         )
 
         # Then
@@ -40,6 +48,7 @@ class TestSaCasesSuite:
     @pytest.mark.solution_assurance
     def test_ra_api_cs_025(self):
         # Given
+        switch_scenario("RA-API-CS-025")
         expected_status_code = 500
 
         # When
@@ -58,6 +67,7 @@ class TestSaCasesSuite:
     @pytest.mark.solution_assurance
     def test_ra_api_cs_033(self):
         # Given
+        switch_scenario("RA-API-CS-033")
         expected_status_code = 500
 
         # When
@@ -77,6 +87,7 @@ class TestSaCasesSuite:
     @pytest.mark.solution_assurance
     def test_ra_api_cs_034(self):
         # Given
+        switch_scenario("RA-API-CS-034")
         expected_status_code = 500
 
         # When
@@ -95,6 +106,7 @@ class TestSaCasesSuite:
     @pytest.mark.solution_assurance
     def test_ra_api_cs_040(self):
         # Given
+        switch_scenario("RA-API-CS-040")
         expected_status_code = 500
 
         # When
@@ -113,6 +125,7 @@ class TestSaCasesSuite:
     @pytest.mark.solution_assurance
     def test_ra_api_cs_041(self):
         # Given
+        switch_scenario("RA-API-CS-041")
         expected_status_code = 500
 
         # When
@@ -131,6 +144,7 @@ class TestSaCasesSuite:
     @pytest.mark.solution_assurance
     def test_ra_api_cs_043(self):
         # Given
+        switch_scenario("RA-API-CS-043")
         expected_status_code = 500
 
         # When

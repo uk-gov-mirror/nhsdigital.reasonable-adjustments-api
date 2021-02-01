@@ -3,20 +3,57 @@ from abc import abstractmethod
 from mitmproxy import http
 
 
+class ScenarioManager:
+    current_scenario = ''
+
+    base_cmd_url = "http://mitm.it/cmd"
+    cmd_prefix = "scenario."
+
+    def get_scenario_from_url(self, flow: http.HTTPFlow) -> str:
+        if self.is_cmd_url(flow):
+            url = flow.request.pretty_url
+            seg = url.split('/')
+
+            return seg[-1][len(self.cmd_prefix):]
+        else:
+            return ''
+
+    def is_cmd_url(self, flow: http.HTTPFlow) -> bool:
+        return flow.request.pretty_url.startswith(self.base_cmd_url)
+
+
+scenario_manager = ScenarioManager()
+
+
+class ScenarioMangerAddon:
+    def request(self, flow: http.HTTPFlow):
+        scenario = scenario_manager.get_scenario_from_url(flow)
+        if scenario != '':
+            scenario_manager.current_scenario = scenario
+            print(f'[+] Switch to Scenario: ${scenario}')
+
+            flow.response = http.HTTPResponse.make(
+                status_code=200,
+                content=f'scenario ${scenario} has been selected'
+            )
+
+
 class TestScenario:
     def __init__(self, risk_id: str, risk_group: str, description: str, cause: str):
         self.risk_id = risk_id
         self.risk_group = risk_group
         self.description = description
         self.cause = cause
+        self.scenario_manager = scenario_manager
 
     def request(self, flow):
-        if flow.request.headers.get('Test-Scenario-Id') == self.risk_id:
+        if (scenario_manager.current_scenario == self.risk_id) and (not scenario_manager.is_cmd_url(flow)):
             print(f'[+] Scenario ID: {self.risk_id}')
             print(f'     Risk Group: {self.risk_group}')
             print(f'    Description: {self.description}')
             print(f'          Cause: {self.cause}')
             self.intercept(flow)
+            scenario_manager.current_scenario = ''
 
     @abstractmethod
     def intercept(self, flow):
@@ -120,6 +157,7 @@ class RaApiCs043(TestScenario):
             status_code=500,
         )
 
+
 test_scenarios = [
     RaApiCs024(),
     RaApiCs025(),
@@ -138,5 +176,6 @@ class MitmproxyTestHelper:
 
 
 addons = [
-    MitmproxyTestHelper()
+    ScenarioMangerAddon(),
+    MitmproxyTestHelper(),
 ]
