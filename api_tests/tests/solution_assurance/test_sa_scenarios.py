@@ -29,7 +29,6 @@ def switch_scenario(scenario: str):
 class TestSaCasesSuite:
 
     @pytest.mark.solution_assurance
-    @pytest.mark.debug
     def test_ra_api_cs_024(self):
         # Given
         switch_scenario("RA-API-CS-024")
@@ -56,9 +55,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-025',
-            },
         )
 
         # Then
@@ -75,9 +71,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-033',
-            },
         )
 
         # Then
@@ -95,9 +88,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-034',
-            },
         )
 
         # Then
@@ -114,9 +104,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-040',
-            },
         )
 
         # Then
@@ -133,9 +120,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-041',
-            },
         )
 
         # Then
@@ -152,9 +136,6 @@ class TestSaCasesSuite:
             proxies=proxies,
             verify=cert_path,
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
-            headers={
-                'Test-Scenario-Id': 'RA-API-CS-043',
-            },
         )
 
         # Then
