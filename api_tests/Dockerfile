@@ -7,7 +7,11 @@ LABEL maintainer="API Management Team"
 RUN mkdir -p /var/api_tests/
 
 # Set up test environment
-COPY "." "/var/api_tests"
+COPY "api_tests" "/var/api_tests"
+
+# Copy over the specification examples
+COPY "specification" "/var/specification"
+
 RUN pip install --upgrade pip
 RUN pip install -r /var/api_tests/requirements.txt
 

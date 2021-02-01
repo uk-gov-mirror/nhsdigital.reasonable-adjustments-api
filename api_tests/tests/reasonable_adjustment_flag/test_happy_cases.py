@@ -1,9 +1,10 @@
 import json
 import uuid
-
 import pytest
 import requests
 from assertpy import assert_that
+from api_tests.tests import request_bank
+from api_tests.tests.request_bank import Request
 
 from api_tests.config_files import config
 from api_tests.tests.utils import Utils
@@ -11,12 +12,12 @@ from api_tests.tests.utils import Utils
 
 @pytest.mark.usefixtures("setup")
 class TestHappyCasesSuite:
-    """ A test suite to verify all the happy path oauth endpoints """
+    """ A test suite to verify all the happy path endpoints """
 
     @pytest.mark.happy_path
-    @pytest.mark.sandbox
+    @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_consent_get(self):
+    def test_consent_get_without_consent(self):
         # Given
         expected_status_code = 200
 
@@ -24,21 +25,58 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
             params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active',
+                '_from': 'json'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
+                'Accept': 'application/fhir+json'
             }
         )
 
         # Then
+        result_dict = json.loads(response.text)
         assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(result_dict['total']).is_equal_to(0) # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_consent_get_with_consent(self):
+        # Pre-Req
+        Utils.send_consent_post(self.token)
+
+        # Given
+        expected_status_code = 200
+
+        # When
+        response = requests.get(
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
+            params={
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active',
+                '_from': 'json'
+            },
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
+                'x-request-id': str(uuid.uuid4()),
+                'Accept': 'application/fhir+json'
+            }
+        )
+
+        # Then
+        result_dict = json.loads(response.text)
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a consent flag
+
+    @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
@@ -48,10 +86,10 @@ class TestHappyCasesSuite:
         # When
         response = requests.post(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            json=json.dumps({'message': 'test'}),
+            json=request_bank.get_body(Request.CONSENT_POST),
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json'
             }
@@ -61,29 +99,36 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
+        # Pre-Req
+        Utils.send_consent_post(self.token)
+
         # Given
         expected_status_code = 200
-        etag = Utils.get_etag(self,
-                              config.REASONABLE_ADJUSTMENTS_CONSENT,
-                              params={
-                                  'patient': '9999999998',
-                                  'category': 'test',
-                                  'status': 'test'
-                              })
+
+        # And
+        consent = Utils.send_consent_get(self.token)
+        consent_id = consent['id']
+        version_id = consent['version']
+
+        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
+        if self.sandbox is True:
+            consent_id = '1'
+            version_id = 'W/"1"'
 
         # When
         response = requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/test',
-            data=json.dumps({'message': 'test'}),
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/' + consent_id,
+            json=request_bank.get_body(Request.CONSENT_PUT),
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'If-Match': etag
+                'If-Match': version_id
             }
         )
 
@@ -91,9 +136,41 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
-    @pytest.mark.sandbox
+    @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_flag_get(self):
+    def test_flag_get_without_flag(self):
+        # Given
+        expected_status_code = 200
+
+        # When
+        response = requests.get(
+            url=config.REASONABLE_ADJUSTMENTS_FLAG,
+            params={
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active'
+            },
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
+                'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'Accept': 'application/fhir+json'
+            }
+        )
+
+        # Then
+        assert_that(expected_status_code).is_equal_to(response.status_code)
+        result_dict = json.loads(response.text)
+        assert_that(result_dict['total']).is_equal_to(0)  # Validate patient record does not contain a consent flag
+
+    @pytest.mark.happy_path
+    @pytest.mark.integration
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_flag_get_with_flag(self):
+        # Pre-Req: Patient record with both a consent and flag
+        Utils.send_consent_post(self.token)
+        Utils.send_flag_post(self.token)
 
         # Given
         expected_status_code = 200
@@ -102,24 +179,32 @@ class TestHappyCasesSuite:
         response = requests.get(
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             params={
-                'patient': '9999999998',
-                'category': 'test',
-                'status': 'test'
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'Accept': 'application/fhir+json'
             }
         )
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
+        result_dict = json.loads(response.text)
+        assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a flag
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
+        # Pre-Req: Patient has a consent
+        Utils.send_consent_post(self.token)
+
         # Given
         expected_status_code = 201
 
@@ -128,41 +213,49 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json'
+                'content-type': 'application/fhir+json',
+                'Accept': 'application/fhir+json'
             },
-            json=json.dumps({'message': 'test'})
+            json=request_bank.get_body(Request.FLAG_POST),
         )
 
         # Then
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_put(self):
+        # Pre-Req: Patient has both a consent and flag
+        Utils.send_consent_post(self.token)
+        Utils.send_flag_post(self.token)
+        get_flag_response = Utils.send_flag_get(self.token)
+
         # Given
         expected_status_code = 200
-        etag = Utils.get_etag(self,
-                              config.REASONABLE_ADJUSTMENTS_CONSENT,
-                              params={
-                                  'patient': '9999999998',
-                                  'category': 'test',
-                                  'status': 'test',
-                              })
+        flag_id = get_flag_response['id']
+        version_id = get_flag_response['version']
+
+        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
+        if self.sandbox is True:
+            flag_id = '1'
+            version_id = 'W/"1"'
 
         # When
         response = requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
+            url=config.REASONABLE_ADJUSTMENTS_FLAG + '/' + flag_id,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'if-match': etag,
+                'Accept': 'application/fhir+json',
+                'If-match': version_id,
             },
-            data=json.dumps({'message': 'test'})
+            json=request_bank.get_body(Request.FLAG_PUT)
         )
 
         # Then
@@ -180,8 +273,8 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_LIST,
             params={
                 'patient': '9999999998',
-                'status': 'test',
-                'code': 'test'
+                'status': 'active',
+                'code': 'http://snomed.info/sct|1094391000000102'
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
@@ -246,9 +339,13 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_post(self):
+        # Pre_Req : Patient record with a consent
+        Utils.send_consent_post(self.token)
+
         # Given
         expected_status_code = 200
 
@@ -257,12 +354,12 @@ class TestHappyCasesSuite:
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'If-Match': 'abc123'
+                'If-Match': 'W/"1"'
             },
-            json=json.dumps({'message': 'test'})
+            json=request_bank.get_body(Request.REMOVE_RA_RECORD_POST)
         )
 
         # Then

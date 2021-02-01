@@ -68,6 +68,7 @@ release: clean publish build-proxy
 	cp -r build/. dist
 	cp -r api_tests dist
 	cp -r tests dist
+	cp -r specification dist
 
 sandbox: update-examples
 	cd docker/reasonable-adjustment-flag-sandbox && npm run start

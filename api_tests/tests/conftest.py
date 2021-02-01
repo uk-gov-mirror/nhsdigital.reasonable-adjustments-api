@@ -2,6 +2,7 @@ import pytest
 
 from api_tests.config_files import config
 from api_tests.steps.check_oauth import CheckOauth
+from api_tests.tests.utils import Utils
 
 
 def _get_parametrized_values(request):
@@ -17,7 +18,9 @@ def get_token_internal_dev(request):
     if 'sandbox' in config.REASONABLE_ADJUSTMENTS_BASE_URL:
         # auth token is not required when executing against sandbox
         setattr(request.cls, 'token', None)
+        setattr(request.cls, 'sandbox', True)
     else:
+        setattr(request.cls, 'sandbox', False)
         return _get_token(request, config.INTERNAL_TESTING_INTERNAL_DEV)
 
 
@@ -40,7 +43,6 @@ def _get_token(request, creds):
     return oauth_endpoints
 
 
-@pytest.fixture()
 def get_refresh_token(request, get_token):
     """Get the refresh token and assign it to the test instance"""
     # Requesting a refresh token will expire the previous access token
@@ -48,7 +50,7 @@ def get_refresh_token(request, get_token):
     setattr(request.cls, 'refresh_token', refresh_token['refresh_token'])
 
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def setup(request):
     """This function is called before each test is executed"""
 
@@ -59,6 +61,13 @@ def setup(request):
     yield  # Handover to test
 
     # Teardown
+    # Return patient to previous state
+
+    if hasattr(request.cls, 'token'):
+
+        # Call this regardless whether any flags exist
+        Utils.send_raremoverecord_post(request.cls.token)
+
     try:
         # Close any lingering sessions
         request.cls.test.session.close()
