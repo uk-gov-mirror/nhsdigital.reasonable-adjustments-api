@@ -66,35 +66,28 @@ def intercept_ra_api_cs_024(flow: http.HTTPFlow):
     )
 
 
-ra_api_cs_024 = {
-    'risk_id': 'RA-API-CS-024',
-    'risk_group': 'Create a new Reasonable Adjustment Flag',
-    'description': 'Connecting System fails to notify user a new Reasonable Adjustment Flag has NOT been successfully created.',
-    'cause': 'Connecting system fails to correctly process response from RA API (System level)',
-    'intercept': intercept_ra_api_cs_024
-}
-
-
 def intercept_ra_api_cs_025(flow: http.HTTPFlow):
     flow.response = http.HTTPResponse.make(
         status_code=500,
     )
 
 
-ra_api_cs_025 = {
-    'risk_id': 'RA-API-CS-025',
-    'risk_group': 'Create a new Reasonable Adjustment Flag',
-    'description': 'Connecting System fails to notify user a new Reasonable Adjustment Flag has NOT been successfully created.',
-    'cause': 'Connecting system fails to correctly present the data returned from RA API (Presentation layer)',
-    'intercept': intercept_ra_api_cs_025
-    # 'intercept': flow:
-}
-
 scenarios = [
-    ra_api_cs_024,
-    ra_api_cs_025,
+    {
+        'risk_id': 'RA-API-CS-024',
+        'risk_group': 'Create a new Reasonable Adjustment Flag',
+        'description': 'Connecting System fails to notify user a new Reasonable Adjustment Flag has NOT been successfully created.',
+        'cause': 'Connecting system fails to correctly process response from RA API (System level)',
+        'intercept': intercept_ra_api_cs_024
+    },
+    {
+        'risk_id': 'RA-API-CS-025',
+        'risk_group': 'Create a new Reasonable Adjustment Flag',
+        'description': 'Connecting System fails to notify user a new Reasonable Adjustment Flag has NOT been successfully created.',
+        'cause': 'Connecting system fails to correctly present the data returned from RA API (Presentation layer)',
+        'intercept': intercept_ra_api_cs_025
+    },
 ]
-
 
 
 def sa_request(flow: http.HTTPFlow):
