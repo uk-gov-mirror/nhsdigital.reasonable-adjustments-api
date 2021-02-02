@@ -60,6 +60,47 @@ class TestScenario:
         pass
 
 
+def intercept_ra_api_cs_024(flow: http.HTTPFlow):
+    flow.response = http.HTTPResponse.make(
+        status_code=500,
+    )
+
+
+ra_api_cs_024 = {
+    'risk_id': 'RA-API-CS-024',
+    'risk_group': 'Create a new Reasonable Adjustment Flag',
+    'description': 'Connecting System fails to notify user a new Reasonable Adjustment Flag has NOT been successfully created.',
+    'cause': 'Connecting system fails to correctly process response from RA API (System level)',
+    'intercept': intercept_ra_api_cs_024
+}
+
+
+def intercept_ra_api_cs_025(flow: http.HTTPFlow):
+    flow.response = http.HTTPResponse.make(
+        status_code=500,
+    )
+
+
+ra_api_cs_025 = {
+    'risk_id': 'RA-API-CS-025',
+    'risk_group': 'Create a new Reasonable Adjustment Flag',
+    'description': 'Connecting System fails to notify user a new Reasonable Adjustment Flag has NOT been successfully created.',
+    'cause': 'Connecting system fails to correctly present the data returned from RA API (Presentation layer)',
+    'intercept': intercept_ra_api_cs_025
+    # 'intercept': flow:
+}
+
+scenarios = [
+    ra_api_cs_024,
+    ra_api_cs_025,
+]
+
+
+
+def sa_request(flow: http.HTTPFlow):
+    pass
+
+
 class RaApiCs024(TestScenario):
     def __init__(self):
         super().__init__(
@@ -169,6 +210,16 @@ test_scenarios = [
 ]
 
 
+class SaTest:
+    def __init__(self):
+        self.scenario_manager = scenario_manager
+
+    def request(self, flow):
+        for scenario in scenarios:
+            if (scenario_manager.current_scenario == scenario['risk_id']) and (not scenario_manager.is_cmd_url(flow)):
+                scenario['intercept'](flow)
+
+
 class MitmproxyTestHelper:
     def request(self, flow):
         for scenario in test_scenarios:
@@ -176,6 +227,7 @@ class MitmproxyTestHelper:
 
 
 addons = [
+    SaTest(),
     ScenarioMangerAddon(),
-    MitmproxyTestHelper(),
+    # MitmproxyTestHelper(),
 ]
