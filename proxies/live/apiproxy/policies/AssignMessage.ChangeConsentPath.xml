@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignChange.ChangeConsentPath">
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.ChangeConsentPath">
     <DisplayName>AssignMessage.ChangeConsentPath</DisplayName>
     <Properties/>
     <AssignVariable>
-        <Name>urirequest.path1</Name>
+        <Name>endpointName</Name>
         <Value>RAConsent</Value>
         <Ref/>
     </AssignVariable>
