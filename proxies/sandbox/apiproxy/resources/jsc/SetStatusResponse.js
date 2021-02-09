@@ -23,6 +23,13 @@ if (healthcheck_service_response_code === null && healthcheck_service_request_ha
   timeout = "true";
 }
 
+try {
+  healthcheck_service_response = JSON.parse(healthcheck_service_response)
+}
+catch(e) {
+// Response is not a JSON, so leave it as it is.
+}
+
 var healthcheck_service = {
   "healthcheckService:status": [
     {
