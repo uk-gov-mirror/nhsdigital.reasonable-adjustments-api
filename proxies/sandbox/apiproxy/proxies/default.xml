@@ -111,8 +111,8 @@
           <Name>RaiseFault.400BadRequest</Name>
           <Condition>(request.content = "")</Condition>
         </Step>
-        <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
       </Request>
+      <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
     </Flow>
     <Flow name="StatusEndpoint">
       <Description/>
@@ -147,9 +147,8 @@
    <RouteRule name="NoRoutePing">
     <Condition>(proxy.pathsuffix MatchesPath "/_ping") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
   </RouteRule>
-  <RouteRule name="status">
+  <RouteRule name="NoRouteStatus">
     <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
-    <TargetEndpoint>status</TargetEndpoint>
   </RouteRule>
   <RouteRule name="apim">
     <TargetEndpoint>apim</TargetEndpoint>
