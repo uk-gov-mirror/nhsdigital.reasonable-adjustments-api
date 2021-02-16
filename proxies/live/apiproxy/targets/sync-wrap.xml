@@ -7,13 +7,13 @@
         <Step>
           <Name>AssignMessage.InvalidAccessToken</Name>
         </Step>
-        <Condition>oauthV2.OauthV2.VerifyAccessToken.failed</Condition>
+        <Condition>oauthV2.OAuthV2.VerifyAccessToken.failed</Condition>
       </FaultRule>
     </FaultRules>
     <PreFlow>
       <Request>
         <Step>
-          <Name>OauthV2.VerifyAccessToken</Name>
+          <Name>OAuthV2.VerifyAccessToken</Name>
         </Step>
         <Step>
           <Name>Quota</Name>
