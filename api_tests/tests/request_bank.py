@@ -9,6 +9,8 @@ class Request(enum.Enum):
     CONSENT_PUT = 'updateConsent.json'
     CONSENT_POST = 'createConsent.json'
     REMOVE_RA_RECORD_POST = 'removerarecord.json'
+    FLAG_PUT = 'updateFlag.json'
+    FLAG_POST = 'createFlag.json'
 
 
 def get_body(request_method: enum):
