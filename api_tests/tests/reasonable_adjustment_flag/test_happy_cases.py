@@ -44,7 +44,6 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0) # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get_with_consent(self):
         # Pre-Req
@@ -76,7 +75,6 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a consent flag
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
@@ -99,7 +97,6 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
@@ -165,7 +162,6 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0)  # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_with_flag(self):
         # Pre-Req: Patient record with both a consent and flag
@@ -198,7 +194,6 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a flag
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
@@ -225,7 +220,6 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_put(self):
@@ -339,7 +333,6 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
-    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_post(self):
