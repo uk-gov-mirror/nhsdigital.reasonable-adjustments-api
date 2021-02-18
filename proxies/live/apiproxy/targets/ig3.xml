@@ -25,19 +25,16 @@
                 <Condition>isError = true</Condition>
             </Step>
             <Step>
-              <Name>KeyValueMapOperations.GetSecureVariables</Name>
+              <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
-              <Name>JavaScript.CreateClaimVars</Name>
+              <Name>AssignMessage.AddHeaders</Name>
             </Step>
             <Step>
               <Name>AssignMessage.RemoveHeaders</Name>
             </Step>
             <Step>
               <Name>AssignMessage.JWT</Name>
-            </Step>
-            <Step>
-              <Name>AssignMessage.AddHeaders</Name>
             </Step>
         </Request>
         <Response>
@@ -59,7 +56,7 @@
       <LoadBalancer>
         <Server name="ig3"/>
       </LoadBalancer>
-      <Path>/STU3</Path>
+      <Path>/STU3/RA</Path>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">

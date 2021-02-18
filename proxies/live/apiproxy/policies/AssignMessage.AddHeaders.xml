@@ -2,9 +2,8 @@
 <AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.AddHeaders">
   <Set>
     <Headers>
-      <Header name="FromASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
-      <Header name="ToASID">{private.apigee.ToASID}</Header>
-      <Header name="TraceID">{request.header.X-Request-ID}</Header>
+      <Header name="NHSD-ASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
+      <Header name="NHSD-Request-ID">{request.header.X-Request-ID}</Header>
     </Headers>
   </Set>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
