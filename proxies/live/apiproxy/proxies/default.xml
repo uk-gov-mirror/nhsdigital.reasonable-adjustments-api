@@ -38,9 +38,6 @@
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
-              <Step>
-                <Name>AssignMessage.AddInteractionID</Name>
-              </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "GET"))</Condition>
         </Flow>
@@ -52,9 +49,6 @@
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
-              <Step>
-                <Name>AssignMessage.AddInteractionID</Name>
-              </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/Consent") and (request.verb = "POST"))</Condition>
         </Flow>
@@ -65,9 +59,6 @@
               </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
-              </Step>
-              <Step>
-                <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/Consent/*") and (request.verb = "PUT"))</Condition>
@@ -84,9 +75,6 @@
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
               </Step>
-              <Step>
-                <Name>AssignMessage.AddInteractionID</Name>
-              </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/Flag") and (request.verb = "GET"))</Condition>
         </Flow>
@@ -97,9 +85,6 @@
               </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
-              </Step>
-              <Step>
-                <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/Flag") and (request.verb = "POST"))</Condition>
@@ -116,9 +101,6 @@
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
-                <Step>
-                  <Name>AssignMessage.AddInteractionID</Name>
-                </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/Flag/*") and (request.verb = "PUT"))</Condition>
         </Flow>
@@ -134,9 +116,6 @@
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
-                <Step>
-                  <Name>AssignMessage.AddInteractionID</Name>
-                </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/List") and (request.verb = "GET"))</Condition>
         </Flow>
@@ -147,9 +126,6 @@
               </Step>
               <Step>
                 <Name>KeyValueMapOperations.GetInteractionID</Name>
-              </Step>
-              <Step>
-                <Name>AssignMessage.AddInteractionID</Name>
               </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/List") and (request.verb = "POST"))</Condition>
@@ -166,9 +142,6 @@
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
                 </Step>
-                <Step>
-                  <Name>AssignMessage.AddInteractionID</Name>
-                </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/List/*") and (request.verb = "PUT"))</Condition>
         </Flow>
@@ -183,9 +156,6 @@
                 </Step>
                 <Step>
                   <Name>KeyValueMapOperations.GetInteractionID</Name>
-                </Step>
-                <Step>
-                  <Name>AssignMessage.AddInteractionID</Name>
                 </Step>
             </Request>
             <Condition>((proxy.pathsuffix MatchesPath "/$removerarecord") and (request.verb = "POST"))</Condition>
