@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AssignMessage async="false" continueOnError="false" enabled="true" name="AssignMessage.SetContentLocation">
+    <DisplayName>AssignMessage.SetContentLocation</DisplayName>
+    <Properties/>
+    <Remove>
+        <Headers>
+            <Header name="Content-Location"/>
+        </Headers>
+    </Remove>
+    <Add>
+        <Headers>
+            <Header name="Content-Location">{{ SERVICE_BASE_PATH }}{contentLocation}</Header>
+        </Headers>
+    </Add>
+    <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+    <AssignTo createNew="false" transport="http" type="request"/>
+</AssignMessage>
