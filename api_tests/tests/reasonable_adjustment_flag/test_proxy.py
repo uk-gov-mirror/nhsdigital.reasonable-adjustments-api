@@ -31,13 +31,13 @@ class TestProxyCasesSuite:
         actual_asid = debug_session.get_apigee_variable('verifyapikey.VerifyAPIKey.CustomAttributes.asid')
         assert_that(expected_value).is_equal_to(actual_asid)
 
-        actual_header_value = debug_session.get_apigee_header('FromASID')
+        actual_header_value = debug_session.get_apigee_header('NHSD-ASID')
         assert_that(expected_value).is_equal_to(actual_header_value)
 
     @pytest.mark.spine_headers
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_ToASID_header_is_set(self):
+    def test_x_request_id_equals_nhsd_request_id(self):
         # Given
         debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
 
@@ -45,21 +45,7 @@ class TestProxyCasesSuite:
         Utils.send_request(self)
 
         # Then
-        actual_header_value = debug_session.get_apigee_header('ToASID')
-        assert_that(actual_header_value).is_not_empty()
-
-    @pytest.mark.spine_headers
-    @pytest.mark.integration
-    @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_x_request_id_equals_TraceID(self):
-        # Given
-        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
-
-        # When
-        Utils.send_request(self)
-
-        # Then
-        trace_id = debug_session.get_apigee_header('TraceID')
+        trace_id = debug_session.get_apigee_header('NHSD-Request-ID')
         x_request_id = debug_session.get_apigee_header('x-request-id')
 
         assert_that(trace_id).is_equal_to(x_request_id)
@@ -79,111 +65,6 @@ class TestProxyCasesSuite:
         actual_ods = debug_session.get_apigee_variable('verifyapikey.VerifyAPIKey.CustomAttributes.ods')
 
         assert_that(expected_ods).is_equal_to(actual_ods)
-
-    @pytest.mark.interaction_id
-    @pytest.mark.integration
-    @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_interaction_id_consent_get(self):
-        # Given
-        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
-        expected_interaction_id = 'urn:nhs:names:services:raflags:Consent.read:1'
-
-        # When
-        requests.get(
-            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
-            params={
-                'patient': 'test',
-                'category': 'test',
-                'status': 'test',
-            },
-            headers={
-                'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
-                'x-request-id': str(uuid.uuid4()),
-            }
-        )
-
-        # Then
-        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
-
-        assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
-
-    @pytest.mark.interaction_id
-    @pytest.mark.integration
-    @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_interaction_id_consent_put(self):
-        # Given
-        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
-        expected_interaction_id = 'urn:nhs:names:services:raflags:Consent.write:1'
-
-        # When
-        requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/1',
-            headers={
-                'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
-                'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json'
-            },
-            data=json.dumps({'message': 'test'})
-        )
-
-        # Then
-        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
-
-        assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
-
-    @pytest.mark.interaction_id
-    @pytest.mark.integration
-    @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_interaction_id_flag_put(self):
-        # Given
-        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
-        expected_interaction_id = 'urn:nhs:names:services:raflags:Flag.write:1'
-
-        # When
-        requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
-            headers={
-                'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
-                'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json',
-                'If-Match': 'abc123'
-            },
-            data=json.dumps({'message': 'test'})
-        )
-
-        # Then
-        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
-
-        assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
-
-    @pytest.mark.interaction_id
-    @pytest.mark.integration
-    @pytest.mark.usefixtures('get_token_internal_dev')
-    def test_interaction_id_list_put(self):
-        # Given
-        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
-        expected_interaction_id = 'urn:nhs:names:services:raflags:List.write:1'
-
-        # When
-        requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
-            headers={
-                'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
-                'x-request-id': str(uuid.uuid4()),
-                'content-type': 'application/fhir+json',
-                'If-Match': 'abc123'
-            },
-            data=json.dumps({'message': 'test'})
-        )
-
-        # Then
-        actual_interaction_id = debug_session.get_apigee_header('InteractionId')
-
-        assert_that(expected_interaction_id).is_equal_to(actual_interaction_id)
 
     @pytest.mark.jwt
     @pytest.mark.integration
