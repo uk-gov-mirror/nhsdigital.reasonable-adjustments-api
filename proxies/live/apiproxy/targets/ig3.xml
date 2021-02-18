@@ -25,19 +25,16 @@
                 <Condition>isError = true</Condition>
             </Step>
             <Step>
-              <Name>KeyValueMapOperations.GetSecureVariables</Name>
+              <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
-              <Name>JavaScript.CreateClaimVars</Name>
+              <Name>AssignMessage.AddHeaders</Name>
             </Step>
             <Step>
               <Name>AssignMessage.RemoveHeaders</Name>
             </Step>
             <Step>
               <Name>AssignMessage.JWT</Name>
-            </Step>
-            <Step>
-              <Name>AssignMessage.AddHeaders</Name>
             </Step>
         </Request>
         <Response>
