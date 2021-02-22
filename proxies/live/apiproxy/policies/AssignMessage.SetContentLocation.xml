@@ -9,7 +9,7 @@
     </Remove>
     <Add>
         <Headers>
-            <Header name="Content-Location">{{ SERVICE_BASE_PATH }}{contentLocation}</Header>
+            <Header name="Content-Location">https://{{ APIGEE_HOSTNAME }}/{{ SERVICE_BASE_PATH }}{contentLocation}</Header>
         </Headers>
     </Add>
     <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
