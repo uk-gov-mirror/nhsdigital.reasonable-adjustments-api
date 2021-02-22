@@ -217,7 +217,6 @@ class TestHappyCasesSuite:
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'Accept': 'application/fhir+json',
-                'prefer': 'respond-sync'
             },
             json=request_bank.get_body(Request.FLAG_POST),
         )
