@@ -126,6 +126,7 @@ class Utils:
             json=request_bank.get_body(Request.FLAG_POST),
         )
 
+        time.sleep(1)
         return response
 
     @staticmethod
@@ -161,4 +162,5 @@ class Utils:
             json=request_bank.get_body(Request.REMOVE_RA_RECORD_POST)
         )
 
+        time.sleep(1)
         return response
