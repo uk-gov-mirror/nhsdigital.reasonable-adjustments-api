@@ -76,7 +76,6 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a consent flag
 
     @pytest.mark.happy_path
-    @pytest.mark.debug
     @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
