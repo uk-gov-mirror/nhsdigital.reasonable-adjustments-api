@@ -212,7 +212,7 @@
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
     <RouteRule name="poll">
-        <Condition>(proxy.pathsuffix MatchesPath "/_poll")</Condition>
+        <Condition>(proxy.pathsuffix MatchesPath "/_poll/*")</Condition>
         <TargetEndpoint>poll</TargetEndpoint>
     </RouteRule>
     <RouteRule name="ig3">
