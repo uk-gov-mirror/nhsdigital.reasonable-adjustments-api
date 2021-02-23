@@ -15,6 +15,7 @@ class TestHappyCasesSuite:
     """ A test suite to verify all the happy path endpoints """
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get_without_consent(self):
@@ -134,6 +135,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_without_flag(self):
         # Given
@@ -257,6 +259,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_get(self):
         # Given
@@ -307,6 +310,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Pre-Req
