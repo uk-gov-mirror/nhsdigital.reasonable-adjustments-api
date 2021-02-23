@@ -313,9 +313,12 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.debug
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Pre-Req
+        Utils.send_consent_post(self.token)
+        Utils.send_list_post(self.token)
         get_list_response = Utils.send_list_get(self.token)
         list_id = get_list_response['id']
         version_id = get_list_response['version']
