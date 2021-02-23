@@ -335,7 +335,7 @@ class TestHappyCasesSuite:
 
         # When
         response = requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_LIST + list_id,
+            url=config.REASONABLE_ADJUSTMENTS_LIST + '/' + list_id,
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
