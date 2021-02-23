@@ -36,7 +36,7 @@ meta:
   schema_version: 1
   api:
     name: reasonable-adjustment-flag
-    id: eef32850-52ae-46da-9dbd-d9f3df818846
+    id: 1ec62988-2fa8-4ae9-99ba-f8f15ad710a2
 apigee:
   environments:
 {% for env in APIGEE_ENVIRONMENTS %}
