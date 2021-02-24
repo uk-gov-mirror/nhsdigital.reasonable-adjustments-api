@@ -924,7 +924,7 @@ components:
       description: 'The patient''s NHS number. The primary identifier of a patient, unique within NHS England and Wales. Always 10 digits and must be a [valid NHS number](https://datadictionary.nhs.uk/attributes/nhs_number.html).'
       schema:
         type: string
-        example: '9999999998'
+        example: '9692247317'
     status:
       name: status
       in: query

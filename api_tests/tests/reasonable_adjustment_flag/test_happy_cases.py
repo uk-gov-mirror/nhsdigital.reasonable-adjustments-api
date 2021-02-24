@@ -15,7 +15,6 @@ class TestHappyCasesSuite:
     """ A test suite to verify all the happy path endpoints """
 
     @pytest.mark.happy_path
-    @pytest.mark.sandbox
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get_without_consent(self):
@@ -45,6 +44,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0) # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get_with_consent(self):
         # Pre-Req
@@ -135,7 +135,6 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
-    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_without_flag(self):
         # Given
@@ -164,6 +163,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0)  # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_with_flag(self):
         # Pre-Req: Patient record with both a consent and flag
@@ -320,17 +320,18 @@ class TestHappyCasesSuite:
 
         # Given
         expected_status_code = 200
-        json = request_bank.get_body(Request.LIST_PUT)
-        json['id'] = list_id
 
         # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
         if self.sandbox is True:
             list_id = '1'
             version_id = 'W/"1"'
 
+        reqBody = request_bank.get_body(Request.LIST_PUT)
+        reqBody['id'] = list_id
+
         # When
         response = requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_LIST + list_id,
+            url=config.REASONABLE_ADJUSTMENTS_LIST + '/' + list_id,
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
@@ -339,7 +340,7 @@ class TestHappyCasesSuite:
                 'accept': 'application/fhir+json',
                 'if-match': version_id,
             },
-            data=json
+            data=json.dumps(reqBody)
         )
 
         # Then
