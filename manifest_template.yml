@@ -52,7 +52,7 @@ apigee:
           - name: access
             value: public
           - name: ratelimit
-            value: {{ env.ratelimit | default('5ps') }}
+            value: {{ env.ratelimit | default('50ps') }}
         description: {{ mode.description }}
         displayName: Reasonable Adjustment Flag Api - {{ mode.displayName }} ({{ env.display_name_suffix }})
         environments: [ {{ env.name }} ]
