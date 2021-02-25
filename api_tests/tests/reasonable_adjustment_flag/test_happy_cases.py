@@ -44,6 +44,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0) # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get_with_consent(self):
         # Pre-Req
@@ -111,11 +112,6 @@ class TestHappyCasesSuite:
         consent_id = consent['id']
         version_id = consent['version']
 
-        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
-        if self.sandbox is True:
-            consent_id = '1'
-            version_id = 'W/"1"'
-
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/' + consent_id,
@@ -162,6 +158,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0)  # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_with_flag(self):
         # Pre-Req: Patient record with both a consent and flag
@@ -233,11 +230,6 @@ class TestHappyCasesSuite:
         flag_id = get_flag_response['id']
         version_id = get_flag_response['version']
 
-        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
-        if self.sandbox is True:
-            flag_id = '1'
-            version_id = 'W/"1"'
-
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/' + flag_id,
@@ -257,6 +249,7 @@ class TestHappyCasesSuite:
 
     @pytest.mark.happy_path
     @pytest.mark.integration
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_get(self):
         # Given
@@ -307,6 +300,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Pre-Req
@@ -316,17 +310,12 @@ class TestHappyCasesSuite:
 
         # Given
         expected_status_code = 200
-        json = request_bank.get_body(Request.LIST_PUT)
-        json['id'] = list_id
-
-        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
-        if self.sandbox is True:
-            list_id = '1'
-            version_id = 'W/"1"'
+        req_body = request_bank.get_body(Request.LIST_PUT)
+        req_body['id'] = list_id
 
         # When
         response = requests.put(
-            url=config.REASONABLE_ADJUSTMENTS_LIST + list_id,
+            url=config.REASONABLE_ADJUSTMENTS_LIST + '/' + list_id,
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
@@ -335,7 +324,7 @@ class TestHappyCasesSuite:
                 'accept': 'application/fhir+json',
                 'if-match': version_id,
             },
-            data=json
+            data=json.dumps(req_body)
         )
 
         # Then
