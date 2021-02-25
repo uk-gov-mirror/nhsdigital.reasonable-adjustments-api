@@ -6,7 +6,6 @@
                 <Name>OAuthV2.VerifyAccessToken</Name>
             </Step>
             <Step>
-            <Step>
                 <Name>Quota</Name>
             </Step>
             <Step>
