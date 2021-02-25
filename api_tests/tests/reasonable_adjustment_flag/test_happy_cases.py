@@ -112,11 +112,6 @@ class TestHappyCasesSuite:
         consent_id = consent['id']
         version_id = consent['version']
 
-        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
-        if self.sandbox is True:
-            consent_id = '1'
-            version_id = 'W/"1"'
-
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_CONSENT + '/' + consent_id,
@@ -235,11 +230,6 @@ class TestHappyCasesSuite:
         flag_id = get_flag_response['id']
         version_id = get_flag_response['version']
 
-        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
-        if self.sandbox is True:
-            flag_id = '1'
-            version_id = 'W/"1"'
-
         # When
         response = requests.put(
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/' + flag_id,
@@ -320,14 +310,8 @@ class TestHappyCasesSuite:
 
         # Given
         expected_status_code = 200
-
-        # todo on sandbox the consent_id and version_id cannot be None, need a cleaner way to do this
-        if self.sandbox is True:
-            list_id = '1'
-            version_id = 'W/"1"'
-
-        reqBody = request_bank.get_body(Request.LIST_PUT)
-        reqBody['id'] = list_id
+        req_body = request_bank.get_body(Request.LIST_PUT)
+        req_body['id'] = list_id
 
         # When
         response = requests.put(
@@ -340,7 +324,7 @@ class TestHappyCasesSuite:
                 'accept': 'application/fhir+json',
                 'if-match': version_id,
             },
-            data=json.dumps(reqBody)
+            data=json.dumps(req_body)
         )
 
         # Then
