@@ -4,5 +4,5 @@ var path = "/STU3/RA"
 if (!xSyncWrapped) {
     context.setVariable("Path", path);
 } else {
-    context.setVariable("Path", null);
+    context.setVariable("Path", "");
 }
