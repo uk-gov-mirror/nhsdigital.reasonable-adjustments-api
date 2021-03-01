@@ -2,7 +2,7 @@
 APIGEE_ENVIRONMENTS:
   - name: internal-dev
     display_name_suffix: Internal Development
-    ratelimit: '50ps'
+    ratelimit: '5ps'
     quota: '7800'
   - name: internal-dev-sandbox
     display_name_suffix: Internal Development Sandbox
@@ -52,7 +52,7 @@ apigee:
           - name: access
             value: public
           - name: ratelimit
-            value: {{ env.ratelimit | default('50ps') }}
+            value: {{ env.ratelimit | default('5ps') }}
         description: {{ mode.description }}
         displayName: Reasonable Adjustment Flag Api - {{ mode.displayName }} ({{ env.display_name_suffix }})
         environments: [ {{ env.name }} ]

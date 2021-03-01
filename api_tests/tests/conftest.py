@@ -64,7 +64,6 @@ def setup(request):
     # Return patient to previous state
 
     if hasattr(request.cls, 'token'):
-        # pass
         # Call this regardless whether any flags exist
         Utils.send_raremoverecord_post(request.cls.token)
 
