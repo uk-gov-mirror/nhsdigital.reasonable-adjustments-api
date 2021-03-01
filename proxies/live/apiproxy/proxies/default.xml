@@ -211,10 +211,10 @@
     <RouteRule name="NoRouteStatus">
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
-    <RouteRule name="poll">
+    <!-- <RouteRule name="poll">
         <Condition>(proxy.pathsuffix MatchesPath "/_poll/*")</Condition>
         <TargetEndpoint>poll</TargetEndpoint>
-    </RouteRule>
+    </RouteRule> -->
     <RouteRule name="ig3">
       <Condition>(request.verb = "GET") or request.header.prefer = "respond-async" or request.header.x-sync-wrapped = "true"</Condition>
         <TargetEndpoint>ig3</TargetEndpoint>

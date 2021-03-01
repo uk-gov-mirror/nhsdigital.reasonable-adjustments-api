@@ -25,6 +25,9 @@
               <Name>JavaScript.CreateClaimVars</Name>
             </Step>
             <Step>
+              <Name>JavaScript.SetPathVariable</Name>
+            </Step>
+            <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
             <Step>
@@ -63,7 +66,7 @@
       <LoadBalancer>
         <Server name="ig3"/>
       </LoadBalancer>
-      <Path>/STU3/RA</Path>
+      <Path>{Path}</Path>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">
