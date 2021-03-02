@@ -18,6 +18,13 @@
                 <Name>JavaScript.EndpointValidation</Name>
             </Step>
             <Step>
+                <Name>JavaScript.SetPathVariable</Name>
+                <Condition>(proxy.pathsuffix MatchesPath "/_poll/*")</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetPathVariable</Name>
+            </Step>
+            <Step>
                 <Name>RaiseFault.InvalidRequest</Name>
                 <Condition>isError = true</Condition>
             </Step>
@@ -63,7 +70,7 @@
       <LoadBalancer>
         <Server name="ig3"/>
       </LoadBalancer>
-      <Path>/STU3/RA</Path>
+      <Path>{myPath}</Path>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">
