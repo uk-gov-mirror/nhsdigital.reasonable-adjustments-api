@@ -19,7 +19,7 @@ const consentPost = {
     handler: (request, h) => {
         const path = 'consentPOST.json'
         let response_status_code = 201
-        if (request.header["Prefer"] === 'respond-async') {
+        if ("Prefer" in request.header && request.header["Prefer"] === 'respond-async') {
           response_status_code = 202
         }
         return h.response(h.file(path)).code(response_status_code)
