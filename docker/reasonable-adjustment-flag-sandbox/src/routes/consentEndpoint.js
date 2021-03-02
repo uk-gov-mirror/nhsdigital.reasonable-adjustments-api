@@ -18,7 +18,11 @@ const consentPost = {
     path: '/Consent',
     handler: (request, h) => {
         const path = 'consentPOST.json'
-        return h.response(h.file(path)).code(201)
+        let response_status_code = 201
+        if (request.header["Prefer"] === 'respond-async') {
+          response_status_code = 202
+        }
+        return h.response(h.file(path)).code(response_status_code)
         .header('content-type', 'application/fhir+json')
         .header('Date', 'Tue, 24 Jul 2018 11:00:01 GMT')
         .header('Last-Modified', '2018-07-24T10:01:00+00:00')
