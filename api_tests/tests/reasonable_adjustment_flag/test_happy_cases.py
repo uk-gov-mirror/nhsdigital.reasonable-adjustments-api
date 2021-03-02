@@ -116,12 +116,12 @@ class TestHappyCasesSuite:
                 'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'prefer': 'respond-async'
+                'Prefer': 'respond-async'
             }
         )
 
         # Then
-        assert_that(expected_status_code).is_equal_to(response.status_code)
+        assert_that(response.status_code).is_equal_to(expected_status_code)
 
     @pytest.mark.happy_path
     @pytest.mark.integration
