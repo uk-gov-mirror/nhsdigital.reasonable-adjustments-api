@@ -212,11 +212,11 @@
       <Condition>(proxy.pathsuffix MatchesPath "/_status") and ((request.verb = "GET") or (request.verb = "HEAD"))</Condition>
     </RouteRule>
     <RouteRule name="ig3">
-      <Condition>(request.verb = "GET") or request.header.prefer = "respond-async" or request.header.x-sync-wrapped = "true"</Condition>
+      <Condition>(request.verb = "GET") or request.header.Prefer = "respond-async" or request.header.x-sync-wrapped = "true"</Condition>
         <TargetEndpoint>ig3</TargetEndpoint>
     </RouteRule>
     <RouteRule name="sync-wrap">
-      <Condition>(request.verb = "POST" or request.verb = "PUT") and request.header.prefer != "respond-async" and request.header.x-sync-wrapped != "true"</Condition>
+      <Condition>(request.verb = "POST" or request.verb = "PUT") and request.header.Prefer != "respond-async" and request.header.x-sync-wrapped != "true"</Condition>
       <TargetEndpoint>sync-wrap</TargetEndpoint>
     </RouteRule>
 </ProxyEndpoint>
