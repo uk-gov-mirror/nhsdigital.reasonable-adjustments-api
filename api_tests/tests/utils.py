@@ -69,7 +69,7 @@ class Utils:
             })
 
         time.sleep(1)
-        if response.status_code == 422:
+        if response.status_code == 422 or response.status_code == 500:
             print(response)
             return response
 
