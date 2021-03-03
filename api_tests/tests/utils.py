@@ -69,6 +69,10 @@ class Utils:
             })
 
         time.sleep(1)
+        if response.status_code == 422:
+            print(response)
+            return response
+
         assert_that(expected_status_code).is_equal_to(response.status_code)
         return response
 
