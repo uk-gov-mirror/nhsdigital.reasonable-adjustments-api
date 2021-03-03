@@ -1,4 +1,5 @@
 import pytest
+import time
 
 from api_tests.config_files import config
 from api_tests.steps.check_oauth import CheckOauth
@@ -59,6 +60,7 @@ def setup(request):
     setattr(request.cls, "name", name)
 
     yield  # Handover to test
+    time.sleep(1)
 
     # Teardown
     # Return patient to previous state
