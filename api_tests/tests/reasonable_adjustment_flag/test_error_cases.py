@@ -428,6 +428,7 @@ class TestErrorCaseSuite:
         assert_that(expected_response['error']).is_equal_to_ignoring_case(actual_response['error'])
 
     @pytest.mark.errors
+    @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_duplicate_consent_record(self):
         # Pre-Req

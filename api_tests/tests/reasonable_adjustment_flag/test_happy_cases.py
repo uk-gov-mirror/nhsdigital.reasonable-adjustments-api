@@ -44,6 +44,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0) # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_get_with_consent(self):
@@ -76,6 +77,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_post(self):
@@ -98,6 +100,31 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
+    @pytest.mark.sandbox
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_prefer_response_async(self):
+        # Given
+        expected_status_code = 202
+
+        # When
+        response = requests.post(
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
+            json=request_bank.get_body(Request.CONSENT_POST),
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
+                'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'Prefer': 'respond-async'
+            }
+        )
+
+        # Then
+        assert_that(response.status_code).is_equal_to(expected_status_code)
+
+    @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_consent_put(self):
@@ -158,6 +185,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(0)  # Validate patient record does not contain a consent flag
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_get_with_flag(self):
@@ -191,6 +219,7 @@ class TestHappyCasesSuite:
         assert_that(result_dict['total']).is_equal_to(1)  # Validate patient record contains a flag
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_post(self):
@@ -208,7 +237,7 @@ class TestHappyCasesSuite:
                 'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
-                'Accept': 'application/fhir+json'
+                'Accept': 'application/fhir+json',
             },
             json=request_bank.get_body(Request.FLAG_POST),
         )
@@ -217,6 +246,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_flag_put(self):
@@ -304,6 +334,8 @@ class TestHappyCasesSuite:
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_list_put(self):
         # Pre-Req
+        Utils.send_consent_post(self.token)
+        Utils.send_list_post(self.token)
         get_list_response = Utils.send_list_get(self.token)
         list_id = get_list_response['id']
         version_id = get_list_response['version']
@@ -331,6 +363,7 @@ class TestHappyCasesSuite:
         assert_that(expected_status_code).is_equal_to(response.status_code)
 
     @pytest.mark.happy_path
+    @pytest.mark.integration
     @pytest.mark.sandbox
     @pytest.mark.usefixtures('get_token_internal_dev')
     def test_remove_ra_record_post(self):

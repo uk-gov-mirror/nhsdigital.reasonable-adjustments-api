@@ -6,9 +6,6 @@
                 <Name>OAuthV2.VerifyAccessToken</Name>
             </Step>
             <Step>
-                <Name>AssignMessage.RenameQuotaVars</Name>
-            </Step>
-            <Step>
                 <Name>Quota</Name>
             </Step>
             <Step>
@@ -19,6 +16,13 @@
             </Step>
             <Step>
                 <Name>JavaScript.EndpointValidation</Name>
+            </Step>
+            <Step>
+                <Name>JavaScript.SetPathVariable</Name>
+                <Condition>(proxy.pathsuffix MatchesPath "/_poll/*")</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetPathVariable</Name>
             </Step>
             <Step>
                 <Name>RaiseFault.InvalidRequest</Name>
@@ -43,6 +47,16 @@
             </Step>
         </Response>
     </PreFlow>
+    <PostFlow>
+        <Response>
+            <Step>
+                <Name>ExtractVariable.GetContentLocation</Name>
+            </Step>
+            <Step>
+                <Name>AssignMessage.SetContentLocation</Name>
+            </Step>
+        </Response>
+    </PostFlow>
     <HTTPTargetConnection>
       <Properties>
         <!-- Whitelist the 'expected' error code responses so the responses pass unhindered to caller
@@ -56,7 +70,7 @@
       <LoadBalancer>
         <Server name="ig3"/>
       </LoadBalancer>
-      <Path>/STU3/RA</Path>
+      <Path>{myPath}</Path>
     </HTTPTargetConnection>
     <FaultRules>
         <FaultRule name="InvalidAccessToken">

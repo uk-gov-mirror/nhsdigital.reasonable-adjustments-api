@@ -126,6 +126,7 @@ class Utils:
             json=request_bank.get_body(Request.FLAG_POST),
         )
 
+        time.sleep(1)
         return response
 
     @staticmethod
@@ -141,11 +142,29 @@ class Utils:
                 'Authorization': f'Bearer {auth_token}',
                 'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json',
+                'Accept': 'application/fhir+json',
             }
         )
 
         time.sleep(1)
         return get_details(response)
+
+    @staticmethod
+    def send_list_post(auth_token: str):
+        response = requests.post(
+            url=config.REASONABLE_ADJUSTMENTS_LIST,
+            headers={
+                'Authorization': f'Bearer {auth_token}',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
+                'x-request-id': str(uuid.uuid4()),
+                'content-type': 'application/fhir+json'
+            },
+            json=request_bank.get_body(Request.LIST_POST),
+        )
+
+        time.sleep(1)
+        return response
 
     @staticmethod
     def send_raremoverecord_post(auth_token: str):
@@ -161,4 +180,5 @@ class Utils:
             json=request_bank.get_body(Request.REMOVE_RA_RECORD_POST)
         )
 
+        time.sleep(1)
         return response
