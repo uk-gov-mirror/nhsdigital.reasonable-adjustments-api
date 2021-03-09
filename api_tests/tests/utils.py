@@ -9,7 +9,7 @@ import uuid
 from api_tests.tests import request_bank
 from api_tests.tests.request_bank import Request
 
-sleep = 1
+sleep = 0
 
 def get_details(response):
     result_dict = json.loads(response.text)
