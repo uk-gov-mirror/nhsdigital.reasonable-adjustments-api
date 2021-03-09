@@ -9,6 +9,7 @@ import uuid
 from api_tests.tests import request_bank
 from api_tests.tests.request_bank import Request
 
+sleep = 1
 
 def get_details(response):
     result_dict = json.loads(response.text)
@@ -51,7 +52,7 @@ class Utils:
                 'x-request-id': str(uuid.uuid4()),
             }
         )
-        time.sleep(1)
+        time.sleep(sleep)
         return response.headers['etag']
 
     @staticmethod
@@ -68,7 +69,7 @@ class Utils:
                 'content-type': 'application/fhir+json'
             })
 
-        time.sleep(1)
+        time.sleep(sleep)
         assert_that(expected_status_code).is_equal_to(response.status_code)
         return response
 
@@ -89,7 +90,7 @@ class Utils:
             }
         )
 
-        time.sleep(1)
+        time.sleep(sleep)
         return get_details(response)
 
     @staticmethod
@@ -110,7 +111,7 @@ class Utils:
             }
         )
 
-        time.sleep(1)
+        time.sleep(sleep)
         return get_details(response)
 
     @staticmethod
@@ -126,7 +127,7 @@ class Utils:
             json=request_bank.get_body(Request.FLAG_POST),
         )
 
-        time.sleep(1)
+        time.sleep(sleep)
         return response
 
     @staticmethod
@@ -147,7 +148,7 @@ class Utils:
             }
         )
 
-        time.sleep(1)
+        time.sleep(sleep)
         return get_details(response)
 
     @staticmethod
@@ -163,7 +164,7 @@ class Utils:
             json=request_bank.get_body(Request.LIST_POST),
         )
 
-        time.sleep(1)
+        time.sleep(sleep)
         return response
 
     @staticmethod
@@ -180,5 +181,5 @@ class Utils:
             json=request_bank.get_body(Request.REMOVE_RA_RECORD_POST)
         )
 
-        time.sleep(1)
+        time.sleep(sleep)
         return response
