@@ -4,6 +4,7 @@
     <Headers>
       <Header name="NHSD-ASID">{verifyapikey.VerifyAPIKey.CustomAttributes.asid}</Header>
       <Header name="NHSD-Request-ID">{request.header.X-Request-ID}</Header>
+      <Header name="NHSD-Correlation-ID">{request.header.X-Request-ID}.{request.header.X-Correlation-ID}.{messageid}</Header>
     </Headers>
   </Set>
   <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>

@@ -50,6 +50,26 @@ class TestProxyCasesSuite:
 
         assert_that(trace_id).is_equal_to(x_request_id)
 
+    @pytest.mark.spine_headers
+    @pytest.mark.integration
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_outgoing_request_contains_nhsd_correlation_id_header(self):
+        # Given
+        debug_session = ApigeeDebugApi(config.REASONABLE_ADJUSTMENTS_PROXY_NAME)
+
+        # When
+        Utils.send_request(self)
+
+        # Then
+        apigee_message_id = debug_session.get_apigee_variable('messageid')
+        x_correlation_id_header = debug_session.get_apigee_header('x-correlation-id')
+        x_request_id_header = debug_session.get_apigee_header('x-request-id')
+        nhsd_correlation_id_header = debug_session.get_apigee_header('NHSD-Correlation-ID')
+
+        expected_correlation_id_header = x_request_id_header + '.' + x_correlation_id_header + '.' + apigee_message_id
+
+        assert_that(expected_correlation_id_header).is_equal_to(nhsd_correlation_id_header)
+
     @pytest.mark.ods
     @pytest.mark.integration
     @pytest.mark.usefixtures('get_token_internal_dev')
@@ -102,6 +122,35 @@ class TestProxyCasesSuite:
         assert_that(expected_jwt_claims['sub']).is_equal_to_ignoring_case(actual_jwt_claims['sub'])
         assert_that(expected_jwt_claims['iss']).is_equal_to_ignoring_case(actual_jwt_claims['iss'])
         assert_that(expected_jwt_claims['aud']).is_equal_to_ignoring_case(actual_jwt_claims['aud'])
+
+    @pytest.mark.integration
+    @pytest.mark.usefixtures('get_token_internal_dev')
+    def test_response_contains_request_id_and_correlation_id_headers(self):
+        request_id = str(uuid.uuid4())
+        correlation_id = str(uuid.uuid4())
+
+        response = requests.get(
+            url=config.REASONABLE_ADJUSTMENTS_CONSENT,
+            params={
+                'patient': config.TEST_PATIENT_NHS_NUMBER,
+                'category': 'https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1|NRAF',
+                'status': 'active',
+                '_from': 'json'
+            },
+            headers={
+                'Authorization': f'Bearer {self.token}',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
+                'x-request-id': request_id,
+                'x-correlation-id': correlation_id,
+                'Accept': 'application/fhir+json'
+            }
+        )
+
+        assert_that(200).is_equal_to(response.status_code)
+        assert_that(response.headers).contains_key('x-request-id')
+        assert_that(request_id).is_equal_to(response.headers['x-request-id'])
+        assert_that(response.headers).contains_key('x-correlation-id')
+        assert_that(correlation_id).is_equal_to(response.headers['x-correlation-id'])
 
     @pytest.mark.happy_path
     @pytest.mark.integration

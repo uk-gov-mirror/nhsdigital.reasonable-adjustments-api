@@ -31,6 +31,9 @@
             <Step>
               <Name>JavaScript.CreateClaimVars</Name>
             </Step>
+             <Step>
+              <Name>AssignMessage.Copy.RequestHeaders</Name>
+            </Step>
             <Step>
               <Name>AssignMessage.AddHeaders</Name>
             </Step>
@@ -49,6 +52,14 @@
     </PreFlow>
     <PostFlow>
         <Response>
+            <Step>
+                <Name>AssignMessage.Mirror.CorrelationID</Name>
+                <Condition>(original-request-details.header.X-Correlation-ID ~~ ".+")</Condition>
+            </Step>
+            <Step>
+                <Name>AssignMessage.Mirror.RequestID</Name>
+                <Condition>(original-request-details.header.X-Request-ID ~~ ".+")</Condition>
+            </Step>
             <Step>
                 <Name>ExtractVariable.GetContentLocation</Name>
             </Step>

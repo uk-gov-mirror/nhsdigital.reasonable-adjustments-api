@@ -3,6 +3,7 @@
   <Remove>
     <Headers>
       <Header name="Authorization"/>
+      <Header name="X-Correlation-ID"/>
       <Header name="X-Request-ID"/>
     </Headers>
   </Remove>
