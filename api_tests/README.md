@@ -45,7 +45,9 @@ Navigate to the /api_tests folder and run the commands:
 ```shell
 $ pip install virtualenv
 $ virtualenv test_env
-$ ./test_env/bin/activate
+$ source ./test_env/bin/activate
+$ cp .env.sample .env
+$ source .env # This file needs to be setup with the required environment variables. See environment variables section below.
 (test_env) $ pip install -r requirements.txt
 ```
 
@@ -64,6 +66,8 @@ See list of required variables below
  * `AUTHENTICATE_PASSWORD` Password for authentication
  * `APIGEE_CLIENT_ID` Your Apigee client ID
  * `API_URL` The api you want to use to test the OAuth token
+
+NOTE: If you have an account with an MFA authorization, then do not set `AUTHENTICATE_PASSWORD` and instead follow this [link](https://docs.apigee.com/api-platform/system-administration/using-gettoken) and after getting the token, set `APIGEE_API_AUTHENTICATION` with your JWT token.
 
 NOTE: if you are using Docker you need to fill in the docker.env file with the variable values.
 

@@ -2,7 +2,7 @@
 APIGEE_ENVIRONMENTS:
   - name: internal-dev
     display_name_suffix: Internal Development
-    ratelimit: '5ps'
+    ratelimit: '20ps'
     quota: '7800'
   - name: internal-dev-sandbox
     display_name_suffix: Internal Development Sandbox
@@ -14,6 +14,7 @@ APIGEE_ENVIRONMENTS:
     display_name_suffix: Sandbox
     portal_visibility: false
   - name: int
+    ratelimit: '20ps'
     display_name_suffix: Integration Testing
 
 ACCESS_MODES:
