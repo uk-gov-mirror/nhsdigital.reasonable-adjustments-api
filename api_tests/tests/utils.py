@@ -33,6 +33,7 @@ class Utils:
                 'Authorization': f'Bearer {self.token}',
                 'nhsd-session-urid': 'test',
                 'x-request-id': str(uuid.uuid4()),
+                'x-correlation-id': str(uuid.uuid4())
             }
         )
 
