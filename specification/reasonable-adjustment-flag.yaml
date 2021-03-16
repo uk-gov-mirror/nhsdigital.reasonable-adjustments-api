@@ -940,7 +940,7 @@ components:
       description: The category of the resource being interacted with.
       schema:
         type: string
-        example: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=json'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag'
     code:
       name: code
       in: query
