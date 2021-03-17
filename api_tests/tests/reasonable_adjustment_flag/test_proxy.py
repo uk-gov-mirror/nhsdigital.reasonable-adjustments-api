@@ -98,7 +98,7 @@ class TestProxyCasesSuite:
             'requesting_organization': 'https://fhir.nhs.uk/Id/ods-organization-code|D82106',
             'requesting_system': 'https://fhir.nhs.uk/Id/accredited-system|200000001390',
             'requesting_user': f'https://fhir.nhs.uk/Id/sds-role-profile-id|{config.TEST_NHSD_SESSION_URID}',
-            'sub': 'https://fhir.nhs.uk/Id/sds-role-profile-id|test',
+            'sub': f'https://fhir.nhs.uk/Id/sds-role-profile-id|{config.TEST_NHSD_SESSION_URID}',
             'iss': 'http://api.service.nhs.uk',
             'aud': f'/{REASONABLE_ADJUSTMENTS_PROXY_PATH}/Consent'
         }
