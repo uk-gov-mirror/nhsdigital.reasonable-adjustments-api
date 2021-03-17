@@ -31,7 +31,7 @@ class Utils:
             params={'patient': 'test', 'category': 'test', 'status': 'test'},
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'x-correlation-id': str(uuid.uuid4())
             }

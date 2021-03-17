@@ -11,7 +11,6 @@ class TestAuthCasesSuite:
     """ A test suite to verify all the happy path oauth endpoints """
 
     existing_patient = '5900008142'
-    nhsd_session_urid = '093895563513'
 
     @pytest.mark.integration
     @pytest.mark.smoke
@@ -30,7 +29,7 @@ class TestAuthCasesSuite:
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': self.nhsd_session_urid,
+                'NHSD-Session-URID': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'accept': 'application/json'
             }
