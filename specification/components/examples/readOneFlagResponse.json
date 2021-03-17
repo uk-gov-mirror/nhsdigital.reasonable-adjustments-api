@@ -1,120 +1,169 @@
 {
-    "resourceType": "Bundle",
-    "id": "fda1cad0-ba84-11e8-96f8-529269fb1459",
-    "type": "searchset",
-    "total": 1,
-    "link": [
-      {
-        "relation": "self",
-        "url": "https://clinicals.spineservices.nhs.uk/STU3/Flag?patient=999999998&status=active&category=https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=xml"
-      }
-    ],
-    "entry": [
-      {
-        "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Flag/9e63f370-ba72-11e8-96f8-529269fb1459",
-        "resource": {
-          "resourceType": "Flag",
-          "id": "9e63f370-ba72-11e8-96f8-529269fb1459",
-          "meta": {
-            "versionId": "2042385c-ba73-11e8-96f8-529269fb1459",
-            "lastUpdated": "2018-07-24T10:01:00+00:00",
-            "profile": [
-              "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
-            ]
-          },
-          "contained": [
+  "resourceType": "Bundle",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/bundle"
+    ]
+  },
+  "link": [
+    {
+      "url": "https://internet_mps/STU3/Flag?patient=9692247317&category=https%3A%2F%2Ffhir.nhs.uk%2FSTU3%2FCodeSystem%2FRARecord-FlagCategory-1%7CNRAF&status=active",
+      "relation": "self"
+    }
+  ],
+  "entry": [
+    {
+      "resource": {
+        "category": {
+          "coding": [
             {
-              "resourceType": "Provenance",
-              "id": "2042526a-ba73-11e8-96f8-529269fb1459",
-              "meta": {
-                "profile": [
-                  "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
-                ]
-              },
-              "target": [
-                {
-                  "reference": "Flag/9e63f370-ba72-11e8-96f8-529269fb1459"
-                }
-              ],
-              "recorded": "2018-07-24T10:01:00+00:00",
-              "agent": [
-                {
-                  "role": [
-                    {
-                      "coding": [
-                        {
-                          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
-                          "code": "R1974",
-                          "display": "Community Learning Disabilities Nurse"
-                        }
-                      ]
-                    }
-                  ],
-                  "whoReference": {
-                    "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/4tr6ee6a9",
-                    "display": "Nurse N"
-                  },
-                  "onBehalfOfReference": {
-                    "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7",
-                    "display": "Some Hospital Learning Disability Support Department"
-                  }
-                }
-              ]
-            }
-          ],
-          "extension": [
-            {
-              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
-              "extension": [
-                {
-                  "url": "created",
-                  "valueReference": {
-                    "reference": "#2042526a-ba73-11e8-96f8-529269fb1459"
-                  }
-                }
-              ]
-            },
-            {
-              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
-              "valueCodeableConcept": {
-                "coding": [
-                  {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AdjustmentCategories-1",
-                    "code": "comms",
-                    "display": "Communication"
-                  }
-                ]
-              }
-            }
-          ],
-          "status": "active",
-          "category": {
-            "coding": [
-              {
-                "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
-                "code": "reasonable adjustments flag",
-                "display": "Reasonable Adjustments Flag"
-              }
-            ]
-          },
-          "code": {
-            "coding": [
-              {
-                "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-AccessibleInformationAdjustments-1",
-                "code": "requiresinformationineasyread",
-                "display": "Requires information in Easyread"
-              }
-            ]
-          },
-          "patient": {
-            "identifier": [
-            {
-              "system": "https://fhir.nhs.uk/Id/nhs-number",
-              "value": "999999998"
+              "code": "NRAF",
+              "display": "National Reasonable Adjustments Flag",
+              "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
             }
           ]
+        },
+        "status": "active",
+        "code": {
+          "coding": [
+            {
+              "code": "945951000000108",
+              "display": "Requires visual alert",
+              "system": "https://snomed.info/sct"
+            }
+          ]
+        },
+        "extension": [
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+            "extension": [
+              {
+                "url": "Created",
+                "valueReference": {
+                  "reference": "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+                }
+              }
+            ]
+          },
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-AdjustmentCategory-1",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "code": "003",
+                  "display": "Accessible Information - requires specific contact method",
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-AdjustmentCategory-1"
+                }
+              ]
+            }
+          },
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+            "extension": [
+              {
+                "url": "Created",
+                "valueReference": {
+                  "reference": "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+                }
+              }
+            ]
           }
+        ],
+        "resourceType": "Flag",
+        "contained": [
+          {
+            "target": [
+              {
+                "reference": "Flag/9692247317.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+              }
+            ],
+            "resourceType": "Provenance",
+            "recorded": "2021-03-18T14:45:02+00:00",
+            "agent": [
+              {
+                "onBehalfOfReference": {
+                  "display": "WEST POTTERGATE HLTH CTR (D82106)",
+                  "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+                },
+                "whoReference": {
+                  "display": "Healthchecks,Morning",
+                  "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+                },
+                "role": [
+                  {
+                    "coding": [
+                      {
+                        "code": "R0050",
+                        "display": "Consultant",
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "meta": {
+              "profile": [
+                "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+              ]
+            },
+            "id": "0719ef10-346e-4378-8bf3-d878e0defbd8"
+          },
+          {
+            "target": [
+              {
+                "reference": "Flag/9692247317.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+              }
+            ],
+            "resourceType": "Provenance",
+            "recorded": "2021-03-18T14:45:02+00:00",
+            "agent": [
+              {
+                "onBehalfOfReference": {
+                  "display": "WEST POTTERGATE HLTH CTR (D82106)",
+                  "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+                },
+                "whoReference": {
+                  "display": "Healthchecks,Morning",
+                  "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+                },
+                "role": [
+                  {
+                    "coding": [
+                      {
+                        "code": "R0050",
+                        "display": "Consultant",
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "meta": {
+              "profile": [
+                "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+              ]
+            },
+            "id": "0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        ],
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Flag-1"
+          ],
+          "versionId": "1",
+          "lastUpdated": "2021-03-18T14:45:02+00:00"
+        },
+        "id": "9692247317.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a",
+        "subject": {
+          "reference": "https://demographics.spineservices.nhs.uk/STU3/Patient/9692247317"
         }
-      }
-    ]
-  }
+      },
+      "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Flag/9692247317.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a"
+    }
+  ],
+  "total": 1,
+  "type": "searchset",
+  "id": "6671bd5f-5f4e-4def-992f-71f8df34b063"
+}
