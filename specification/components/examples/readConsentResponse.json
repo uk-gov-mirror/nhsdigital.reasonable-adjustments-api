@@ -1,136 +1,126 @@
 {
-    "resourceType": "Bundle",
-    "id": "2dce9ecf-75c6-4ad5-a770-4f035419c229",
-    "meta": {
-      "profile": [
-        "http://hl7.org/fhir/bundle"
-      ]
-    },
-    "type": "searchset",
-    "total": 1,
-    "link": [
-      {
-        "relation": "self",
-        "url": "https://clinicals.spineservices.nhs.uk/STU3/Consent?patient=999999998&status=active&category=https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=json",
-        "_url": {
-        }
-      }
-    ],
-    "entry": [
-      {
-        "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Consent/f1dc0ac6-45ff-4d2b-bf91-793971e3e286",
-        "resource": {
-          "resourceType": "Consent",
-          "id": "f1dc0ac6-45ff-4d2b-bf91-793971e3e286",
-          "meta": {
-            "versionId": "1fc6e241-89f5-4ba4-b957-f025f21854c3",
-            "lastUpdated": "2018-03-01T10:00:00+00:00",
-            "profile": [
-              "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
+  "resourceType": "Bundle",
+  "meta": {
+    "profile": [
+      "http://hl7.org/fhir/bundle"
+    ]
+  },
+  "link": [
+    {
+      "url": "https://internet_mps/STU3/Consent?category=https%3A%2F%2Ffhir.nhs.uk%2FSTU3%2FCodeSystem%2FRARecord-FlagCategory-1%7CNRAF&status=active&patient=9692247317",
+      "relation": "self"
+    }
+  ],
+  "entry": [
+    {
+      "resource": {
+        "category": [
+          {
+            "coding": [
+              {
+                "code": "NRAF",
+                "display": "National Reasonable Adjustments Flag",
+                "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-FlagCategory-1"
+              }
             ]
-          },
-          "contained": [
-            {
-              "resourceType": "Provenance",
-              "id": "e0531fd1-212d-4a97-a7a9-d17cec9a6af2",
-              "meta": {
-                "profile": [
-                  "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
-                ]
-              },
-              "target": [
+          }
+        ],
+        "status": "active",
+        "patient": {
+          "reference": "https://demographics.spineservices.nhs.uk/STU3/Patient/9692247317"
+        },
+        "extension": [
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
+            "valueCodeableConcept": {
+              "coding": [
                 {
-                  "reference": "Consent/f1dc0ac6-45ff-4d2b-bf91-793971e3e286"
-                }
-              ],
-              "recorded": "2016-03-01T10:05:33+00:00",
-              "agent": [
-                {
-                  "role": [
-                    {
-                      "coding": [
-                        {
-                          "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1",
-                          "code": "R0260",
-                          "display": "General Medical Practitioner"
-                        }
-                      ]
-                    }
-                  ],
-                  "whoReference": {
-                    "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/2ee4tr6a9",
-                    "display": "Dr.D"
-                  },
-                  "onBehalfOfReference": {
-                    "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/a3e5i7",
-                    "display": "Some GP Clinic"
-                  }
+                  "code": "001",
+                  "display": "Patient consent",
+                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ProxyRole-1"
                 }
               ]
             }
-          ],
-          "extension": [
-            {
-              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-ProxyRole-1",
-              "valueCodeableConcept": {
-                "coding": [
+          },
+          {
+            "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
+            "extension": [
+              {
+                "url": "Created",
+                "valueReference": {
+                  "reference": "#0719ef10-346e-4378-8bf3-d878e0defbd8"
+                }
+              }
+            ]
+          }
+        ],
+        "resourceType": "Consent",
+        "contained": [
+          {
+            "target": [
+              {
+                "reference": "Consent/9692247317.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+              }
+            ],
+            "resourceType": "Provenance",
+            "recorded": "2021-03-17T15:52:14+00:00",
+            "agent": [
+              {
+                "onBehalfOfReference": {
+                  "display": "WEST POTTERGATE HLTH CTR (D82106)",
+                  "reference": "https://directory.spineservices.nhs.uk/STU3/Organization/D82106"
+                },
+                "whoReference": {
+                  "display": "Healthchecks,Morning",
+                  "reference": "https://sds.spineservices.nhs.uk/STU3/Practitioner/093895563513"
+                },
+                "role": [
                   {
-                    "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-ProxyRole-1",
-                    "code": "lpa",
-                    "display": "Lasting power of attorney personal welfare"
+                    "coding": [
+                      {
+                        "code": "R0050",
+                        "display": "Consultant",
+                        "system": "https://fhir.nhs.uk/STU3/CodeSystem/CareConnect-SDSJobRoleName-1"
+                      }
+                    ]
                   }
                 ]
               }
+            ],
+            "meta": {
+              "profile": [
+                "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Provenance-1"
+              ]
             },
-            {
-              "url": "https://fhir.nhs.uk/STU3/StructureDefinition/Extension-RARecord-Provenance-1",
-              "extension": [
-                {
-                  "url": "created",
-                  "valueReference": {
-                    "reference": "#e0531fd1-212d-4a97-a7a9-d17cec9a6af2"
-                  }
-                }
-              ]
-            }
+            "id": "0719ef10-346e-4378-8bf3-d878e0defbd8"
+          }
+        ],
+        "meta": {
+          "profile": [
+            "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
           ],
-          "status": "active",
-          "category": [
-            {
-              "coding": [
-                {
-                  "system": "https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1",
-                  "code": "reasonable adjustments flag",
-                  "display": "Reasonable Adjustments Flag"
-                }
-              ]
-            }
-          ],
-          "patient" : {
-            "identifier": [
-            {
-                "system": "https://fhir.nhs.uk/Id/nhs-number",
-                "value": "999999998"
-            }
-        ]
-      },
-          "policy": [
-            {
-              "authority": "https://www.gov.uk/",
-              "uri": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf"
-            }
-          ],
-          "purpose": [
-            {
-              "system": "https://snomed.info/sct",
-              "code": "370856009",
-              "display": "Limiting access to confidential patient information"
-            }
-          ]
+          "versionId": "1",
+          "lastUpdated": "2021-03-17T15:52:14+00:00"
         },
-        "search": {
-          "mode": "match"
-        }
-      }
-    ]
-  }
+        "purpose": [
+          {
+            "code": "RACONSENT",
+            "display": "Reasonable Adjustments - Consent to record Reasonable Adjustments",
+            "system": "https://fhir.nhs.uk/STU3/CodeSystem/RARecord-ConsentPurpose-1"
+          }
+        ],
+        "policy": [
+          {
+            "uri": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/535024/data-security-review.pdf",
+            "authority": "https://www.gov.uk/"
+          }
+        ],
+        "id": "9692247317.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+      },
+      "fullUrl": "https://clinicals.spineservices.nhs.uk/STU3/Consent/9692247317.11eccc9b-4a6f-4467-a76b-1b8a82bafd65"
+    }
+  ],
+  "total": 1,
+  "type": "searchset",
+  "id": "4e7f3f62-548b-450e-9630-da271dc9d084"
+}
