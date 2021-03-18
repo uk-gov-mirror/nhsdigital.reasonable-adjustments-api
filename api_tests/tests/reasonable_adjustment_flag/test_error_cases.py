@@ -117,8 +117,8 @@ class TestErrorCaseSuite:
         # Given
         expected_status_code = 400
         expected_response = {
-            "error": "invalid header",
-            "error_description": "nhsd-session-urid is missing or invalid"
+            "error": "invalid role",
+            "error_description": "NHSD-Session-URID is invalid"
         }
 
         # When
@@ -132,7 +132,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
-                # 'nhsd-session-urid': '',
+                'nhsd-session-urid': '',
             }
         )
         actual_response = json.loads(response.text)
