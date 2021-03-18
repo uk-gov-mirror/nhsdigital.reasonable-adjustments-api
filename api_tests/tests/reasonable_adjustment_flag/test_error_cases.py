@@ -118,7 +118,7 @@ class TestErrorCaseSuite:
         expected_status_code = 400
         expected_response = {
             "error": "invalid role",
-            "error_description": "nhsd-Session-urid is invalid"
+            "error_description": "nhsd-session-urid is invalid"
         }
 
         # When
