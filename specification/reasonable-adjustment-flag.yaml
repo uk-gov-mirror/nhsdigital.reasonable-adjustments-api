@@ -897,7 +897,7 @@ components:
       name: consentID
       in: path
       required: true
-      description: The id of the record
+      description: The id of the record. To retrieve the consentID, you need to do a GET /Consent first. The successful response from GET /Consent endpoint contains the consentID. See the example of successful response in [Get consent details](https://digital.nhs.uk/developer/api-catalogue/reasonable-adjustment-flag-fhir#api-Endpoints-readConsent) section. In that response the consentID is [TBC]
       schema:
         type: string
         example: '1'
@@ -905,7 +905,7 @@ components:
       name: flagID
       in: path
       required: true
-      description: The id of the flag
+      description: The id of the flag. To retrieve the flagID, you need to do a GET /Flag first. The successful response from GET /Flag endpoint contains the flagID. See the example of successful response in [Get reasonable adjustments](https://digital.nhs.uk/developer/api-catalogue/reasonable-adjustment-flag-fhir#api-Endpoints-readFlag) section. In that response the flagID is [TBC]
       schema:
         type: string
         example: '1'
@@ -913,7 +913,7 @@ components:
       name: listID
       in: path
       required: true
-      description: The id of the list
+      description: The id of the list. To retrieve the listID, you need to do a GET /List first. The successful response from GET /List endpoint contains the listID. See the example of successful response in [Get impairments](https://digital.nhs.uk/developer/api-catalogue/reasonable-adjustment-flag-fhir#api-Endpoints-readList) section. In that response the listID is [TBC]
       schema:
         type: string
         example: '1'
