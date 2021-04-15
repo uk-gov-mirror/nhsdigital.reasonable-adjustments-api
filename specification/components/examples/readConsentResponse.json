@@ -29,7 +29,7 @@
               "https://fhir.nhs.uk/STU3/StructureDefinition/RARecord-Consent-1"
             ]
           }
-        ]
+        ],
         "status": "active",
         "patient": {
           "reference": "https://demographics.spineservices.nhs.uk/STU3/Patient/9692247317"
