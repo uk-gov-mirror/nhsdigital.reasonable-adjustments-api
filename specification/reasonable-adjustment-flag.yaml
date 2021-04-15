@@ -897,26 +897,26 @@ components:
       name: consentID
       in: path
       required: true
-      description: The id of the record
+      description: The id of the record. To retrieve the consentID, you need to do a GET /Consent first. The successful response from GET /Consent endpoint contains the consentID. See the example of successful response in [Get consent details](https://digital.nhs.uk/developer/api-catalogue/reasonable-adjustment-flag-fhir#api-Endpoints-readConsent) section. See the example below to know the consentID from that response.
       schema:
         type: string
-        example: '1'
+        example: '9692247317.11eccc9b-4a6f-4467-a76b-1b8a82bafd65'
     flagID:
       name: flagID
       in: path
       required: true
-      description: The id of the flag
+      description: The id of the flag. To retrieve the flagID, you need to do a GET /Flag first. The successful response from GET /Flag endpoint contains the flagID. See the example of successful response in [Get reasonable adjustments](https://digital.nhs.uk/developer/api-catalogue/reasonable-adjustment-flag-fhir#api-Endpoints-readFlag) section. See the example below to know the flagID from that response.
       schema:
         type: string
-        example: '1'
+        example: '9692247317.b1fe6cc0-7bf5-453c-a396-1ae97cfad72a'
     listID:
       name: listID
       in: path
       required: true
-      description: The id of the list
+      description: The id of the list. To retrieve the listID, you need to do a GET /List first. The successful response from GET /List endpoint contains the listID. See the example of successful response in [Get impairments](https://digital.nhs.uk/developer/api-catalogue/reasonable-adjustment-flag-fhir#api-Endpoints-readList) section. See the example below to know the listID from that response.
       schema:
         type: string
-        example: '1'
+        example: '9692247317.3d368fbe-e621-4c0b-be74-9a59b4f0e467'
     patient:
       name: patient
       in: query
@@ -940,7 +940,7 @@ components:
       description: The category of the resource being interacted with.
       schema:
         type: string
-        example: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag&_format=json'
+        example: 'https://fhir.nhs.uk/STU3/CodeSystem/CodeSystem-RARecord-FlagCategory-1|reasonable%20adjustments%20flag'
     code:
       name: code
       in: query
