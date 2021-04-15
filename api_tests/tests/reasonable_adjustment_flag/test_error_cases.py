@@ -33,7 +33,7 @@ class TestErrorCaseSuite:
                 'status':   'test',
             },
             headers={
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
             }
         )
@@ -66,7 +66,7 @@ class TestErrorCaseSuite:
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
             }
         )
         actual_response = json.loads(response.text)
@@ -98,7 +98,7 @@ class TestErrorCaseSuite:
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': 'not-GUID'
             }
         )
@@ -117,8 +117,8 @@ class TestErrorCaseSuite:
         # Given
         expected_status_code = 400
         expected_response = {
-            "error": "invalid header",
-            "error_description": "nhsd-session-urid is missing or invalid"
+            "error": "invalid role",
+            "error_description": "nhsd-session-urid is invalid"
         }
 
         # When
@@ -160,7 +160,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'content-type': 'application/json'
             },
             data={
@@ -192,7 +192,7 @@ class TestErrorCaseSuite:
             headers={
                 'Authorization': f'Bearer {self.token}',
                 'x-request-id': str(uuid.uuid4()),
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'content-type': 'application/fhir+json'
             }
         )
@@ -224,7 +224,7 @@ class TestErrorCaseSuite:
             params,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
             }
         )
@@ -252,7 +252,7 @@ class TestErrorCaseSuite:
             url=config.REASONABLE_ADJUSTMENTS_FLAG + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
             },
             data={
@@ -288,7 +288,7 @@ class TestErrorCaseSuite:
             },
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
             }
         )
@@ -316,7 +316,7 @@ class TestErrorCaseSuite:
             url=config.REASONABLE_ADJUSTMENTS_LIST + '/1',
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': 'test',
                 'if-match': ''
             },
@@ -348,7 +348,7 @@ class TestErrorCaseSuite:
             url=config.REASONABLE_ADJUSTMENTS_REMOVE_RA_RECORD,
             headers={
                 'Authorization': f'Bearer {self.token}',
-                'nhsd-session-urid': 'test',
+                'nhsd-session-urid': config.TEST_NHSD_SESSION_URID,
                 'x-request-id': str(uuid.uuid4()),
                 'content-type': 'application/fhir+json',
                 'If-Match': ''
